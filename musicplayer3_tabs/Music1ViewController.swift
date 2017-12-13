@@ -46,6 +46,7 @@ class Music1ViewController: UIViewController {
         super.viewDidLoad()
         //13
         prepareSongAndSession()
+        
     }
     
     @IBAction func play(_ sender: Any) {
