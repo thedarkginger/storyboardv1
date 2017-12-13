@@ -8,11 +8,26 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+import AVFoundation
 
+class SecondViewController: UIViewController {
+    
+    var avPlayer:AVPlayer?
+    var avPlayerItem:AVPlayerItem?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        //        let urlstring = "http://www.noiseaddicts.com/samples_1w72b820/2514.mp3"
+        let urlstring = "https://s3.amazonaws.com/kargopolov/kukushka.mp3"
+        let url = NSURL(string: urlstring)
+        print("playing \(String(describing: url))")
+        
+        avPlayerItem = AVPlayerItem.init(url: url! as URL)
+        avPlayer = AVPlayer.init(playerItem: avPlayerItem)
+        avPlayer?.volume = 1.0
+        avPlayer?.play()
+        
     }
 
     override func didReceiveMemoryWarning() {
