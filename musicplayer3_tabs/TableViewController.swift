@@ -18,9 +18,8 @@ class TableViewController: UITableViewController {
         
         // change to https and change info plist before prod
         get_data_from_url("http://www.kaleidosblog.com/tutorial/tutorial.json")
+        
     }
-    
-    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -29,7 +28,6 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return TableData.count
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
