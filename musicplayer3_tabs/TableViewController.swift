@@ -17,7 +17,7 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         
         // change to https and change info plist before prod
-        get_data_from_url("http://www.kaleidosblog.com/tutorial/tutorial.json")
+        get_data_from_url("https://api.myjson.com/bins/1hdenx")
         
     }
     
@@ -35,6 +35,11 @@ class TableViewController: UITableViewController {
         cell.textLabel?.text = TableData[indexPath.row]
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 70.0;//Choose your custom row height
     }
     
     
@@ -87,7 +92,22 @@ class TableViewController: UITableViewController {
             return
         }
         
+        if let shows_list = json as? NSArray
+        {
+            for i in 0 ..< data_list.count
+            {
+                if let shows_obj = shows_list[i] as? NSDictionary
+                {
+                    let episode_name = shows_obj["episode"] as? String
+                    let episode_date = shows_obj["date"] as? String
+                    TableData.append(episode_date! + " | " + episode_name!)
+                }
+                
+            }
+            
+        }
         
+        /*
         if let countries_list = json as? NSArray
         {
             for i in 0 ..< data_list.count
@@ -104,7 +124,8 @@ class TableViewController: UITableViewController {
                 }
             }
         }
-        
+ 
+ */
         
         
         DispatchQueue.main.async(execute: {self.do_table_refresh()})
