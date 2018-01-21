@@ -10,6 +10,8 @@
 		E81AD7A72000BFBF001DDD3B /* Music2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81AD7A62000BFBF001DDD3B /* Music2ViewController.swift */; };
 		E8532430200CA7F300479ECA /* 3d.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E853242F200CA7F300479ECA /* 3d.jpg */; };
 		E8532434200DE0A100479ECA /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8532433200DE0A100479ECA /* TableViewController.swift */; };
+		E853243A2010669100479ECA /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85324392010669100479ECA /* EpisodeViewController.swift */; };
+		E853243C201430DB00479ECA /* PodcastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853243B201430DB00479ECA /* PodcastsTableViewController.swift */; };
 		E8D5A6FE1FDA6C8300634BB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D5A6FD1FDA6C8300634BB2 /* AppDelegate.swift */; };
 		E8D5A7001FDA6C8300634BB2 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D5A6FF1FDA6C8300634BB2 /* FirstViewController.swift */; };
 		E8D5A7021FDA6C8300634BB2 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D5A7011FDA6C8300634BB2 /* SecondViewController.swift */; };
@@ -35,6 +37,8 @@
 		E81AD7A62000BFBF001DDD3B /* Music2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music2ViewController.swift; sourceTree = "<group>"; };
 		E853242F200CA7F300479ECA /* 3d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3d.jpg; sourceTree = "<group>"; };
 		E8532433200DE0A100479ECA /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		E85324392010669100479ECA /* EpisodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
+		E853243B201430DB00479ECA /* PodcastsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsTableViewController.swift; sourceTree = "<group>"; };
 		E8D5A6FA1FDA6C8300634BB2 /* musicplayer3_tabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = musicplayer3_tabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8D5A6FD1FDA6C8300634BB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8D5A6FF1FDA6C8300634BB2 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -94,7 +98,9 @@
 				E8D5A7011FDA6C8300634BB2 /* SecondViewController.swift */,
 				E8D5A7231FDF8F2D00634BB2 /* Music1ViewController.swift */,
 				E81AD7A62000BFBF001DDD3B /* Music2ViewController.swift */,
+				E853243B201430DB00479ECA /* PodcastsTableViewController.swift */,
 				E8532433200DE0A100479ECA /* TableViewController.swift */,
+				E85324392010669100479ECA /* EpisodeViewController.swift */,
 				E8D5A7031FDA6C8300634BB2 /* Main.storyboard */,
 				E8D5A7251FE0F82100634BB2 /* 05 4_44.mp3 */,
 				E853242F200CA7F300479ECA /* 3d.jpg */,
@@ -220,8 +226,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8D5A7021FDA6C8300634BB2 /* SecondViewController.swift in Sources */,
+				E853243A2010669100479ECA /* EpisodeViewController.swift in Sources */,
 				E8532434200DE0A100479ECA /* TableViewController.swift in Sources */,
 				E8D5A6FE1FDA6C8300634BB2 /* AppDelegate.swift in Sources */,
+				E853243C201430DB00479ECA /* PodcastsTableViewController.swift in Sources */,
 				E81AD7A72000BFBF001DDD3B /* Music2ViewController.swift in Sources */,
 				E8D5A7241FDF8F2D00634BB2 /* Music1ViewController.swift in Sources */,
 				E8D5A7001FDA6C8300634BB2 /* FirstViewController.swift in Sources */,
