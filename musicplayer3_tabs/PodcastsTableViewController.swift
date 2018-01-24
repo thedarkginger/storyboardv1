@@ -11,6 +11,8 @@ import UIKit
 class PodcastsTableViewController: UITableViewController {
     
     var TableData:Array< String > = Array < String >()
+    
+    var show_image = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,7 @@ class PodcastsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -108,7 +111,7 @@ class PodcastsTableViewController: UITableViewController {
                     let show_image = shows_obj["thumbnail"] as? String
                     TableData.append(show_name! + " | " + show_genre!)
                     
-                    let testPictureURL = URL(string: show_image!)!
+                    let testPictureURL = URL(string: "https://pbs.twimg.com/profile_images/901973198727651328/v19Dj1As_400x400.jpg")!
                     
                     let session = URLSession(configuration: .default)
                     
@@ -126,8 +129,9 @@ class PodcastsTableViewController: UITableViewController {
                                     // Finally convert that Data into an image and do what you wish with it.
                                     let image = UIImage(data: imageData)
                                     // Do something with your image.
-                                
-                    
+                                    
+                                    DispatchQueue.main.async(execute: {self.do_table_refresh()})
+                                    
                                 } else {
                                     print("Couldn't get image: Image is nil")
                                 }
@@ -138,7 +142,6 @@ class PodcastsTableViewController: UITableViewController {
                     }
                     
                     downloadPicTask.resume()
-                    
                 }
             }
         }
