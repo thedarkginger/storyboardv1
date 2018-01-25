@@ -17,6 +17,8 @@ class TableViewController: UITableViewController {
         
         // change to https and change info plist before prod
         get_data_from_url("https://api.myjson.com/bins/k45l1")
+        
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -40,7 +42,7 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         // doSomethingWithItem(indexPath.row)
         
-        if let audioUrl = URL(string: "https://rss.art19.com/episodes/4a49a897-61a7-4a2c-81d5-4a7568339d38.mp3") {
+        if let audioUrl = URL(string: "https://rss.art19.com/episodes/871ae23d-0580-4677-b78e-93db3c5dfaf4.mp3") {
             
             // then lets create your document folder url
             let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -54,7 +56,7 @@ class TableViewController: UITableViewController {
                 print("The file already exists at path")
                 
                 let cell = tableView.cellForRow(at: indexPath)
-                cell?.accessoryType = .detailButton
+                cell?.accessoryType = .checkmark
                 
                 //show file downloaded
                 // removed in new vc
@@ -79,6 +81,7 @@ class TableViewController: UITableViewController {
                 
                 let cell = tableView.cellForRow(at: indexPath)
                 cell?.accessoryType = .checkmark
+            
             }
         }
         

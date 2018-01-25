@@ -9,49 +9,51 @@
 import UIKit
 import AVFoundation
 
-// var timer: Timer?
-
 class EpisodeViewController: UIViewController {
+    var timer: Timer?
     
     var variableInSecondVc = ""
     
-    var audiotest = ""
+    var audiotest = "" {
+        didSet{
+            // use audio, start player
+           /* if let audioUrl = URL(string: self.audiotest) {
+                
+                // then lets create your document folder url
+                let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                
+                // lets create your destination file url
+                let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+                
+                //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
+                
+                do {
+                    audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
+                    /*
+                    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+                        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+                    }
+                    
+                    let example = (Float(audioPlayer.duration))
+                    let myIntValue = Int(example)
+                    let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
+                    let updated3 = "\(updated.0):\(updated.1):\(updated.2)"
+                    let updated2 = String(describing: updated3)
+                    // self.episodeDuration.text = updated2
+ 
+ */
+                    
+                    
+                } catch let error {
+                    print(error.localizedDescription)
+                }
+            } // end player */
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let audioUrl = URL(string: "https://rss.art19.com/episodes/4a49a897-61a7-4a2c-81d5-4a7568339d38.mp3") {
-            
-            // then lets create your document folder url
-            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            
-            // lets create your destination file url
-            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-            
-            //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
-            
-            do {
-                audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
-                
-                func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
-                    return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
-                }
-                
-                let example = (Float(audioPlayer.duration))
-                let myIntValue = Int(example)
-                let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
-                let updated3 = "\(updated.0):\(updated.1):\(updated.2)"
-                let updated2 = String(describing: updated3)
-                // self.episodeDuration.text = updated2
-                
-                
-            } catch let error {
-                print(error.localizedDescription)
-            }
-        } // end player
-        
-
-
             let url = URL(string: "http://www.fearthewave.com/fearthewave.json")
                 URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
                     guard let data = data, error == nil else { return }
@@ -72,20 +74,52 @@ class EpisodeViewController: UIViewController {
                         // do something with foo
                         
                         self.audiotest = (foo["audio"] as? String)!
+                        print(self.audiotest)
                         
-  
+                        if let audioUrl = URL(string: self.audiotest) {
+                            
+                            // then lets create your document folder url
+                            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                            
+                            // lets create your destination file url
+                            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+                            
+                            //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
+                            
+                            do {
+                                
+                                audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
+
+                                /*
+                                 func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+                                 return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+                                 }
+                                 
+                                 let example = (Float(audioPlayer.duration))
+                                 let myIntValue = Int(example)
+                                 let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
+                                 let updated3 = "\(updated.0):\(updated.1):\(updated.2)"
+                                 let updated2 = String(describing: updated3)
+                                 // self.episodeDuration.text = updated2
+                                 
+                                 */
+                                
+                                
+                            } catch let error {
+                                print(error.localizedDescription)
+                            }
+                        } // end player
+                        
                         
                     } else {
                         // item could not be found
+               
                     }
                     
                     //
-                    
-                    print(self.audiotest)
-                    
-                    
+    
                 }).resume()
-
+        
         let fixed = variableInSecondVc.components(separatedBy: " | ")
         let fixedSite = fixed[1]
         let fixedDate = fixed[0]
@@ -93,8 +127,7 @@ class EpisodeViewController: UIViewController {
         episodeDate.text = fixedDate
         
         print("https://fearthewave.com/\(fixedSite)")
-        
-
+    
         
         // Do any additional setup after loading the view.
         
@@ -112,11 +145,10 @@ class EpisodeViewController: UIViewController {
     @IBAction func playPod(_ sender: Any) {
         
         // updates slider with progress
-       //  Slider.value = 0.0
-       //  Slider.maximumValue = Float((audioPlayer?.duration)!)
-       //  timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
-        
-        
+        Slider.value = 0.0
+        Slider.maximumValue = Float((audioPlayer?.duration)!)
+        timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
+    
         audioPlayer.play()
         
     }
@@ -131,6 +163,35 @@ class EpisodeViewController: UIViewController {
         
     }
     
+    @IBOutlet var Slider: UISlider!
+    
+    @IBAction func changePodSlider(_ sender: Any) {
+        audioPlayer.stop()
+        audioPlayer.currentTime = TimeInterval(Slider.value)
+        audioPlayer.prepareToPlay()
+        Slider.maximumValue = Float(audioPlayer.duration)
+        audioPlayer.play()
+    }
+    
+    
+    @objc func updateSlider(){
+        
+        Slider.value = Float(audioPlayer.currentTime)
+        
+        audioPlayer.play()
+        
+        
+        func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+            return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+        }
+        
+        let example = (Float(audioPlayer.currentTime))
+        let myIntValue = Int(example)
+        let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
+        let updated3 = "\(updated.0):\(updated.1):\(updated.2)"
+        let updated2 = String(describing: updated3)
+        // self.goneTime.text = updated2 changes time label
+    }
     
     /*
     // MARK: - Navigation

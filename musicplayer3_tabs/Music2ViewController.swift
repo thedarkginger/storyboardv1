@@ -119,6 +119,7 @@ class Music2ViewController: UIViewController {
     @IBOutlet var Slider: UISlider!
     
     @IBOutlet var goneTime: UILabel!
+    
     @IBAction func changeAudioTime(_ sender: Any) {
         audioPlayer.stop()
         audioPlayer.currentTime = TimeInterval(Slider.value)
