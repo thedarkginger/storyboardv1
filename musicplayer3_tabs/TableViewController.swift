@@ -19,6 +19,8 @@ class TableViewController: UITableViewController {
         get_data_from_url("https://api.myjson.com/bins/k45l1")
         
         
+        
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -36,13 +38,7 @@ class TableViewController: UITableViewController {
         
         cell.accessoryType = .detailDisclosureButton
         
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        // doSomethingWithItem(indexPath.row)
-        
-        if let audioUrl = URL(string: "https://rss.art19.com/episodes/871ae23d-0580-4677-b78e-93db3c5dfaf4.mp3") {
+        if let audioUrl = URL(string: "https://rss.art19.com/episodes/87c66abc-28a5-4137-a58e-ef7f62c8149c.mp3") {
             
             // then lets create your document folder url
             let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -53,6 +49,31 @@ class TableViewController: UITableViewController {
             
             // to check if it exists before downloading it
             if FileManager.default.fileExists(atPath: destinationUrl.path) {
+                print("The file already exists at path")
+                
+                cell.accessoryType = .checkmark
+                
+            }
+            
+        }
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        // doSomethingWithItem(indexPath.row)
+        
+        if let audioUrl = URL(string: "https://rss.art19.com/episodes/87c66abc-28a5-4137-a58e-ef7f62c8149c.mp3") {
+            
+            // then lets create your document folder url
+            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            
+            // lets create your destination file url
+            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+            print(destinationUrl)
+            
+            // to check if it exists before downloading it
+            if FileManager.default.fileExists(atPath: destinationUrl.relativePath) {
                 print("The file already exists at path")
                 
                 let cell = tableView.cellForRow(at: indexPath)
@@ -81,12 +102,12 @@ class TableViewController: UITableViewController {
                 
                 let cell = tableView.cellForRow(at: indexPath)
                 cell?.accessoryType = .checkmark
-            
+                
             }
         }
         
         
-
+        
         
     }
     
@@ -95,7 +116,7 @@ class TableViewController: UITableViewController {
         return 70.0;//Choose your custom row height
     }
     
-
+    
     func get_data_from_url(_ link:String)
     {
         let url:URL = URL(string: link)!
@@ -146,18 +167,18 @@ class TableViewController: UITableViewController {
                     let episode_date = shows_obj["date"] as? String
                     TableData.append(episode_date! + " | " + episode_name!)
                     
-
+                    
                     
                 }
                 
             }
         }
-
+        
         DispatchQueue.main.async(execute: {self.do_table_refresh()})
         
     }
     
-
+    
     
     func do_table_refresh()
     {
@@ -173,12 +194,13 @@ class TableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-            if let indexPath = self.tableView.indexPathForSelectedRow {
-                let controller = segue.destination as! EpisodeViewController
-                controller.variableInSecondVc = TableData[indexPath.row]
-            }
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            let controller = segue.destination as! EpisodeViewController
+            controller.variableInSecondVc = TableData[indexPath.row]
+        }
+    }
+    
+    
+    // end
 }
 
-    
-// end
-}
