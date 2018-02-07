@@ -7,6 +7,7 @@
 //
 
 import UIKit
+var audiotest = ""
 
 class TableViewController: UITableViewController {
     
@@ -16,11 +17,9 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         
         // change to https and change info plist before prod
-        get_data_from_url("https://api.myjson.com/bins/k45l1")
+        get_data_from_url("https://api.myjson.com/bins/u5al5")
         
-        
-        
-        
+    
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -37,6 +36,66 @@ class TableViewController: UITableViewController {
         cell.textLabel?.text = TableData[indexPath.row]
         
         cell.accessoryType = .detailDisclosureButton
+        
+        //this is where I want to return the audio URL which I then would pass into the next method
+        print(TableData[indexPath.row])
+        
+        // extract json audio file
+        
+        let url = URL(string: "http://www.fearthewave.com/fearthewave.json")
+        URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
+            guard let data = data, error == nil else { return }
+            
+            let json: Any?
+            do{
+                json = try JSONSerialization.jsonObject(with: data, options: [])
+            }
+            catch{
+                return
+            }
+            
+            guard let data_list = json as? [[String:Any]] else {
+                return
+            }
+            
+            if let foo = data_list.first(where: {$0["episode"] as? String == "Houston Preview"}) {
+                // do something with foo
+                
+                audiotest = (foo["audio"] as? String)!
+                print(audiotest)
+                
+                if let audioUrl = URL(string: audiotest) {
+                    
+                    // then lets create your document folder url
+                    let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                    
+                    // lets create your destination file url
+                    let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+                    
+                    //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
+                    
+                    do {
+                        
+                        // audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
+                        
+                        
+                    } catch let error {
+                        print(error.localizedDescription)
+                    }
+                } // end player
+                
+                
+            } else {
+                // item could not be found
+                
+            }
+            
+            //
+            
+        }).resume()
+        
+        // end json audio file extraction
+        
         
         if let audioUrl = URL(string: "https://rss.art19.com/episodes/87c66abc-28a5-4137-a58e-ef7f62c8149c.mp3") {
             
@@ -166,9 +225,8 @@ class TableViewController: UITableViewController {
                     let episode_name = shows_obj["episode"] as? String
                     let episode_date = shows_obj["date"] as? String
                     TableData.append(episode_date! + " | " + episode_name!)
-                    
-                    
-                    
+                    // this is where I want to capture the URL without showing it as text
+                    let epside_audio = shows_obj["url"] as? String
                 }
                 
             }
@@ -177,8 +235,6 @@ class TableViewController: UITableViewController {
         DispatchQueue.main.async(execute: {self.do_table_refresh()})
         
     }
-    
-    
     
     func do_table_refresh()
     {

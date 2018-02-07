@@ -19,6 +19,7 @@ class PodcastsTableViewController: UITableViewController {
         
         // change to https and change info plist before prod
         get_data_from_url("https://api.myjson.com/bins/15pmux")
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
