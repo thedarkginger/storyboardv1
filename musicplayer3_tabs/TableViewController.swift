@@ -208,7 +208,21 @@ class TableViewController: UITableViewController {
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let controller = segue.destination as! EpisodeViewController
-            controller.variableInSecondVc = TableData[indexPath.row]
+            // controller.variableInSecondVc = TableData[indexPath.row]
+            
+            let epi = TableDataV[indexPath.row]
+            
+            controller.nameVariableInSecondVc = epi.name
+            
+            var url = ""
+            
+            if epi.audio != nil {
+                
+                url = epi.audio!
+                
+                controller.audioVariableInSecondVc = epi.audio!
+
+            }
         }
     }
     

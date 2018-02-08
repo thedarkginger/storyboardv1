@@ -12,49 +12,65 @@ import AVFoundation
 class EpisodeViewController: UIViewController {
     var timer: Timer?
     
-    var variableInSecondVc = ""
+    var nameVariableInSecondVc = ""
+    var audioVariableInSecondVc = ""
     
     var audiotest = "" {
         didSet{
-            // use audio, start player
-           /* if let audioUrl = URL(string: self.audiotest) {
-                
-                // then lets create your document folder url
-                let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                
-                // lets create your destination file url
-                let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-                
-                //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
-                
-                do {
-                    audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
-                    /*
-                    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
-                        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
-                    }
-                    
-                    let example = (Float(audioPlayer.duration))
-                    let myIntValue = Int(example)
-                    let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
-                    let updated3 = "\(updated.0):\(updated.1):\(updated.2)"
-                    let updated2 = String(describing: updated3)
-                    // self.episodeDuration.text = updated2
- 
- */
-                    
-                    
-                } catch let error {
-                    print(error.localizedDescription)
-                }
-            } // end player */
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-            let url = URL(string: "http://www.fearthewave.com/fearthewave.json")
+        // let fixed = variableInSecondVc.components(separatedBy: " | ")
+        // let fixedSite = fixed[1]
+        // let fixedDate = fixed[0]
+        // episodeTitle.text = fixedSite
+        // episodeDate.text = fixedDate
+        
+        let testName = nameVariableInSecondVc
+        let testSite = audioVariableInSecondVc
+        episodeTitle.text = testName
+        print("update" + testSite)
+        
+        if let audioUrl = URL(string: testSite) {
+            
+            // then lets create your document folder url
+            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            
+            // lets create your destination file url
+            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+            
+            //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
+            
+            do {
+                
+                audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
+                
+                /*
+                 func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+                 return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+                 }
+                 
+                 let example = (Float(audioPlayer.duration))
+                 let myIntValue = Int(example)
+                 let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
+                 let updated3 = "\(updated.0):\(updated.1):\(updated.2)"
+                 let updated2 = String(describing: updated3)
+                 // self.episodeDuration.text = updated2
+                 
+                 */
+                
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        } // end player
+    
+        
+        
+        /*
+        let url = URL(string: "https://api.myjson.com/bins/u5al5")
                 URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
                     guard let data = data, error == nil else { return }
                     
@@ -70,10 +86,10 @@ class EpisodeViewController: UIViewController {
                         return
                     }
                     
-                    if let foo = data_list.first(where: {$0["episode"] as? String == "Houston Preview"}) {
+                    if let foo = data_list.first(where: {$0["episode"] as? String == testName}) {
                         // do something with foo
                         
-                        self.audiotest = (foo["audio"] as? String)!
+                        self.audiotest = (foo["url"] as? String)!
                         print(self.audiotest)
                         
                         if let audioUrl = URL(string: self.audiotest) {
@@ -104,7 +120,6 @@ class EpisodeViewController: UIViewController {
                                  
                                  */
                                 
-                                
                             } catch let error {
                                 print(error.localizedDescription)
                             }
@@ -118,17 +133,9 @@ class EpisodeViewController: UIViewController {
                     
                     //
     
-                }).resume()
+                }).resume() */
         
-        let fixed = variableInSecondVc.components(separatedBy: " | ")
-        let fixedSite = fixed[1]
-        let fixedDate = fixed[0]
-        episodeTitle.text = fixedSite
-        episodeDate.text = fixedDate
-        
-        print("https://fearthewave.com/\(fixedSite)")
-    
-        
+
         // Do any additional setup after loading the view.
         
 
