@@ -12,14 +12,14 @@ var audiotest = ""
 class TableViewController: UITableViewController {
     
     var TableData:Array< String > = Array < String >()
-    
+    var TableDataV : [episode] = [episode]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // change to https and change info plist before prod
         get_data_from_url("https://api.myjson.com/bins/u5al5")
         
-    
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -27,94 +27,47 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TableData.count
+        return TableDataV.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        cell.textLabel?.text = TableData[indexPath.row]
+        let epi = TableDataV[indexPath.row]
+        
+        cell.textLabel?.text = epi.date + " | " + epi.name
         
         cell.accessoryType = .detailDisclosureButton
         
-        //this is where I want to return the audio URL which I then would pass into the next method
-        print(TableData[indexPath.row])
-        
         // extract json audio file
         
-        let url = URL(string: "http://www.fearthewave.com/fearthewave.json")
-        URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
-            guard let data = data, error == nil else { return }
-            
-            let json: Any?
-            do{
-                json = try JSONSerialization.jsonObject(with: data, options: [])
-            }
-            catch{
-                return
-            }
-            
-            guard let data_list = json as? [[String:Any]] else {
-                return
-            }
-            
-            if let foo = data_list.first(where: {$0["episode"] as? String == "Houston Preview"}) {
-                // do something with foo
-                
-                audiotest = (foo["audio"] as? String)!
-                print(audiotest)
-                
-                if let audioUrl = URL(string: audiotest) {
-                    
-                    // then lets create your document folder url
-                    let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                    
-                    // lets create your destination file url
-                    let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-                    
-                    //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
-                    
-                    do {
-                        
-                        // audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
-                        
-                        
-                    } catch let error {
-                        print(error.localizedDescription)
-                    }
-                } // end player
-                
-                
-            } else {
-                // item could not be found
-                
-            }
-            
-            //
-            
-        }).resume()
+        var url = ""
         
-        // end json audio file extraction
-        
-        
-        if let audioUrl = URL(string: "https://rss.art19.com/episodes/87c66abc-28a5-4137-a58e-ef7f62c8149c.mp3") {
+        if epi.audio != nil {
             
-            // then lets create your document folder url
-            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            url = epi.audio!
             
-            // lets create your destination file url
-            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-            print(destinationUrl)
-            
-            // to check if it exists before downloading it
-            if FileManager.default.fileExists(atPath: destinationUrl.path) {
-                print("The file already exists at path")
+            if let audioUrl = URL(string: url) {
                 
-                cell.accessoryType = .checkmark
+                // then lets create your document folder url
+                let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
                 
-            }
-            
+                // lets create your destination file url
+                let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+                print(destinationUrl)
+                
+                // to check if it exists before downloading it
+                if FileManager.default.fileExists(atPath: destinationUrl.path) {
+                    print("The file already exists at path")
+                    
+                    cell.accessoryType = .checkmark
+                    
+                }
+                
+            } // end audio if
         }
+        
+        print("test" + url)
         
         return cell
     }
@@ -122,7 +75,7 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         // doSomethingWithItem(indexPath.row)
         
-        if let audioUrl = URL(string: "https://rss.art19.com/episodes/87c66abc-28a5-4137-a58e-ef7f62c8149c.mp3") {
+        if let audioUrl = URL(string: "https://rss.art19.com/episodes/fdc49077-bbbd-409a-9c3a-b1f96a7040ea.mp3") {
             
             // then lets create your document folder url
             let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -222,11 +175,14 @@ class TableViewController: UITableViewController {
             {
                 if let shows_obj = shows_list[i] as? NSDictionary
                 {
+                    
                     let episode_name = shows_obj["episode"] as? String
                     let episode_date = shows_obj["date"] as? String
                     TableData.append(episode_date! + " | " + episode_name!)
                     // this is where I want to capture the URL without showing it as text
                     let epside_audio = shows_obj["url"] as? String
+                    
+                    TableDataV.append(episode(name: episode_name!, date: episode_date!, audio: epside_audio))
                 }
                 
             }
@@ -258,5 +214,19 @@ class TableViewController: UITableViewController {
     
     
     // end
+}
+
+struct episode {
+    
+    var name = ""
+    var date = ""
+    var audio : String?
+    
+    init(name:String,date:String,audio:String?) {
+        
+        self.name = name
+        self.date = date
+        self.audio = audio
+    }
 }
 
