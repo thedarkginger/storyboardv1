@@ -30,6 +30,7 @@ class EpisodeViewController: UIViewController {
         // episodeDate.text = fixedDate
         
         let testName = nameVariableInSecondVc
+        // this passes the audio url
         let testSite = audioVariableInSecondVc
         episodeTitle.text = testName
         print("update" + testSite)
@@ -67,78 +68,6 @@ class EpisodeViewController: UIViewController {
             }
         } // end player
     
-        
-        
-        /*
-        let url = URL(string: "https://api.myjson.com/bins/u5al5")
-                URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
-                    guard let data = data, error == nil else { return }
-                    
-                    let json: Any?
-                    do{
-                        json = try JSONSerialization.jsonObject(with: data, options: [])
-                    }
-                    catch{
-                        return
-                    }
-                    
-                    guard let data_list = json as? [[String:Any]] else {
-                        return
-                    }
-                    
-                    if let foo = data_list.first(where: {$0["episode"] as? String == testName}) {
-                        // do something with foo
-                        
-                        self.audiotest = (foo["url"] as? String)!
-                        print(self.audiotest)
-                        
-                        if let audioUrl = URL(string: self.audiotest) {
-                            
-                            // then lets create your document folder url
-                            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                            
-                            // lets create your destination file url
-                            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-                            
-                            //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
-                            
-                            do {
-                                
-                                audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
-
-                                /*
-                                 func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
-                                 return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
-                                 }
-                                 
-                                 let example = (Float(audioPlayer.duration))
-                                 let myIntValue = Int(example)
-                                 let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
-                                 let updated3 = "\(updated.0):\(updated.1):\(updated.2)"
-                                 let updated2 = String(describing: updated3)
-                                 // self.episodeDuration.text = updated2
-                                 
-                                 */
-                                
-                            } catch let error {
-                                print(error.localizedDescription)
-                            }
-                        } // end player
-                        
-                        
-                    } else {
-                        // item could not be found
-               
-                    }
-                    
-                    //
-    
-                }).resume() */
-        
-
-        // Do any additional setup after loading the view.
-        
-
     } // end view did
     
         @IBOutlet var episodeTitle: UILabel!
