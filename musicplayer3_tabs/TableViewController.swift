@@ -17,7 +17,7 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         
         // change to https and change info plist before prod
-        get_data_from_url("https://api.myjson.com/bins/u5al5")
+        get_data_from_url("https://api.myjson.com/bins/1cudap")
         
         
     }
@@ -75,7 +75,13 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         // doSomethingWithItem(indexPath.row)
         
-        if let audioUrl = URL(string: "https://rss.art19.com/episodes/fdc49077-bbbd-409a-9c3a-b1f96a7040ea.mp3") {
+        let epi = TableDataV[indexPath.row]
+        var url = ""
+        if epi.audio != nil {
+
+            url = epi.audio!
+        
+            if let audioUrl = URL(string: url) {
             
             // then lets create your document folder url
             let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -90,12 +96,7 @@ class TableViewController: UITableViewController {
                 
                 let cell = tableView.cellForRow(at: indexPath)
                 cell?.accessoryType = .checkmark
-                
-                //show file downloaded
-                // removed in new vc
-                // self.checkDownload.text = "Downloaded"
-                // checkDownload.backgroundColor = UIColor.green
-                
+        
                 // if the file doesn't exist
             } else {
                 
@@ -109,18 +110,15 @@ class TableViewController: UITableViewController {
                     } catch let error as NSError {
                         print(error.localizedDescription)
                     }
-                    
                 }).resume()
-                
+                }
                 let cell = tableView.cellForRow(at: indexPath)
                 cell?.accessoryType = .checkmark
                 
             }
         }
-        
-        
-        
-        
+            
+  
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat

@@ -33,7 +33,7 @@ class EpisodeViewController: UIViewController {
         // this passes the audio url
         let testSite = audioVariableInSecondVc
         episodeTitle.text = testName
-        print("update" + testSite)
+        print(testSite)
         
         if let audioUrl = URL(string: testSite) {
             
