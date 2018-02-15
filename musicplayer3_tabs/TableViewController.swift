@@ -76,6 +76,7 @@ class TableViewController: UITableViewController {
                 
                 // lets create your destination file url
                 let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+               
                 print(destinationUrl)
                 
                 // to check if it exists before downloading it
@@ -85,6 +86,7 @@ class TableViewController: UITableViewController {
                     cell.accessoryType = .checkmark
                     
                 }
+
                 
             } // end audio if
         }
@@ -148,6 +150,8 @@ class TableViewController: UITableViewController {
                                 vc.nameVariableInSecondVc = epi.name
                                 vc.audioVariableInSecondVc = epi.audio!
                                 
+                                let cell = tableView.cellForRow(at: indexPath)
+                                cell?.accessoryType = .checkmark
                                 
                             }
                             
