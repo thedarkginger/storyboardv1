@@ -11,6 +11,8 @@ import UIKit
 class DownloadTableViewController: UITableViewController {
     
     var thedownloads = [String]()
+    var theurls = [URL]()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,9 @@ class DownloadTableViewController: UITableViewController {
             // Get the directory contents urls (including subfolders urls)
             let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: [])
             // print(directoryContents)
+            theurls = directoryContents
+        
+            
             
             // if you want to filter the directory contents you can do like this:
             let mp3Files = directoryContents.filter{ $0.pathExtension == "mp3" }
@@ -69,6 +74,19 @@ class DownloadTableViewController: UITableViewController {
         cell.textLabel?.text = thedownloads[indexPath.row]
 
         return cell
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let url = thedownloads[indexPath.row]
+        print(url)
+        
+        do {
+            try FileManager.default.removeItem(at: theurls[indexPath.row])
+        } catch let error {
+            print(error)
+        }
     }
 
     /*
