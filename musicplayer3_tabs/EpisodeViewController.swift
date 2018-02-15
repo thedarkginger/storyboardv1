@@ -19,9 +19,13 @@ class EpisodeViewController: UIViewController {
         didSet{
         }
     }
+    
+    @IBOutlet weak var activity_indicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activity_indicator.isHidden = true
         
         // let fixed = variableInSecondVc.components(separatedBy: " | ")
         // let fixedSite = fixed[1]
@@ -43,35 +47,40 @@ class EpisodeViewController: UIViewController {
             // lets create your destination file url
             let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
             
-            //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
-            
             do {
                 
                 audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
                 
-                /*
-                 func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
-                 return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
-                 }
-                 
-                 let example = (Float(audioPlayer.duration))
-                 let myIntValue = Int(example)
-                 let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
-                 let updated3 = "\(updated.0):\(updated.1):\(updated.2)"
-                 let updated2 = String(describing: updated3)
-                 // self.episodeDuration.text = updated2
-                 
-                 */
-                
             } catch let error {
                 print(error.localizedDescription)
             }
+            
+            
+            //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
+            
+            
+            
+            /*
+             func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+             return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+             }
+             
+             let example = (Float(audioPlayer.duration))
+             let myIntValue = Int(example)
+             let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
+             let updated3 = "\(updated.0):\(updated.1):\(updated.2)"
+             let updated2 = String(describing: updated3)
+             // self.episodeDuration.text = updated2
+             
+             */
+            
+            
         } // end player
-    
+        
     } // end view did
     
-        @IBOutlet var episodeTitle: UILabel!
-
+    @IBOutlet var episodeTitle: UILabel!
+    
     @IBOutlet var episodeDate: UILabel!
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -84,7 +93,7 @@ class EpisodeViewController: UIViewController {
         Slider.value = 0.0
         Slider.maximumValue = Float((audioPlayer?.duration)!)
         timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
-    
+        
         audioPlayer.play()
         
     }
@@ -114,7 +123,7 @@ class EpisodeViewController: UIViewController {
         
         Slider.value = Float(audioPlayer.currentTime)
         
-        audioPlayer.play()
+        //        audioPlayer.play()
         
         
         func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
@@ -130,14 +139,15 @@ class EpisodeViewController: UIViewController {
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
-
+    
 } //end
+

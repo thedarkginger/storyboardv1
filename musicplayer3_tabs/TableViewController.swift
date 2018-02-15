@@ -13,14 +13,36 @@ class TableViewController: UITableViewController {
     
     var TableData:Array< String > = Array < String >()
     var TableDataV : [episode] = [episode]()
+    
+    var activity_indicator = UIActivityIndicatorView()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // change to https and change info plist before prod
         get_data_from_url("https://api.myjson.com/bins/1cudap")
         
+        activity_indicator.frame = CGRect(x: 50, y: 50, width: 20, height: 20)
+        activity_indicator.isHidden = true
+        activity_indicator.center = self.view.center
+        activity_indicator.color = UIColor.black
+        
+        
+        //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //        appDelegate.window!.addSubview(activity_indicator)
+        
+        let d = DispatchTime.now() + 0.5
+        
+        DispatchQueue.main.asyncAfter(deadline: d) {
+            
+            self.view.addSubview(self.activity_indicator)
+            self.view.bringSubview(toFront: self.activity_indicator)
+        }
+        
         
     }
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -78,47 +100,69 @@ class TableViewController: UITableViewController {
         let epi = TableDataV[indexPath.row]
         var url = ""
         if epi.audio != nil {
-
+            
             url = epi.audio!
-        
+            
             if let audioUrl = URL(string: url) {
-            
-            // then lets create your document folder url
-            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            
-            // lets create your destination file url
-            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-            print(destinationUrl)
-            
-            // to check if it exists before downloading it
-            if FileManager.default.fileExists(atPath: destinationUrl.relativePath) {
-                print("The file already exists at path")
                 
-                let cell = tableView.cellForRow(at: indexPath)
-                cell?.accessoryType = .checkmark
-        
-                // if the file doesn't exist
-            } else {
+                // then lets create your document folder url
+                let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
                 
-                // you can use NSURLSession.sharedSession to download the data asynchronously
-                URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, response, error) -> Void in
-                    guard let location = location, error == nil else { return }
-                    do {
-                        // after downloading your file you need to move it to your destination url
-                        try FileManager.default.moveItem(at: location, to: destinationUrl)
-                        print("File moved to documents folder")
-                    } catch let error as NSError {
-                        print(error.localizedDescription)
-                    }
-                }).resume()
+                // lets create your destination file url
+                let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+                print(destinationUrl)
+                
+                // to check if it exists before downloading it
+                if FileManager.default.fileExists(atPath: destinationUrl.relativePath) {
+                    print("The file already exists at path")
+                    
+                    let cell = tableView.cellForRow(at: indexPath)
+                    cell?.accessoryType = .checkmark
+                    
+                    // if the file doesn't exist
+                } else {
+                    
+                    activity_indicator.isHidden = false
+                    activity_indicator.startAnimating()
+                    UIApplication.shared.beginIgnoringInteractionEvents()
+                    
+                    // you can use NSURLSession.sharedSession to download the data asynchronously
+                    URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, response, error) -> Void in
+                        guard let location = location, error == nil else { return }
+                        do {
+                            // after downloading your file you need to move it to your destination url
+                            try FileManager.default.moveItem(at: location, to: destinationUrl)
+                            print("File moved to documents folder")
+                            
+                            
+                            let when = DispatchTime.now()
+                            
+                            DispatchQueue.main.asyncAfter(deadline: when) {
+                                
+                                self.activity_indicator.isHidden = true
+                                self.activity_indicator.stopAnimating()
+                                UIApplication.shared.endIgnoringInteractionEvents()
+                                
+                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
+                                self.navigationController?.pushViewController(vc, animated: true)
+                                vc.nameVariableInSecondVc = epi.name
+                                vc.audioVariableInSecondVc = epi.audio!
+                                
+                                
+                            }
+                            
+                            
+                        } catch let error as NSError {
+                            print(error.localizedDescription)
+                        }
+                    }).resume()
                 }
-                let cell = tableView.cellForRow(at: indexPath)
-                cell?.accessoryType = .checkmark
+                
                 
             }
         }
-            
-  
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
@@ -197,8 +241,73 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "passer", sender: indexPath)
         
+        let epi = TableDataV[indexPath.row]
+        
+        var url = ""
+        
+        if epi.audio != nil {
+            
+            url = epi.audio!
+            
+            if let audioUrl = URL(string: url) {
+                
+                // then lets create your document folder url
+                let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                
+                // lets create your destination file url
+                let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+                
+                if FileManager.default.fileExists(atPath: destinationUrl.path) {
+                    
+                    print("The file already exists at path")
+                    
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    vc.nameVariableInSecondVc = epi.name
+                    vc.audioVariableInSecondVc = epi.audio!
+                    
+                    // if the file doesn't exist
+                } else {
+                    
+                    activity_indicator.isHidden = false
+                    activity_indicator.startAnimating()
+                    UIApplication.shared.beginIgnoringInteractionEvents()
+                    
+                    // you can use NSURLSession.sharedSession to download the data asynchronously
+                    URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, response, error) -> Void in
+                        guard let location = location, error == nil else { return }
+                        do {
+                            // after downloading your file you need to move it to your destination url
+                            try FileManager.default.moveItem(at: location, to: destinationUrl)
+                            print("File moved to documents folder")
+                            
+                            
+                            let when = DispatchTime.now()
+                            
+                            DispatchQueue.main.asyncAfter(deadline: when) {
+                                
+                                self.activity_indicator.isHidden = true
+                                self.activity_indicator.stopAnimating()
+                                UIApplication.shared.endIgnoringInteractionEvents()
+                                
+                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
+                                self.navigationController?.pushViewController(vc, animated: true)
+                                vc.nameVariableInSecondVc = epi.name
+                                vc.audioVariableInSecondVc = epi.audio!
+                                
+                                
+                            }
+                            
+                            
+                        } catch let error as NSError {
+                            print(error.localizedDescription)
+                        }
+                    }).resume()
+                }
+                
+            }
+        }
     }
     
     
@@ -219,7 +328,7 @@ class TableViewController: UITableViewController {
                 url = epi.audio!
                 
                 controller.audioVariableInSecondVc = epi.audio!
-
+                
             }
         }
     }

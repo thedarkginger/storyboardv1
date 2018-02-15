@@ -21,9 +21,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dor-jv-cmG">
                                 <rect key="frame" x="16" y="192" width="134" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="4:44"/>
+                                <state key="normal" title="Downloads"/>
                                 <connections>
-                                    <segue destination="8qE-hZ-dwc" kind="show" id="FVn-14-1mj"/>
+                                    <segue destination="ebg-A6-hig" kind="show" id="juo-9O-gvS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ix6-5X-hd6">
@@ -149,6 +149,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15t-8A-dub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1608.8" y="-271.21439280359823"/>
+        </scene>
+        <!--Download Table View Controller-->
+        <scene sceneID="h3D-hA-uMS">
+            <objects>
+                <tableViewController id="ebg-A6-hig" customClass="DownloadTableViewController" customModule="musicplayer3_tabs" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7CW-JR-wx2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="showcell" id="D2W-JS-fO6">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D2W-JS-fO6" id="SDV-N5-ubz">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UrK-DW-CCe">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UrK-DW-CCe" id="xFP-Qj-zo2">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Click" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiI-ov-7aF">
+                                            <rect key="frame" x="166" y="11" width="38" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ebg-A6-hig" id="V8d-aw-iYc"/>
+                            <outlet property="delegate" destination="ebg-A6-hig" id="u4i-BK-vPZ"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DBS-4l-fzh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="346" y="-1102"/>
         </scene>
         <!--Music1 View Controller-->
         <scene sceneID="kSV-nn-roN">
@@ -333,7 +378,7 @@
         <!--EpisodeViewController-->
         <scene sceneID="mJg-yM-XHG">
             <objects>
-                <viewController title="EpisodeViewController" id="BXJ-7x-7In" customClass="EpisodeViewController" customModule="musicplayer3_tabs" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EpisodeViewController" title="EpisodeViewController" id="BXJ-7x-7In" customClass="EpisodeViewController" customModule="musicplayer3_tabs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R2k-eU-bFC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -385,12 +430,17 @@
                                     <action selector="changePodSlider:" destination="BXJ-7x-7In" eventType="valueChanged" id="485-xu-59M"/>
                                 </connections>
                             </slider>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="73f-DP-79F">
+                                <rect key="frame" x="177" y="260" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="NGf-9x-lpJ"/>
                     </view>
                     <connections>
                         <outlet property="Slider" destination="FEn-T1-ySX" id="gbM-mM-jZi"/>
+                        <outlet property="activity_indicator" destination="73f-DP-79F" id="7mk-ul-f4J"/>
                         <outlet property="episodeDate" destination="per-32-Q6q" id="DzU-e5-VTG"/>
                         <outlet property="episodeTitle" destination="Xk5-v5-EyI" id="7x7-mc-WhB"/>
                     </connections>
@@ -424,7 +474,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Rcn-MU-w9A"/>
-        <segue reference="6hs-jh-qNw"/>
+        <segue reference="Rvr-Wc-S1j"/>
         <segue reference="xcS-3K-YLv"/>
     </inferredMetricsTieBreakers>
 </document>
