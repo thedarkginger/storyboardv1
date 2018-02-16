@@ -47,7 +47,7 @@ class DownloadTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+       // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,7 +76,7 @@ class DownloadTableViewController: UITableViewController {
         return cell
     }
     
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let url = thedownloads[indexPath.row]
@@ -84,8 +84,20 @@ class DownloadTableViewController: UITableViewController {
         
         do {
             try FileManager.default.removeItem(at: theurls[indexPath.row])
+            // self.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            // self.tableView.reloadData()
         } catch let error {
             print(error)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            thedownloads.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            
+            // end if
         }
     }
 
@@ -98,7 +110,7 @@ class DownloadTableViewController: UITableViewController {
     */
 
     /*
-    // Override to support editing the table view.
+
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
