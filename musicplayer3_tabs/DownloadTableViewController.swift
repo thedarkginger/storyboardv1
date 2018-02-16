@@ -96,6 +96,13 @@ class DownloadTableViewController: UITableViewController {
             thedownloads.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             
+            do {
+                try FileManager.default.removeItem(at: theurls[indexPath.row])
+
+            } catch let error {
+                print(error)
+            }
+            
             
             // end if
         }
