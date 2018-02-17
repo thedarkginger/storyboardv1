@@ -63,9 +63,9 @@ class TableViewController: UITableViewController {
         // cell.accessoryType = .detailDisclosureButton
         
         // this is the code I am testing
-        let chevron = UIImage(named: "download.png")
+        let downloadicon = UIImage(named: "download.png")
         cell.accessoryType = .detailDisclosureButton
-        cell.accessoryView = UIImageView(image: chevron)
+        cell.accessoryView = UIImageView(image: downloadicon)
    
         // extract json audio file
         
