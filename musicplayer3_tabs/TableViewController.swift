@@ -59,8 +59,14 @@ class TableViewController: UITableViewController {
         
         cell.textLabel?.text = epi.date + " | " + epi.name
         
-        cell.accessoryType = .detailDisclosureButton
+        //this was what I used when it was working
+        // cell.accessoryType = .detailDisclosureButton
         
+        // this is the code I am testing
+        let chevron = UIImage(named: "download.png")
+        cell.accessoryType = .detailDisclosureButton
+        cell.accessoryView = UIImageView(image: chevron)
+   
         // extract json audio file
         
         var url = ""
@@ -120,6 +126,7 @@ class TableViewController: UITableViewController {
                     
                     let cell = tableView.cellForRow(at: indexPath)
                     cell?.accessoryType = .checkmark
+                
                     
                     // if the file doesn't exist
                 } else {

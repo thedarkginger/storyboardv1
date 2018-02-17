@@ -12,6 +12,7 @@
 		E8532434200DE0A100479ECA /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8532433200DE0A100479ECA /* TableViewController.swift */; };
 		E853243A2010669100479ECA /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85324392010669100479ECA /* EpisodeViewController.swift */; };
 		E853243C201430DB00479ECA /* PodcastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853243B201430DB00479ECA /* PodcastsTableViewController.swift */; };
+		E8AD47B9203814E700FF89D6 /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = E8AD47B8203814E700FF89D6 /* download.png */; };
 		E8BCD8782032D21700303937 /* DownloadTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BCD8772032D21700303937 /* DownloadTableViewController.swift */; };
 		E8D5A6FE1FDA6C8300634BB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D5A6FD1FDA6C8300634BB2 /* AppDelegate.swift */; };
 		E8D5A7001FDA6C8300634BB2 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D5A6FF1FDA6C8300634BB2 /* FirstViewController.swift */; };
@@ -40,6 +41,7 @@
 		E8532433200DE0A100479ECA /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		E85324392010669100479ECA /* EpisodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
 		E853243B201430DB00479ECA /* PodcastsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsTableViewController.swift; sourceTree = "<group>"; };
+		E8AD47B8203814E700FF89D6 /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
 		E8BCD8772032D21700303937 /* DownloadTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTableViewController.swift; sourceTree = "<group>"; };
 		E8D5A6FA1FDA6C8300634BB2 /* musicplayer3_tabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = musicplayer3_tabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8D5A6FD1FDA6C8300634BB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				E85324392010669100479ECA /* EpisodeViewController.swift */,
 				E8D5A7031FDA6C8300634BB2 /* Main.storyboard */,
 				E8D5A7251FE0F82100634BB2 /* 05 4_44.mp3 */,
+				E8AD47B8203814E700FF89D6 /* download.png */,
 				E853242F200CA7F300479ECA /* 3d.jpg */,
 				E8D5A7061FDA6C8300634BB2 /* Assets.xcassets */,
 				E8D5A7081FDA6C8300634BB2 /* LaunchScreen.storyboard */,
@@ -211,6 +214,7 @@
 				E8D5A7261FE0F82100634BB2 /* 05 4_44.mp3 in Resources */,
 				E8D5A7071FDA6C8300634BB2 /* Assets.xcassets in Resources */,
 				E8D5A7051FDA6C8300634BB2 /* Main.storyboard in Resources */,
+				E8AD47B9203814E700FF89D6 /* download.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
