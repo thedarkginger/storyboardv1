@@ -14,6 +14,8 @@ class EpisodeViewController: UIViewController {
     
     var nameVariableInSecondVc = ""
     var audioVariableInSecondVc = ""
+    var showTitleVariable = ""
+
     
     var audiotest = "" {
         didSet{
@@ -25,8 +27,8 @@ class EpisodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Placeholder"
-        
+        self.title = showTitleVariable
+                
         activity_indicator.isHidden = true
         
         // let fixed = variableInSecondVc.components(separatedBy: " | ")
@@ -52,6 +54,15 @@ class EpisodeViewController: UIViewController {
             do {
                 
                 audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
+                
+                do {
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+                    print("Playback OK")
+                    try AVAudioSession.sharedInstance().setActive(true)
+                    print("Session is Active")
+                } catch {
+                    print(error)
+                }
                 
             } catch let error {
                 print(error.localizedDescription)

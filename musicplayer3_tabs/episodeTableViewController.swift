@@ -20,8 +20,9 @@ class episodeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("this is it" + showNameVariable)
+        self.title = "\(showNameVariable)"
         
+            
         // change to https and change info plist before prod
         get_data_from_url("https://api.myjson.com/bins/1cudap")
         
@@ -61,11 +62,6 @@ class episodeTableViewController: UITableViewController {
         let epi = TableDataV[indexPath.row]
         
         cell.textLabel?.text = epi.date + " | " + epi.name
-        
-        //this was what I used when it was working
-        // cell.accessoryType = .detailDisclosureButton
-        
-        
         
         // extract json audio file
         
@@ -284,6 +280,7 @@ class episodeTableViewController: UITableViewController {
                     self.navigationController?.pushViewController(vc, animated: true)
                     vc.nameVariableInSecondVc = epi.name
                     vc.audioVariableInSecondVc = epi.audio!
+                    vc.showTitleVariable = self.showNameVariable
                     
                     // if the file doesn't exist
                 } else {
@@ -313,6 +310,7 @@ class episodeTableViewController: UITableViewController {
                                 self.navigationController?.pushViewController(vc, animated: true)
                                 vc.nameVariableInSecondVc = epi.name
                                 vc.audioVariableInSecondVc = epi.audio!
+                                vc.showTitleVariable = self.showNameVariable
                                 
                                 
                             }
@@ -348,6 +346,7 @@ class episodeTableViewController: UITableViewController {
                 
             }
         }
+        
     }
     
     

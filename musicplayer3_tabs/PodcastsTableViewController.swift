@@ -115,9 +115,10 @@ class PodcastsTableViewController: UITableViewController {
                 if let shows_obj = shows_list[i] as? NSDictionary
                 {
                     let show_name = shows_obj["show"] as? String
-                    let show_genre = shows_obj["genre"] as? String
+                    // remove genre from the text 
+                    // let show_genre = shows_obj["genre"] as? String
                     let show_image = shows_obj["thumbnail"] as? String
-                    TableData.append(show_name! + " | " + show_genre!)
+                    TableData.append(show_name!)
                     
                     let testPictureURL = URL(string: "https://pbs.twimg.com/profile_images/901973198727651328/v19Dj1As_400x400.jpg")!
                     

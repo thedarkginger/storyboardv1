@@ -27,15 +27,6 @@
                                     <segue destination="ebg-A6-hig" kind="show" id="juo-9O-gvS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ix6-5X-hd6">
-                                <rect key="frame" x="120" y="560" width="134" height="74"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.44603040980000003" green="0.71533119320000005" blue="0.88825696239999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Podcast Demo"/>
-                                <connections>
-                                    <segue destination="whe-2l-ZVl" kind="show" action="showDetailViewController:sender:" id="ws7-Ih-HTP"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AzI-fE-Qv3">
                                 <rect key="frame" x="225" y="192" width="134" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -199,12 +190,14 @@
                             <outlet property="delegate" destination="ebg-A6-hig" id="u4i-BK-vPZ"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" systemItem="downloads" id="gAA-IT-PJR"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DBS-4l-fzh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="346" y="-1102"/>
         </scene>
-        <!--Second-->
+        <!--Second View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="musicplayer3_tabs" customModuleProvider="target" sceneMemberID="viewController">
@@ -235,7 +228,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" systemItem="mostRecent" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -378,17 +371,18 @@
                     <connections>
                         <segue destination="YQA-xt-XWA" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="ebg-A6-hig" kind="relationship" relationship="viewControllers" id="0VV-FD-DI9"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--First-->
+        <!--Navigation Controller-->
         <scene sceneID="5sk-1n-hN9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YQA-xt-XWA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VJa-Cz-lpx">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -404,12 +398,8 @@
             <point key="canvasLocation" x="772.79999999999995" y="-311.24437781109447"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
-    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ws7-Ih-HTP"/>
-        <segue reference="xcS-3K-YLv"/>
+        <segue reference="u7Y-xg-7CH"/>
+        <segue reference="0VV-FD-DI9"/>
     </inferredMetricsTieBreakers>
 </document>

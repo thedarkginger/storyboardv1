@@ -171,6 +171,11 @@
 					E8D5A6F91FDA6C8300634BB2 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					E8D5A70F1FDA6C8300634BB2 = {
 						CreatedOnToolsVersion = 9.2;
