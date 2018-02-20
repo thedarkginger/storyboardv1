@@ -126,8 +126,8 @@ class TableViewController: UITableViewController {
                     
                     let cell = tableView.cellForRow(at: indexPath)
                     cell?.accessoryType = .checkmark
-                
-                    
+
+                                
                     // if the file doesn't exist
                 } else {
                     
