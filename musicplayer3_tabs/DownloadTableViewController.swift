@@ -16,8 +16,6 @@ class DownloadTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setNavigationBar()
-
 
         // Get the document directory url
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -52,14 +50,6 @@ class DownloadTableViewController: UITableViewController {
        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    func setNavigationBar() {
-        let screenSize: CGRect = UIScreen.main.bounds
-        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 54))
-        let navItem = UINavigationItem(title: "Downloaded Episodes")
-        navBar.setItems([navItem], animated: false)
-        self.view.addSubview(navBar)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

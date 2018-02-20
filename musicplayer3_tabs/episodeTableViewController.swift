@@ -24,7 +24,7 @@ class episodeTableViewController: UITableViewController {
         
             
         // change to https and change info plist before prod
-        get_data_from_url("https://api.myjson.com/bins/1cudap")
+        get_data_from_url("http://www.fearthewave.com/fearthewave.json")
         
         activity_indicator.frame = CGRect(x: 50, y: 50, width: 20, height: 20)
         activity_indicator.isHidden = true
@@ -210,6 +210,7 @@ class episodeTableViewController: UITableViewController {
     
     func extract_json(_ data: Data)
     {
+
         let json: Any?
         do{
             json = try JSONSerialization.jsonObject(with: data, options: [])
@@ -228,12 +229,18 @@ class episodeTableViewController: UITableViewController {
             {
                 if let shows_obj = shows_list[i] as? NSDictionary
                 {
-                    
-                    let episode_name = shows_obj["episode"] as? String
-                    let episode_date = shows_obj["date"] as? String
-                    let epside_audio = shows_obj["url"] as? String
-                    
-                    TableDataV.append(episode(name: episode_name!, date: episode_date!, audio: epside_audio))
+                    print("test" + showNameVariable)
+                    if (shows_obj["show"] as? String == "\(showNameVariable)") {
+                        
+                        let episode_name = shows_obj["episode"] as? String
+                        let episode_date = shows_obj["date"] as? String
+                        let epside_audio = shows_obj["url"] as? String
+                        
+                        TableDataV.append(episode(name: episode_name!, date: episode_date!, audio: epside_audio))
+                        
+                    } else {
+                        print("no matches")
+                    }
                 }
                 
             }
