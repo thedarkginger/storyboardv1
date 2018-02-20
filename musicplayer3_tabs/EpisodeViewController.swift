@@ -21,7 +21,7 @@ class EpisodeViewController: UIViewController {
     }
     
     @IBOutlet weak var activity_indicator: UIActivityIndicatorView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -117,6 +117,10 @@ class EpisodeViewController: UIViewController {
         Slider.maximumValue = Float(audioPlayer.duration)
         audioPlayer.play()
     }
+    @IBAction func click_close(_ sender: UIButton) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
     
     
     @objc func updateSlider(){
@@ -138,16 +142,9 @@ class EpisodeViewController: UIViewController {
         // self.goneTime.text = updated2 changes time label
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
     
     
 } //end
+
 

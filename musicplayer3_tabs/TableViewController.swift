@@ -53,6 +53,7 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         let epi = TableDataV[indexPath.row]
@@ -62,11 +63,8 @@ class TableViewController: UITableViewController {
         //this was what I used when it was working
         // cell.accessoryType = .detailDisclosureButton
         
-        // this is the code I am testing
-        let downloadicon = UIImage(named: "download.png")
-        cell.accessoryType = .detailDisclosureButton
-        cell.accessoryView = UIImageView(image: downloadicon)
-   
+        
+        
         // extract json audio file
         
         var url = ""
@@ -82,7 +80,7 @@ class TableViewController: UITableViewController {
                 
                 // lets create your destination file url
                 let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-               
+                
                 print(destinationUrl)
                 
                 // to check if it exists before downloading it
@@ -92,7 +90,14 @@ class TableViewController: UITableViewController {
                     cell.accessoryType = .checkmark
                     
                 }
-
+                else{
+                    
+                    // this is the code I am testing
+                    let downloadicon = UIImage(named: "download.png")
+                    cell.accessoryType = .detailDisclosureButton
+                    cell.accessoryView = UIImageView(image: downloadicon)
+                }
+                
                 
             } // end audio if
         }
@@ -126,8 +131,8 @@ class TableViewController: UITableViewController {
                     
                     let cell = tableView.cellForRow(at: indexPath)
                     cell?.accessoryType = .checkmark
-
-                                
+                    
+                    
                     // if the file doesn't exist
                 } else {
                     
@@ -249,6 +254,11 @@ class TableViewController: UITableViewController {
     {
         self.tableView.reloadData()
         
+    }
+    
+    @IBAction func click_close(_ sender: UIButton) {
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
