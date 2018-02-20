@@ -21,13 +21,14 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dor-jv-cmG">
                                 <rect key="frame" x="16" y="192" width="134" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.53912590488574663" green="1" blue="0.42840356464670348" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Downloads"/>
                                 <connections>
                                     <segue destination="ebg-A6-hig" kind="show" id="juo-9O-gvS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ix6-5X-hd6">
-                                <rect key="frame" x="208" y="193" width="134" height="74"/>
+                                <rect key="frame" x="120" y="560" width="134" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.44603040980000003" green="0.71533119320000005" blue="0.88825696239999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Podcast Demo"/>
@@ -36,7 +37,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AzI-fE-Qv3">
-                                <rect key="frame" x="120" y="374" width="134" height="75"/>
+                                <rect key="frame" x="225" y="192" width="134" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.40693504629999999" blue="0.27031877869999998" alpha="0.63726892609999997" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Episodes"/>
@@ -148,7 +149,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15t-8A-dub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="841" y="421"/>
+            <point key="canvasLocation" x="751" y="446"/>
         </scene>
         <!--Download Table View Controller-->
         <scene sceneID="h3D-hA-uMS">
@@ -202,74 +203,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DBS-4l-fzh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="346" y="-1102"/>
-        </scene>
-        <!--Music1 View Controller-->
-        <scene sceneID="kSV-nn-roN">
-            <objects>
-                <viewController id="8qE-hZ-dwc" customClass="Music1ViewController" customModule="musicplayer3_tabs" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="VPh-c5-Lqy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sau-Q1-BB3">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem systemItem="play" id="m1u-3h-q9H">
-                                        <connections>
-                                            <action selector="play:" destination="8qE-hZ-dwc" id="5nK-qi-TVV"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="uBB-FT-AtC"/>
-                                    <barButtonItem systemItem="pause" id="aXT-i9-GtN">
-                                        <connections>
-                                            <action selector="pause:" destination="8qE-hZ-dwc" id="Op4-qn-x29"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ewP-gM-dcz"/>
-                                    <barButtonItem systemItem="refresh" id="A0w-18-fBB">
-                                        <connections>
-                                            <action selector="restart:" destination="8qE-hZ-dwc" id="Azx-VS-QRj"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F1m-cE-qad">
-                                <rect key="frame" x="157" y="555" width="81" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.44603040980000003" green="0.71533119320000005" blue="0.88825696239999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="BACK">
-                                    <color key="titleShadowColor" red="0.44603040980901892" green="0.71533119315969285" blue="0.88825696243523322" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="YQA-xt-XWA" kind="show" id="Boc-GY-ghI"/>
-                                </connections>
-                            </button>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="EFN-qh-hh0">
-                                <rect key="frame" x="49" y="447" width="277" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="ChangeAudioTime:" destination="8qE-hZ-dwc" eventType="valueChanged" id="dCy-gu-zYo"/>
-                                </connections>
-                            </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4:44" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6s-6U-Nqk">
-                                <rect key="frame" x="169" y="293" width="37" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="yXX-Yx-Q7b"/>
-                    </view>
-                    <connections>
-                        <outlet property="Slider" destination="EFN-qh-hh0" id="j9T-od-AFe"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="A95-sg-utm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1560.8" y="-1084.4077961019491"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
@@ -325,7 +258,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="KF8-Fe-14F" kind="show" id="uY8-ME-4Yf"/>
+                                    <segue destination="KF8-Fe-14F" kind="show" identifier="passepisode" id="uY8-ME-4Yf"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -339,10 +272,10 @@
             </objects>
             <point key="canvasLocation" x="1344.8" y="1202.2488755622189"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Episode Table View Controller-->
         <scene sceneID="9dZ-GX-dGo">
             <objects>
-                <tableViewController id="KF8-Fe-14F" customClass="TableViewController" customModule="musicplayer3_tabs" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="episodeTableViewController" id="KF8-Fe-14F" customClass="episodeTableViewController" customModule="musicplayer3_tabs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="zhG-lI-lUf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -476,6 +409,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u7Y-xg-7CH"/>
+        <segue reference="ws7-Ih-HTP"/>
+        <segue reference="xcS-3K-YLv"/>
     </inferredMetricsTieBreakers>
 </document>

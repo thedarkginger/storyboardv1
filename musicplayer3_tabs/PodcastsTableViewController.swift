@@ -55,10 +55,17 @@ class PodcastsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "showcell", for: indexPath)
         
         cell.textLabel?.text = TableData[indexPath.row]
-        
         cell.accessoryType = .detailDisclosureButton
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            let controller = segue.destination as! episodeTableViewController
+            controller.showNameVariable = TableData[indexPath.row]
+        }
     }
     
     func get_data_from_url(_ link:String)

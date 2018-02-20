@@ -25,6 +25,8 @@ class EpisodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Placeholder"
+        
         activity_indicator.isHidden = true
         
         // let fixed = variableInSecondVc.components(separatedBy: " | ")

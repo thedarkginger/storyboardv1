@@ -9,16 +9,18 @@
 import UIKit
 var audiotest = ""
 
-class TableViewController: UITableViewController {
+class episodeTableViewController: UITableViewController {
     
-    var TableData:Array< String > = Array < String >()
     var TableDataV : [episode] = [episode]()
+    var showNameVariable = ""
+
     
     var activity_indicator = UIActivityIndicatorView()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("this is it" + showNameVariable)
         
         // change to https and change info plist before prod
         get_data_from_url("https://api.myjson.com/bins/1cudap")
@@ -102,8 +104,6 @@ class TableViewController: UITableViewController {
             } // end audio if
         }
         
-        print("test" + url)
-        
         return cell
     }
     
@@ -123,7 +123,6 @@ class TableViewController: UITableViewController {
                 
                 // lets create your destination file url
                 let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-                print(destinationUrl)
                 
                 // to check if it exists before downloading it
                 if FileManager.default.fileExists(atPath: destinationUrl.relativePath) {
@@ -236,8 +235,6 @@ class TableViewController: UITableViewController {
                     
                     let episode_name = shows_obj["episode"] as? String
                     let episode_date = shows_obj["date"] as? String
-                    TableData.append(episode_date! + " | " + episode_name!)
-                    // this is where I want to capture the URL without showing it as text
                     let epside_audio = shows_obj["url"] as? String
                     
                     TableDataV.append(episode(name: episode_name!, date: episode_date!, audio: epside_audio))
@@ -336,7 +333,6 @@ class TableViewController: UITableViewController {
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let controller = segue.destination as! EpisodeViewController
-            // controller.variableInSecondVc = TableData[indexPath.row]
             
             let epi = TableDataV[indexPath.row]
             

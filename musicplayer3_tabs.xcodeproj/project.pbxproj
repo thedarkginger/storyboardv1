@@ -10,7 +10,7 @@
 		E81AD7A72000BFBF001DDD3B /* Music2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81AD7A62000BFBF001DDD3B /* Music2ViewController.swift */; };
 		E83E9735203BA4F20019DB3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E83E9734203BA4F20019DB3C /* Main.storyboard */; };
 		E8532430200CA7F300479ECA /* 3d.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E853242F200CA7F300479ECA /* 3d.jpg */; };
-		E8532434200DE0A100479ECA /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8532433200DE0A100479ECA /* TableViewController.swift */; };
+		E8532434200DE0A100479ECA /* episodeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8532433200DE0A100479ECA /* episodeTableViewController.swift */; };
 		E853243A2010669100479ECA /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85324392010669100479ECA /* EpisodeViewController.swift */; };
 		E853243C201430DB00479ECA /* PodcastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853243B201430DB00479ECA /* PodcastsTableViewController.swift */; };
 		E8AD47B9203814E700FF89D6 /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = E8AD47B8203814E700FF89D6 /* download.png */; };
@@ -21,8 +21,6 @@
 		E8D5A7071FDA6C8300634BB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8D5A7061FDA6C8300634BB2 /* Assets.xcassets */; };
 		E8D5A70A1FDA6C8300634BB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8D5A7081FDA6C8300634BB2 /* LaunchScreen.storyboard */; };
 		E8D5A7151FDA6C8300634BB2 /* musicplayer3_tabsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D5A7141FDA6C8300634BB2 /* musicplayer3_tabsTests.swift */; };
-		E8D5A7241FDF8F2D00634BB2 /* Music1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D5A7231FDF8F2D00634BB2 /* Music1ViewController.swift */; };
-		E8D5A7261FE0F82100634BB2 /* 05 4_44.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E8D5A7251FE0F82100634BB2 /* 05 4_44.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +37,7 @@
 		E81AD7A62000BFBF001DDD3B /* Music2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music2ViewController.swift; sourceTree = "<group>"; };
 		E83E9734203BA4F20019DB3C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E853242F200CA7F300479ECA /* 3d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3d.jpg; sourceTree = "<group>"; };
-		E8532433200DE0A100479ECA /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		E8532433200DE0A100479ECA /* episodeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = episodeTableViewController.swift; sourceTree = "<group>"; };
 		E85324392010669100479ECA /* EpisodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
 		E853243B201430DB00479ECA /* PodcastsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsTableViewController.swift; sourceTree = "<group>"; };
 		E8AD47B8203814E700FF89D6 /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
@@ -54,8 +52,6 @@
 		E8D5A7101FDA6C8300634BB2 /* musicplayer3_tabsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = musicplayer3_tabsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8D5A7141FDA6C8300634BB2 /* musicplayer3_tabsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = musicplayer3_tabsTests.swift; sourceTree = "<group>"; };
 		E8D5A7161FDA6C8300634BB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E8D5A7231FDF8F2D00634BB2 /* Music1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music1ViewController.swift; sourceTree = "<group>"; };
-		E8D5A7251FE0F82100634BB2 /* 05 4_44.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "05 4_44.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,14 +96,12 @@
 				E8D5A6FD1FDA6C8300634BB2 /* AppDelegate.swift */,
 				E8D5A6FF1FDA6C8300634BB2 /* FirstViewController.swift */,
 				E8D5A7011FDA6C8300634BB2 /* SecondViewController.swift */,
-				E8D5A7231FDF8F2D00634BB2 /* Music1ViewController.swift */,
 				E81AD7A62000BFBF001DDD3B /* Music2ViewController.swift */,
-				E853243B201430DB00479ECA /* PodcastsTableViewController.swift */,
 				E8BCD8772032D21700303937 /* DownloadTableViewController.swift */,
-				E8532433200DE0A100479ECA /* TableViewController.swift */,
+				E853243B201430DB00479ECA /* PodcastsTableViewController.swift */,
+				E8532433200DE0A100479ECA /* episodeTableViewController.swift */,
 				E85324392010669100479ECA /* EpisodeViewController.swift */,
 				E83E9734203BA4F20019DB3C /* Main.storyboard */,
-				E8D5A7251FE0F82100634BB2 /* 05 4_44.mp3 */,
 				E8AD47B8203814E700FF89D6 /* download.png */,
 				E853242F200CA7F300479ECA /* 3d.jpg */,
 				E8D5A7061FDA6C8300634BB2 /* Assets.xcassets */,
@@ -212,7 +206,6 @@
 				E83E9735203BA4F20019DB3C /* Main.storyboard in Resources */,
 				E8532430200CA7F300479ECA /* 3d.jpg in Resources */,
 				E8D5A70A1FDA6C8300634BB2 /* LaunchScreen.storyboard in Resources */,
-				E8D5A7261FE0F82100634BB2 /* 05 4_44.mp3 in Resources */,
 				E8D5A7071FDA6C8300634BB2 /* Assets.xcassets in Resources */,
 				E8AD47B9203814E700FF89D6 /* download.png in Resources */,
 			);
@@ -234,11 +227,10 @@
 			files = (
 				E8D5A7021FDA6C8300634BB2 /* SecondViewController.swift in Sources */,
 				E853243A2010669100479ECA /* EpisodeViewController.swift in Sources */,
-				E8532434200DE0A100479ECA /* TableViewController.swift in Sources */,
+				E8532434200DE0A100479ECA /* episodeTableViewController.swift in Sources */,
 				E8D5A6FE1FDA6C8300634BB2 /* AppDelegate.swift in Sources */,
 				E853243C201430DB00479ECA /* PodcastsTableViewController.swift in Sources */,
 				E81AD7A72000BFBF001DDD3B /* Music2ViewController.swift in Sources */,
-				E8D5A7241FDF8F2D00634BB2 /* Music1ViewController.swift in Sources */,
 				E8BCD8782032D21700303937 /* DownloadTableViewController.swift in Sources */,
 				E8D5A7001FDA6C8300634BB2 /* FirstViewController.swift in Sources */,
 			);
