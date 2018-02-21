@@ -13,7 +13,7 @@ class episodeTableViewController: UITableViewController {
     
     var TableDataV : [episode] = [episode]()
     var showNameVariable = ""
-
+    
     
     var activity_indicator = UIActivityIndicatorView()
     
@@ -22,7 +22,7 @@ class episodeTableViewController: UITableViewController {
         
         self.title = "\(showNameVariable)"
         
-            
+        
         // change to https and change info plist before prod
         get_data_from_url("http://www.fearthewave.com/fearthewave.json")
         
@@ -210,7 +210,7 @@ class episodeTableViewController: UITableViewController {
     
     func extract_json(_ data: Data)
     {
-
+        
         let json: Any?
         do{
             json = try JSONSerialization.jsonObject(with: data, options: [])
@@ -365,6 +365,7 @@ struct episode {
     var name = ""
     var date = ""
     var audio : String?
+    var show = ""
     
     init(name:String,date:String,audio:String?) {
         
@@ -372,5 +373,12 @@ struct episode {
         self.date = date
         self.audio = audio
     }
+    init() {
+        
+        self.name = ""
+        self.date = ""
+        self.audio = ""
+        self.show = ""
+        
+    }
 }
-
