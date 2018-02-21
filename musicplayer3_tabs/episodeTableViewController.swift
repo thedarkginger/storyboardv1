@@ -235,8 +235,9 @@ class episodeTableViewController: UITableViewController {
                         let episode_name = shows_obj["episode"] as? String
                         let episode_date = shows_obj["date"] as? String
                         let epside_audio = shows_obj["url"] as? String
+                        let episode_description = shows_obj["description"] as? String
                         
-                        TableDataV.append(episode(name: episode_name!, date: episode_date!, audio: epside_audio))
+                        TableDataV.append(episode(name: episode_name!, date: episode_date!, audio: epside_audio, description: episode_description!))
                         
                     } else {
                         print("no matches")
@@ -288,6 +289,7 @@ class episodeTableViewController: UITableViewController {
                     vc.nameVariableInSecondVc = epi.name
                     vc.audioVariableInSecondVc = epi.audio!
                     vc.showTitleVariable = self.showNameVariable
+                    vc.descriptionVariable = epi.description
                     
                     // if the file doesn't exist
                 } else {
@@ -366,12 +368,14 @@ struct episode {
     var date = ""
     var audio : String?
     var show = ""
+    var description = ""
     
-    init(name:String,date:String,audio:String?) {
+    init(name:String,date:String,audio:String?, description:String) {
         
         self.name = name
         self.date = date
         self.audio = audio
+        self.description = description
     }
     init() {
         
@@ -379,6 +383,7 @@ struct episode {
         self.date = ""
         self.audio = ""
         self.show = ""
+        self.description = ""
         
     }
 }

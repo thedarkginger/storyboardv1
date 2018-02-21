@@ -15,6 +15,7 @@ class EpisodeViewController: UIViewController {
     var nameVariableInSecondVc = ""
     var audioVariableInSecondVc = ""
     var showTitleVariable = ""
+    var descriptionVariable = ""
 
     
     var audiotest = "" {
@@ -31,6 +32,8 @@ class EpisodeViewController: UIViewController {
                 
         activity_indicator.isHidden = true
         
+        print(descriptionVariable)
+        
         // let fixed = variableInSecondVc.components(separatedBy: " | ")
         // let fixedSite = fixed[1]
         // let fixedDate = fixed[0]
@@ -42,6 +45,8 @@ class EpisodeViewController: UIViewController {
         let testSite = audioVariableInSecondVc
         episodeTitle.text = testName
         print(testSite)
+        
+        episodeDescription.text = descriptionVariable
         
         if let audioUrl = URL(string: testSite) {
             
@@ -93,6 +98,8 @@ class EpisodeViewController: UIViewController {
     } // end view did
     
     @IBOutlet var episodeTitle: UILabel!
+    
+    @IBOutlet var episodeDescription: UILabel!
     
     @IBOutlet var episodeDate: UILabel!
     override func didReceiveMemoryWarning() {
