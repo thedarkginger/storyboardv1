@@ -32,19 +32,10 @@ class EpisodeViewController: UIViewController {
                 
         activity_indicator.isHidden = true
         
-        print(descriptionVariable)
-        
-        // let fixed = variableInSecondVc.components(separatedBy: " | ")
-        // let fixedSite = fixed[1]
-        // let fixedDate = fixed[0]
-        // episodeTitle.text = fixedSite
-        // episodeDate.text = fixedDate
-        
         let testName = nameVariableInSecondVc
         // this passes the audio url
         let testSite = audioVariableInSecondVc
         episodeTitle.text = testName
-        print(testSite)
         
         episodeDescription.text = descriptionVariable
         
@@ -75,24 +66,22 @@ class EpisodeViewController: UIViewController {
             
             
             //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
+        
             
+            // sets the duration time for the episode 
             
-            
-            /*
              func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
              return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
              }
              
-             let example = (Float(audioPlayer.duration))
-             let myIntValue = Int(example)
+             let episodeTime = (Float(audioPlayer.duration))
+             let myIntValue = Int(episodeTime)
              let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
              let updated3 = "\(updated.0):\(updated.1):\(updated.2)"
              let updated2 = String(describing: updated3)
-             // self.episodeDuration.text = updated2
-             
-             */
             
-            
+            episodeTotalTime.text = updated2
+
         } // end player
         
     } // end view did
@@ -102,10 +91,14 @@ class EpisodeViewController: UIViewController {
     @IBOutlet var episodeDescription: UILabel!
     
     @IBOutlet var episodeDate: UILabel!
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBOutlet var episodeTimeTaken: UILabel!
+    @IBOutlet var episodeTotalTime: UILabel!
     
     @IBAction func playPod(_ sender: Any) {
         
@@ -159,7 +152,7 @@ class EpisodeViewController: UIViewController {
         let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
         let updated3 = "\(updated.0):\(updated.1):\(updated.2)"
         let updated2 = String(describing: updated3)
-        // self.goneTime.text = updated2 changes time label
+        self.episodeTimeTaken.text = updated2
     }
     
     

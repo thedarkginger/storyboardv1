@@ -23,17 +23,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dor-jv-cmG">
-                                <rect key="frame" x="16" y="192" width="134" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.53912590488574663" green="1" blue="0.42840356464670348" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Downloads"/>
-                                <connections>
-                                    <segue destination="ebg-A6-hig" kind="show" id="juo-9O-gvS"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AzI-fE-Qv3">
-                                <rect key="frame" x="225" y="192" width="134" height="75"/>
+                                <rect key="frame" x="120" y="191" width="134" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.40693504629999999" blue="0.27031877869999998" alpha="0.63726892609999997" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Episodes"/>
@@ -155,14 +146,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="B60-lO-0tF">
-                            <rect key="frame" x="0.0" y="116" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button"/>
-                            <connections>
-                                <segue destination="YQA-xt-XWA" kind="show" id="O0J-Bf-RPp"/>
-                            </connections>
-                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="showcell" id="D2W-JS-fO6">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -356,6 +339,20 @@
                                 <color key="highlightedColor" red="0.28910775989999998" green="0.4424344388" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="2" height="-1"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GH4-f0-qhu">
+                                <rect key="frame" x="16" y="464" width="54" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cu0-lP-AEh">
+                                <rect key="frame" x="286" y="464" width="73" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="NGf-9x-lpJ"/>
@@ -366,7 +363,9 @@
                         <outlet property="activity_indicator" destination="73f-DP-79F" id="7mk-ul-f4J"/>
                         <outlet property="episodeDate" destination="per-32-Q6q" id="DzU-e5-VTG"/>
                         <outlet property="episodeDescription" destination="cZF-8V-nvy" id="c4r-3p-OIv"/>
+                        <outlet property="episodeTimeTaken" destination="GH4-f0-qhu" id="7by-Cj-hqr"/>
                         <outlet property="episodeTitle" destination="Xk5-v5-EyI" id="7x7-mc-WhB"/>
+                        <outlet property="episodeTotalTime" destination="cu0-lP-AEh" id="NEb-zY-l0C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAW-gC-kMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -414,6 +413,5 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="u7Y-xg-7CH"/>
-        <segue reference="0VV-FD-DI9"/>
     </inferredMetricsTieBreakers>
 </document>
