@@ -8,6 +8,8 @@
 
 import UIKit
 import AVFoundation
+import SDWebImage
+
 
 class EpisodeViewController: UIViewController {
     var timer: Timer?
@@ -27,6 +29,9 @@ class EpisodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        podImageView.sd_setImage(with: URL(string: "https://pbs.twimg.com/profile_images/901973198727651328/v19Dj1As_400x400.jpg"), placeholderImage: UIImage(named: "placeholder.png"))
+
         
         self.title = showTitleVariable
                 
@@ -84,6 +89,8 @@ class EpisodeViewController: UIViewController {
 
         } // end player
         
+    
+        
     } // end view did
     
     @IBOutlet var episodeTitle: UILabel!
@@ -91,6 +98,9 @@ class EpisodeViewController: UIViewController {
     @IBOutlet var episodeDescription: UILabel!
     
     @IBOutlet var episodeDate: UILabel!
+    
+    @IBOutlet var podImageView: UIImageView!
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
