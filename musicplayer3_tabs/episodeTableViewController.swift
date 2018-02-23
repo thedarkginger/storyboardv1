@@ -236,8 +236,9 @@ class episodeTableViewController: UITableViewController {
                         let episode_date = shows_obj["date"] as? String
                         let epside_audio = shows_obj["url"] as? String
                         let episode_description = shows_obj["description"] as? String
+                        let episode_image = shows_obj["image"] as? String
                         
-                        TableDataV.append(episode(name: episode_name!, date: episode_date!, audio: epside_audio, description: episode_description!))
+                        TableDataV.append(episode(name: episode_name!, date: episode_date!, audio: epside_audio, description: episode_description!, image: episode_image!))
                         
                     } else {
                         print("no matches")
@@ -290,6 +291,7 @@ class episodeTableViewController: UITableViewController {
                     vc.audioVariableInSecondVc = epi.audio!
                     vc.showTitleVariable = self.showNameVariable
                     vc.descriptionVariable = epi.description
+                    vc.imageVariable = epi.image!
                     
                     // if the file doesn't exist
                 } else {
@@ -320,6 +322,7 @@ class episodeTableViewController: UITableViewController {
                                 vc.nameVariableInSecondVc = epi.name
                                 vc.audioVariableInSecondVc = epi.audio!
                                 vc.showTitleVariable = self.showNameVariable
+                                vc.imageVariable = epi.image!
                                 
                                 
                             }
@@ -354,6 +357,7 @@ class episodeTableViewController: UITableViewController {
                 controller.audioVariableInSecondVc = epi.audio!
                 
             }
+
         }
         
     }
@@ -369,13 +373,15 @@ struct episode {
     var audio : String?
     var show = ""
     var description = ""
+    var image : String?
     
-    init(name:String,date:String,audio:String?, description:String) {
+    init(name:String,date:String,audio:String?, description:String, image:String?) {
         
         self.name = name
         self.date = date
         self.audio = audio
         self.description = description
+        self.image = image
     }
     init() {
         
@@ -384,6 +390,7 @@ struct episode {
         self.audio = ""
         self.show = ""
         self.description = ""
+        self.image = ""
         
     }
 }

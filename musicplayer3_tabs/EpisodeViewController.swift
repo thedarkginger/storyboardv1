@@ -18,6 +18,7 @@ class EpisodeViewController: UIViewController {
     var audioVariableInSecondVc = ""
     var showTitleVariable = ""
     var descriptionVariable = ""
+    var imageVariable = "" 
 
     
     var audiotest = "" {
@@ -30,7 +31,9 @@ class EpisodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        podImageView.sd_setImage(with: URL(string: "https://pbs.twimg.com/profile_images/901973198727651328/v19Dj1As_400x400.jpg"), placeholderImage: UIImage(named: "placeholder.png"))
+        print("whatever" + imageVariable)
+        
+        podImageView.sd_setImage(with: URL(string: imageVariable), placeholderImage: UIImage(named: "placeholder.png"))
 
         
         self.title = showTitleVariable
