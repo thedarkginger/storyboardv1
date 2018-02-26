@@ -81,14 +81,15 @@ class EpisodeViewController: UIViewController {
              func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
              return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
              }
-             
+        
              let episodeTime = (Float(audioPlayer.duration))
              let myIntValue = Int(episodeTime)
-             let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
-             let updated3 = "\(updated.0):\(updated.1):\(updated.2)"
-             let updated2 = String(describing: updated3)
+        
+        
+            let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
             
-            episodeTotalTime.text = updated2
+            episodeTotalTime.text = String(format: "%02d:%02d:%02d", updated.0, updated.1, updated.2)
+
 
         } // end player
         
@@ -155,21 +156,21 @@ class EpisodeViewController: UIViewController {
         
         //        audioPlayer.play()
         
-        
         func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
             return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
         }
         
-        let example = (Float(audioPlayer.currentTime))
-        let myIntValue = Int(example)
+        let episodeTime = (Float(audioPlayer.currentTime))
+        let myIntValue = Int(episodeTime)
+        
+        
         let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
-        let updated3 = "\(updated.0):\(updated.1):\(updated.2)"
-        let updated2 = String(describing: updated3)
-        self.episodeTimeTaken.text = updated2
+        
+        episodeTimeTaken.text = String(format: "%02d:%02d:%02d", updated.0, updated.1, updated.2)
+        
     }
     
-    
-    
+
     
 } //end
 
