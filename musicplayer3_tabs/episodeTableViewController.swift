@@ -68,6 +68,12 @@ class episodeTableViewController: UITableViewController {
         
         var url = ""
         
+        if (epi.paywall == "no") {
+            cell.backgroundColor = UIColor(red:0.89, green:0.95, blue:0.99, alpha:1.0)
+        } else {
+            cell.backgroundColor = UIColor(red:1.00, green:0.93, blue:0.70, alpha:1.0)
+        }
+        
         if epi.audio != nil {
             
             url = epi.audio!
@@ -238,9 +244,11 @@ class episodeTableViewController: UITableViewController {
                         let epside_audio = shows_obj["url"] as? String
                         let episode_description = shows_obj["description"] as? String
                         let episode_image = shows_obj["image"] as? String
+                        let episode_paywall = shows_obj["paywall"] as? String
                         
-                        TableDataV.append(episode(name: episode_name!, date: episode_date!, audio: epside_audio, description: episode_description!, image: episode_image!))
+                        TableDataV.append(episode(name: episode_name!, date: episode_date!, audio: epside_audio, description: episode_description!, image: episode_image!, paywall: episode_paywall!))
                         
+                        // sets the image for the table
                         showCoverImage.sd_setImage(with: URL(string: episode_image!), placeholderImage: UIImage(named: "placeholder.png"))
 
                         
@@ -379,14 +387,16 @@ struct episode {
     var show = ""
     var description = ""
     var image : String?
+    var paywall = ""
     
-    init(name:String,date:String,audio:String?, description:String, image:String?) {
+    init(name:String,date:String,audio:String?, description:String, image:String?, paywall:String) {
         
         self.name = name
         self.date = date
         self.audio = audio
         self.description = description
         self.image = image
+        self.paywall = paywall
     }
     init() {
         
@@ -396,6 +406,7 @@ struct episode {
         self.show = ""
         self.description = ""
         self.image = ""
+        self.paywall = ""
         
     }
 }
