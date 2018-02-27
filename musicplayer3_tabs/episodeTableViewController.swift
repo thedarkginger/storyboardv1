@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 var audiotest = ""
 
 class episodeTableViewController: UITableViewController {
@@ -21,7 +22,7 @@ class episodeTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.title = "\(showNameVariable)"
-        
+    
         
         // change to https and change info plist before prod
         get_data_from_url("http://www.fearthewave.com/fearthewave.json")
@@ -240,6 +241,9 @@ class episodeTableViewController: UITableViewController {
                         
                         TableDataV.append(episode(name: episode_name!, date: episode_date!, audio: epside_audio, description: episode_description!, image: episode_image!))
                         
+                        showCoverImage.sd_setImage(with: URL(string: episode_image!), placeholderImage: UIImage(named: "placeholder.png"))
+
+                        
                     } else {
                         print("no matches")
                     }
@@ -362,6 +366,7 @@ class episodeTableViewController: UITableViewController {
         
     }
     
+    @IBOutlet var showCoverImage: UIImageView!
     
     // end
 }

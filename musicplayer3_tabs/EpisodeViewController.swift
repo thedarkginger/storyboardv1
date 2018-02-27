@@ -30,9 +30,8 @@ class EpisodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("whatever" + imageVariable)
-        
+    
+    
         podImageView.sd_setImage(with: URL(string: imageVariable), placeholderImage: UIImage(named: "placeholder.png"))
 
         
@@ -45,7 +44,11 @@ class EpisodeViewController: UIViewController {
         let testSite = audioVariableInSecondVc
         episodeTitle.text = testName
         
-        episodeDescription.text = descriptionVariable
+        // scroll episode name test
+        
+        UIView.animate(withDuration: 12.0, delay: 1, options: ([.curveLinear, .repeat]), animations: {() -> Void in
+            self.episodeTitle.center = CGPoint(x: 0 - self.episodeTitle.bounds.size.width / 2, y: self.episodeTitle.center.y)
+        }, completion:  { _ in })
         
         if let audioUrl = URL(string: testSite) {
             
@@ -98,9 +101,7 @@ class EpisodeViewController: UIViewController {
     } // end view did
     
     @IBOutlet var episodeTitle: UILabel!
-    
-    @IBOutlet var episodeDescription: UILabel!
-    
+        
     @IBOutlet var episodeDate: UILabel!
     
     @IBOutlet var podImageView: UIImageView!
