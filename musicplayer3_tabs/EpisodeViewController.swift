@@ -171,7 +171,24 @@ class EpisodeViewController: UIViewController {
         
     }
     
-
+    @IBAction func skipFortyFiveFwd(_ sender: Any) {
+        
+        let currentTime = audioPlayer.currentTime
+        
+        audioPlayer.stop()
+        
+        audioPlayer.play(atTime: currentTime + 30.0)
+    }
+    
+    @IBAction func skipFortyFiveBack(_ sender: Any) {
+        
+        let currentTime = audioPlayer.currentTime
+        
+        audioPlayer.stop()
+        
+        audioPlayer.play(atTime: currentTime - 30.0)
+        
+    }
     
 } //end
 
