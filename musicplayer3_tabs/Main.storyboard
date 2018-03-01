@@ -352,7 +352,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JpR-hI-Kas">
-                                <rect key="frame" x="16" y="416" width="50" height="49"/>
+                                <rect key="frame" x="39" y="416" width="50" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="30back100.png"/>
                                 <connections>
@@ -360,12 +360,23 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1OI-Ph-NBT">
-                                <rect key="frame" x="110" y="364" width="155" height="155"/>
+                                <rect key="frame" x="110" y="365" width="155" height="155"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="playbutton500.png"/>
+                                <connections>
+                                    <action selector="playButtonMain:" destination="BXJ-7x-7In" eventType="touchUpInside" id="Dxe-yU-VPh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxe-Nh-EfE">
+                                <rect key="frame" x="110" y="375" width="154" height="132"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="pausebutton.png"/>
+                                <connections>
+                                    <action selector="pauseButtonMain:" destination="BXJ-7x-7In" eventType="touchUpInside" id="3Xq-dy-8JY"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfp-IR-Ui8">
-                                <rect key="frame" x="309" y="415" width="50" height="50"/>
+                                <rect key="frame" x="285" y="415" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="30fwd100.png"/>
                                 <connections>
@@ -384,6 +395,8 @@
                         <outlet property="episodeTimeTaken" destination="GH4-f0-qhu" id="7by-Cj-hqr"/>
                         <outlet property="episodeTitle" destination="Xk5-v5-EyI" id="7x7-mc-WhB"/>
                         <outlet property="episodeTotalTime" destination="cu0-lP-AEh" id="NEb-zY-l0C"/>
+                        <outlet property="pauseButtonMain" destination="gxe-Nh-EfE" id="cmp-e4-3Wh"/>
+                        <outlet property="playButtonMain" destination="1OI-Ph-NBT" id="oea-Jf-uUe"/>
                         <outlet property="podImageView" destination="cCz-ii-1FG" id="nnf-10-I3T"/>
                     </connections>
                 </viewController>
@@ -433,6 +446,7 @@
     <resources>
         <image name="30back100.png" width="100" height="100"/>
         <image name="30fwd100.png" width="100" height="100"/>
+        <image name="pausebutton.png" width="100" height="100"/>
         <image name="playbutton500.png" width="500" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>

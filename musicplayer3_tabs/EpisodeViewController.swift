@@ -50,6 +50,11 @@ class EpisodeViewController: UIViewController {
             self.episodeTitle.center = CGPoint(x: 0 - self.episodeTitle.bounds.size.width / 2, y: self.episodeTitle.center.y)
         }, completion:  { _ in })
         
+        // pause play behavior
+        
+        self.pauseButtonMain.isHidden = true
+
+        
         if let audioUrl = URL(string: testSite) {
             
             // then lets create your document folder url
@@ -187,6 +192,35 @@ class EpisodeViewController: UIViewController {
         audioPlayer.currentTime = TimeInterval(currentTime)
         
         
+    }
+    
+    @IBOutlet weak var playButtonMain: UIButton!
+    @IBOutlet weak var pauseButtonMain: UIButton!
+    
+    @IBAction func playButtonMain(_ sender: Any) {
+        
+        self.playButtonMain.isHidden = true
+        self.pauseButtonMain.isHidden = false
+        
+        // updates slider with progress
+        Slider.value = 0.0
+        Slider.maximumValue = Float((audioPlayer?.duration)!)
+        timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
+        
+        audioPlayer.play()
+        
+    }
+    
+    @IBAction func pauseButtonMain(_ sender: Any) {
+        self.playButtonMain.isHidden = false
+        self.pauseButtonMain.isHidden = true
+        
+        if  audioPlayer.isPlaying{
+            audioPlayer.pause()
+            timer?.invalidate()
+        }else{
+            audioPlayer.play()
+        }
     }
     
 } //end
