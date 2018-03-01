@@ -10,6 +10,9 @@
 		0AE0F5BEA0428AFAAEDB7765 /* Pods_musicplayer3_tabsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE88D80CE0F06175BDC004CE /* Pods_musicplayer3_tabsTests.framework */; };
 		75F975D871BE0A250DE77AF7 /* Pods_musicplayer3_tabs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F145A1977A8AD84F92738C /* Pods_musicplayer3_tabs.framework */; };
 		E81AD7A72000BFBF001DDD3B /* Music2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81AD7A62000BFBF001DDD3B /* Music2ViewController.swift */; };
+		E82512942047D94B00C3AC1B /* 30back100.png in Resources */ = {isa = PBXBuildFile; fileRef = E82512932047D94B00C3AC1B /* 30back100.png */; };
+		E82512962047D9A700C3AC1B /* 30fwd100.png in Resources */ = {isa = PBXBuildFile; fileRef = E82512952047D9A700C3AC1B /* 30fwd100.png */; };
+		E825129A2047DBAA00C3AC1B /* playbutton500.png in Resources */ = {isa = PBXBuildFile; fileRef = E82512992047DBA900C3AC1B /* playbutton500.png */; };
 		E83E9735203BA4F20019DB3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E83E9734203BA4F20019DB3C /* Main.storyboard */; };
 		E8532430200CA7F300479ECA /* 3d.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E853242F200CA7F300479ECA /* 3d.jpg */; };
 		E8532434200DE0A100479ECA /* episodeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8532433200DE0A100479ECA /* episodeTableViewController.swift */; };
@@ -43,6 +46,9 @@
 		DA7970E2FC9856D221A24A28 /* Pods-musicplayer3_tabsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicplayer3_tabsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-musicplayer3_tabsTests/Pods-musicplayer3_tabsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DE88D80CE0F06175BDC004CE /* Pods_musicplayer3_tabsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_musicplayer3_tabsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E81AD7A62000BFBF001DDD3B /* Music2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music2ViewController.swift; sourceTree = "<group>"; };
+		E82512932047D94B00C3AC1B /* 30back100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 30back100.png; sourceTree = "<group>"; };
+		E82512952047D9A700C3AC1B /* 30fwd100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 30fwd100.png; sourceTree = "<group>"; };
+		E82512992047DBA900C3AC1B /* playbutton500.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playbutton500.png; sourceTree = "<group>"; };
 		E83E9734203BA4F20019DB3C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E853242F200CA7F300479ECA /* 3d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3d.jpg; sourceTree = "<group>"; };
 		E8532433200DE0A100479ECA /* episodeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = episodeTableViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +141,9 @@
 				E85324392010669100479ECA /* EpisodeViewController.swift */,
 				E83E9734203BA4F20019DB3C /* Main.storyboard */,
 				E8AD47B8203814E700FF89D6 /* download.png */,
+				E82512932047D94B00C3AC1B /* 30back100.png */,
+				E82512952047D9A700C3AC1B /* 30fwd100.png */,
+				E82512992047DBA900C3AC1B /* playbutton500.png */,
 				E853242F200CA7F300479ECA /* 3d.jpg */,
 				E8D5A7061FDA6C8300634BB2 /* Assets.xcassets */,
 				E8D5A7081FDA6C8300634BB2 /* LaunchScreen.storyboard */,
@@ -249,6 +258,9 @@
 				E83E9735203BA4F20019DB3C /* Main.storyboard in Resources */,
 				E8532430200CA7F300479ECA /* 3d.jpg in Resources */,
 				E8D5A70A1FDA6C8300634BB2 /* LaunchScreen.storyboard in Resources */,
+				E825129A2047DBAA00C3AC1B /* playbutton500.png in Resources */,
+				E82512962047D9A700C3AC1B /* 30fwd100.png in Resources */,
+				E82512942047D94B00C3AC1B /* 30back100.png in Resources */,
 				E8D5A7071FDA6C8300634BB2 /* Assets.xcassets in Resources */,
 				E8AD47B9203814E700FF89D6 /* download.png in Resources */,
 			);

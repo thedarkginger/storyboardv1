@@ -18,8 +18,8 @@ class EpisodeViewController: UIViewController {
     var audioVariableInSecondVc = ""
     var showTitleVariable = ""
     var descriptionVariable = ""
-    var imageVariable = "" 
-
+    var imageVariable = ""
+    
     
     var audiotest = "" {
         didSet{
@@ -30,13 +30,13 @@ class EpisodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-    
+        
+        
         podImageView.sd_setImage(with: URL(string: imageVariable), placeholderImage: UIImage(named: "placeholder.png"))
-
+        
         
         self.title = showTitleVariable
-                
+        
         activity_indicator.isHidden = true
         
         let testName = nameVariableInSecondVc
@@ -77,31 +77,31 @@ class EpisodeViewController: UIViewController {
             
             
             //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
-        
             
-            // sets the duration time for the episode 
             
-             func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
-             return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
-             }
-        
-             let episodeTime = (Float(audioPlayer.duration))
-             let myIntValue = Int(episodeTime)
-        
-        
+            // sets the duration time for the episode
+            
+            func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+                return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+            }
+            
+            let episodeTime = (Float(audioPlayer.duration))
+            let myIntValue = Int(episodeTime)
+            
+            
             let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
             
             episodeTotalTime.text = String(format: "%02d:%02d:%02d", updated.0, updated.1, updated.2)
-
-
+            
+            
         } // end player
         
-    
+        
         
     } // end view did
     
     @IBOutlet var episodeTitle: UILabel!
-        
+    
     @IBOutlet var episodeDate: UILabel!
     
     @IBOutlet var podImageView: UIImageView!
@@ -173,20 +173,19 @@ class EpisodeViewController: UIViewController {
     
     @IBAction func skipFortyFiveFwd(_ sender: Any) {
         
-        let currentTime = audioPlayer.currentTime
+        let currentTime = audioPlayer.currentTime + 30.0
         
-        audioPlayer.stop()
         
-        audioPlayer.play(atTime: currentTime + 30.0)
+        audioPlayer.currentTime = TimeInterval(currentTime)
+        
     }
     
     @IBAction func skipFortyFiveBack(_ sender: Any) {
         
-        let currentTime = audioPlayer.currentTime
+        let currentTime = audioPlayer.currentTime - 30.0
         
-        audioPlayer.stop()
+        audioPlayer.currentTime = TimeInterval(currentTime)
         
-        audioPlayer.play(atTime: currentTime - 30.0)
         
     }
     
