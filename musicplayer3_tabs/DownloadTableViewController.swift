@@ -17,7 +17,7 @@ class DownloadTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        get_data_from_url("http://www.fearthewave.com/fearthewave.json")
+        
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -25,6 +25,11 @@ class DownloadTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        get_data_from_url("http://www.fearthewave.com/fearthewave.json")
     }
     
     override func didReceiveMemoryWarning() {
@@ -75,6 +80,8 @@ class DownloadTableViewController: UITableViewController {
         
         if let shows_list = json as? NSArray
         {
+            arrData.removeAll()
+            
             for i in 0 ..< data_list.count
             {
                 var episodeobj = episode()
@@ -115,7 +122,7 @@ class DownloadTableViewController: UITableViewController {
             
             
             // if you want to filter the directory contents you can do like this:
-            let mp3Files = directoryContents.filter{ $0.pathExtension == "mp3" }
+            let mp3Files = directoryContents.filter{ $0.pathExtension == "mp3" || $0.pathExtension == "m4a" }
             //print("mp3 urls:",mp3Files)
             let mp3FileNames = mp3Files.map{ $0.deletingPathExtension().lastPathComponent }
             //print("mp3 list:", mp3FileNames)
@@ -124,7 +131,9 @@ class DownloadTableViewController: UITableViewController {
                 
                 for obj in arrData {
                     
-                    if (obj.audio?.contains(mp3file))! {
+                    let url = obj.audio?.removingPercentEncoding
+                    
+                    if (url?.contains(mp3file))! {
                         
                         let name = "\(obj.show) - \(obj.name)"
                         thedownloads.append(name)

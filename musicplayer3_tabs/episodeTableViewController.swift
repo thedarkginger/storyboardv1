@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import SDWebImage
 var audiotest = ""
 
@@ -22,11 +23,19 @@ class episodeTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.title = "\(showNameVariable)"
-    
         
-        // change to https and change info plist before prod
-        get_data_from_url("http://www.fearthewave.com/fearthewave.json")
+        playerToolbar.isHidden = true
         
+        if (audioPlayer != nil) {
+            if  audioPlayer.isPlaying {
+                playerToolbar.isHidden = false
+            }else{
+                playerToolbar.isHidden = true
+
+            }
+            
+        }
+ 
         activity_indicator.frame = CGRect(x: 50, y: 50, width: 20, height: 20)
         activity_indicator.isHidden = true
         activity_indicator.center = self.view.center
@@ -45,6 +54,12 @@ class episodeTableViewController: UITableViewController {
         }
         
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // change to https and change info plist before prod
+        get_data_from_url("http://www.fearthewave.com/fearthewave.json")
     }
     
     
@@ -232,6 +247,8 @@ class episodeTableViewController: UITableViewController {
         
         if let shows_list = json as? NSArray
         {
+            TableDataV.removeAll()
+            
             for i in 0 ..< data_list.count
             {
                 if let shows_obj = shows_list[i] as? NSDictionary
@@ -250,7 +267,7 @@ class episodeTableViewController: UITableViewController {
                         
                         // sets the image for the table
                         showCoverImage.sd_setImage(with: URL(string: episode_image!), placeholderImage: UIImage(named: "placeholder.png"))
-
+                        
                         
                     } else {
                         print("no matches")
@@ -369,13 +386,14 @@ class episodeTableViewController: UITableViewController {
                 controller.audioVariableInSecondVc = epi.audio!
                 
             }
-
+            
         }
         
     }
     
     @IBOutlet var showCoverImage: UIImageView!
     
+    @IBOutlet weak var playerToolbar: UIToolbar!
     // end
 }
 

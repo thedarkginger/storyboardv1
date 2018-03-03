@@ -9,6 +9,8 @@
 import UIKit
 import AVFoundation
 import SDWebImage
+import AudioToolbox
+
 
 
 class EpisodeViewController: UIViewController {
@@ -33,7 +35,8 @@ class EpisodeViewController: UIViewController {
         
         
         podImageView.sd_setImage(with: URL(string: imageVariable), placeholderImage: UIImage(named: "placeholder.png"))
-        
+        podImageView.layer.cornerRadius = 8.0
+        podImageView.clipsToBounds = true
         
         self.title = showTitleVariable
         
@@ -201,6 +204,14 @@ class EpisodeViewController: UIViewController {
         
         self.playButtonMain.isHidden = true
         self.pauseButtonMain.isHidden = false
+        
+        if #available(iOS 10.0, *) {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.impactOccurred()
+
+        } else {
+            // Fallback on earlier versions
+        }
         
         // updates slider with progress
         Slider.value = 0.0
