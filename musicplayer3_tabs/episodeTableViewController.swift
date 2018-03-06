@@ -16,15 +16,16 @@ class episodeTableViewController: UITableViewController {
     var TableDataV : [episode] = [episode]()
     var showNameVariable = ""
     
-    
     var activity_indicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "\(showNameVariable)"
-        
+    
         playerToolbar.isHidden = true
+        self.navigationItem.rightBarButtonItem = nil
+
         
         if (audioPlayer != nil) {
             if  audioPlayer.isPlaying {
@@ -58,8 +59,14 @@ class episodeTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        self.tableView!.reloadData()
+        
+        print("viewwillappear used")
+        
         // change to https and change info plist before prod
         get_data_from_url("http://www.fearthewave.com/fearthewave.json")
+        
+        // reload data to get checkmark if downloaded
     }
     
     
@@ -391,6 +398,18 @@ class episodeTableViewController: UITableViewController {
         
     }
     
+    @IBOutlet var playButton: UIBarButtonItem!
+    @IBOutlet var pauseButton: UIBarButtonItem!
+    @IBAction func pauseAudioPlayer(_ sender: Any) {
+        
+        if  audioPlayer.isPlaying{
+            audioPlayer.pause()
+            timer?.invalidate()
+            playerToolbar.items = [playButton]
+        }else{
+            audioPlayer.play()
+        }
+    }
     @IBOutlet var showCoverImage: UIImageView!
     
     @IBOutlet weak var playerToolbar: UIToolbar!

@@ -47,11 +47,6 @@ class EpisodeViewController: UIViewController {
         let testSite = audioVariableInSecondVc
         episodeTitle.text = testName
         
-        // scroll episode name test
-        
-        UIView.animate(withDuration: 12.0, delay: 1, options: ([.curveLinear, .repeat]), animations: {() -> Void in
-            self.episodeTitle.center = CGPoint(x: 0 - self.episodeTitle.bounds.size.width / 2, y: self.episodeTitle.center.y)
-        }, completion:  { _ in })
         
         // pause play behavior
         

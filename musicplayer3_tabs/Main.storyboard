@@ -264,7 +264,12 @@
                             <rect key="frame" x="0.0" y="493" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <items>
-                                <barButtonItem title="Item" id="NHU-lo-WxB"/>
+                                <barButtonItem systemItem="pause" id="NHU-lo-WxB">
+                                    <connections>
+                                        <action selector="pauseAudioPlayer:" destination="KF8-Fe-14F" id="tvS-HW-fyC"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem systemItem="play" id="F9f-PG-YJR"/>
                             </items>
                         </toolbar>
                         <prototypes>
@@ -283,6 +288,8 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="pauseButton" destination="NHU-lo-WxB" id="pLI-3M-bQi"/>
+                        <outlet property="playButton" destination="F9f-PG-YJR" id="pkC-EL-fj5"/>
                         <outlet property="playerToolbar" destination="tWE-Zi-ZSL" id="SBD-sq-kwD"/>
                         <outlet property="showCoverImage" destination="OoO-zZ-efu" id="KhO-Mi-ChL"/>
                     </connections>
