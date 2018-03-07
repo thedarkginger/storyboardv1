@@ -260,7 +260,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="tWE-Zi-ZSL">
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="bottom" barStyle="black" id="tWE-Zi-ZSL">
                             <rect key="frame" x="0.0" y="493" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <items>
@@ -269,7 +269,11 @@
                                         <action selector="pauseAudioPlayer:" destination="KF8-Fe-14F" id="tvS-HW-fyC"/>
                                     </connections>
                                 </barButtonItem>
-                                <barButtonItem systemItem="play" id="F9f-PG-YJR"/>
+                                <barButtonItem systemItem="play" id="F9f-PG-YJR">
+                                    <connections>
+                                        <action selector="playAudioPlayer:" destination="KF8-Fe-14F" id="z2l-17-AyR"/>
+                                    </connections>
+                                </barButtonItem>
                             </items>
                         </toolbar>
                         <prototypes>

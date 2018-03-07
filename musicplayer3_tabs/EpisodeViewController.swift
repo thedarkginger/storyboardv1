@@ -47,6 +47,7 @@ class EpisodeViewController: UIViewController {
         let testSite = audioVariableInSecondVc
         episodeTitle.text = testName
         
+
         
         // pause play behavior
         

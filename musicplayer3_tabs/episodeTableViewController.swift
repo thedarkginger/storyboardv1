@@ -24,7 +24,7 @@ class episodeTableViewController: UITableViewController {
         self.title = "\(showNameVariable)"
     
         playerToolbar.isHidden = true
-        self.navigationItem.rightBarButtonItem = nil
+        playerToolbar.items = [pauseButton]
 
         
         if (audioPlayer != nil) {
@@ -406,9 +406,15 @@ class episodeTableViewController: UITableViewController {
             audioPlayer.pause()
             timer?.invalidate()
             playerToolbar.items = [playButton]
+
         }else{
             audioPlayer.play()
         }
+    }
+    @IBAction func playAudioPlayer(_ sender: Any) {
+        
+        audioPlayer.play()
+        playerToolbar.items = [pauseButton]
     }
     @IBOutlet var showCoverImage: UIImageView!
     
