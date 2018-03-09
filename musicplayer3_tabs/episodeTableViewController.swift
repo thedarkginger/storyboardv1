@@ -22,6 +22,7 @@ class episodeTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.title = "\(showNameVariable)"
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.plain, target:nil, action:nil)
     
         playerToolbar.isHidden = true
         playerToolbar.items = [pauseButton]

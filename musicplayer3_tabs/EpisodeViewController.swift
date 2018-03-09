@@ -39,6 +39,8 @@ class EpisodeViewController: UIViewController {
         podImageView.clipsToBounds = true
         
         self.title = showTitleVariable
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.plain, target:nil, action:nil)
+
         
         activity_indicator.isHidden = true
         
