@@ -18,18 +18,20 @@ class episodeTableViewController: UITableViewController {
     
     var activity_indicator = UIActivityIndicatorView()
     
+    @IBOutlet weak var nowPlayingImageView: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "\(showNameVariable)"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.plain, target:nil, action:nil)
-        
+    
         playerToolbar.isHidden = true
         playerToolbar.items = [pauseButton]
+
+        nowPlayingImageView.imageView?.animationImages = AnimationFrames.createFrames()
+        nowPlayingImageView.imageView?.animationDuration = 1.0
         
-        
-        
-        
+ 
         activity_indicator.frame = CGRect(x: 50, y: 50, width: 20, height: 20)
         activity_indicator.isHidden = true
         activity_indicator.center = self.view.center
@@ -52,18 +54,39 @@ class episodeTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        
         if (audioPlayer != nil) {
             if  audioPlayer.isPlaying {
-                playerToolbar.isHidden = false
-                playerToolbar.items = [pauseButton]
+                
+                nowPlayingImageView.isHidden = false
+                startNowPlayingAnimation(true)
+                
             }else{
-                playerToolbar.isHidden = true
+                
+                nowPlayingImageView.isHidden = true
+                startNowPlayingAnimation(false)
                 
             }
             
         }
+        else {
+            
+            nowPlayingImageView.isHidden = true
+            startNowPlayingAnimation(false)
+        }
         
-        //        self.tableView!.reloadData()
+//        if (audioPlayer != nil) {
+//            if  audioPlayer.isPlaying {
+//                playerToolbar.isHidden = false
+//                playerToolbar.items = [pauseButton]
+//            }else{
+//                playerToolbar.isHidden = true
+//
+//            }
+//
+//        }
+        
+//        self.tableView!.reloadData()
         
         print("viewwillappear used")
         
@@ -71,6 +94,11 @@ class episodeTableViewController: UITableViewController {
         get_data_from_url("http://www.fearthewave.com/fearthewave.json")
         
         // reload data to get checkmark if downloaded
+    }
+    
+    func startNowPlayingAnimation(_ animate: Bool) {
+        
+        animate ? nowPlayingImageView.imageView?.startAnimating() : nowPlayingImageView.imageView?.stopAnimating()
     }
     
     
@@ -187,8 +215,8 @@ class episodeTableViewController: UITableViewController {
                                 
                                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
                                 self.navigationController?.pushViewController(vc, animated: true)
-                                vc.nameVariableInSecondVc = epi.name
-                                vc.audioVariableInSecondVc = epi.audio!
+                                nameVariableInSecondVc = epi.name
+                                audioVariableInSecondVc = epi.audio!
                                 
                                 let cell = tableView.cellForRow(at: indexPath)
                                 cell?.accessoryType = .checkmark
@@ -307,6 +335,8 @@ class episodeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        
+        
         let epi = TableDataV[indexPath.row]
         
         var url = ""
@@ -327,13 +357,15 @@ class episodeTableViewController: UITableViewController {
                     
                     print("The file already exists at path")
                     
+                    audioPlayer = nil
+                    
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
                     self.navigationController?.pushViewController(vc, animated: true)
-                    vc.nameVariableInSecondVc = epi.name
-                    vc.audioVariableInSecondVc = epi.audio!
-                    vc.showTitleVariable = self.showNameVariable
-                    vc.descriptionVariable = epi.description
-                    vc.imageVariable = epi.image!
+                    nameVariableInSecondVc = epi.name
+                    audioVariableInSecondVc = epi.audio!
+                    showTitleVariable = self.showNameVariable
+                    descriptionVariable = epi.description
+                    imageVariable = epi.image!
                     
                     // if the file doesn't exist
                 } else {
@@ -359,12 +391,14 @@ class episodeTableViewController: UITableViewController {
                                 self.activity_indicator.stopAnimating()
                                 UIApplication.shared.endIgnoringInteractionEvents()
                                 
+                                audioPlayer = nil
+                                
                                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
                                 self.navigationController?.pushViewController(vc, animated: true)
-                                vc.nameVariableInSecondVc = epi.name
-                                vc.audioVariableInSecondVc = epi.audio!
-                                vc.showTitleVariable = self.showNameVariable
-                                vc.imageVariable = epi.image!
+                                nameVariableInSecondVc = epi.name
+                                audioVariableInSecondVc = epi.audio!
+                                showTitleVariable = self.showNameVariable
+                                imageVariable = epi.image!
                                 
                                 
                             }
@@ -388,7 +422,7 @@ class episodeTableViewController: UITableViewController {
             
             let epi = TableDataV[indexPath.row]
             
-            controller.nameVariableInSecondVc = epi.name
+            nameVariableInSecondVc = epi.name
             
             var url = ""
             
@@ -396,13 +430,20 @@ class episodeTableViewController: UITableViewController {
                 
                 url = epi.audio!
                 
-                controller.audioVariableInSecondVc = epi.audio!
+                audioVariableInSecondVc = epi.audio!
                 
             }
             
         }
         
     }
+    
+    @IBAction func Click_wave(_ sender: UIButton) {
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     @IBOutlet var playButton: UIBarButtonItem!
     @IBOutlet var pauseButton: UIBarButtonItem!
@@ -412,7 +453,7 @@ class episodeTableViewController: UITableViewController {
             audioPlayer.pause()
             timer?.invalidate()
             playerToolbar.items = [playButton]
-            
+
         }else{
             audioPlayer.play()
         }

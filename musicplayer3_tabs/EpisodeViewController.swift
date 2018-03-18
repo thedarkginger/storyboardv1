@@ -11,16 +11,16 @@ import AVFoundation
 import SDWebImage
 import AudioToolbox
 
-
+var nameVariableInSecondVc = ""
+var audioVariableInSecondVc = ""
+var showTitleVariable = ""
+var descriptionVariable = ""
+var imageVariable = ""
 
 class EpisodeViewController: UIViewController {
     var timer: Timer?
     
-    var nameVariableInSecondVc = ""
-    var audioVariableInSecondVc = ""
-    var showTitleVariable = ""
-    var descriptionVariable = ""
-    var imageVariable = ""
+    
     
     
     var audiotest = "" {
@@ -30,9 +30,12 @@ class EpisodeViewController: UIViewController {
     
     @IBOutlet weak var activity_indicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var nowPlayingImageView: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        nowPlayingImageView.imageView?.animationImages = AnimationFrames.createFrames()
+        nowPlayingImageView.imageView?.animationDuration = 1.0
         
         podImageView.sd_setImage(with: URL(string: imageVariable), placeholderImage: UIImage(named: "placeholder.png"))
         podImageView.layer.cornerRadius = 8.0
@@ -55,37 +58,50 @@ class EpisodeViewController: UIViewController {
         
         self.pauseButtonMain.isHidden = true
 
-        
-        if let audioUrl = URL(string: testSite) {
+        if audioPlayer == nil {
             
-            // then lets create your document folder url
-            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            
-            // lets create your destination file url
-            let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
-            
-            do {
+            if let audioUrl = URL(string: testSite) {
                 
-                audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
+                // then lets create your document folder url
+                let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                
+                // lets create your destination file url
+                let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
                 
                 do {
-                    try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
-                    print("Playback OK")
-                    try AVAudioSession.sharedInstance().setActive(true)
-                    print("Session is Active")
-                } catch {
-                    print(error)
+                    
+                    audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
+                    // sets the duration time for the episode
+                    
+                    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+                        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+                    }
+                    
+                    let episodeTime = (Float(audioPlayer.duration))
+                    let myIntValue = Int(episodeTime)
+                    
+                    
+                    let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
+                    
+                    episodeTotalTime.text = String(format: "%02d:%02d:%02d", updated.0, updated.1, updated.2)
+                    
+                    do {
+                        try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+                        print("Playback OK")
+                        try AVAudioSession.sharedInstance().setActive(true)
+                        print("Session is Active")
+                    } catch {
+                        print(error)
+                    }
+                    
+                } catch let error {
+                    print(error.localizedDescription)
                 }
-                
-            } catch let error {
-                print(error.localizedDescription)
+       
             }
-            
-            
-            //let url = Bundle.main.url(forResource: destinationUrl, withExtension: "mp3")!
-            
-            
-            // sets the duration time for the episode
+        }
+        
+        else {
             
             func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
                 return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
@@ -94,13 +110,25 @@ class EpisodeViewController: UIViewController {
             let episodeTime = (Float(audioPlayer.duration))
             let myIntValue = Int(episodeTime)
             
+            if audioPlayer.isPlaying {
+                
+                startNowPlayingAnimation(true)
+            }
             
             let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
             
             episodeTotalTime.text = String(format: "%02d:%02d:%02d", updated.0, updated.1, updated.2)
             
+            Slider.maximumValue = Float(audioPlayer.duration)
+            playButtonMain.isHidden = true
+            pauseButtonMain.isHidden = false
+            timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
             
-        } // end player
+        }
+        
+        
+        
+ // end player
         
         
         
@@ -215,12 +243,14 @@ class EpisodeViewController: UIViewController {
         Slider.value = 0.0
         Slider.maximumValue = Float((audioPlayer?.duration)!)
         timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
-        
+        startNowPlayingAnimation(true)
         audioPlayer.play()
         
     }
     
     @IBAction func pauseButtonMain(_ sender: Any) {
+        
+        startNowPlayingAnimation(false)
         self.playButtonMain.isHidden = false
         self.pauseButtonMain.isHidden = true
         
@@ -230,6 +260,11 @@ class EpisodeViewController: UIViewController {
         }else{
             audioPlayer.play()
         }
+    }
+    
+    func startNowPlayingAnimation(_ animate: Bool) {
+        
+        animate ? nowPlayingImageView.imageView?.startAnimating() : nowPlayingImageView.imageView?.stopAnimating()
     }
     
 } //end

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +31,21 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <navigationItem key="navigationItem" id="yI6-Hk-14Y"/>
+                    <navigationItem key="navigationItem" id="yI6-Hk-14Y">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="ijx-sm-Hp7">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vAf-qE-zex">
+                                <rect key="frame" x="340" y="11" width="19" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="NowPlayingBars"/>
+                                <connections>
+                                    <action selector="Click_Wave:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Ps5-CT-7NU"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nowPlayingImageView" destination="vAf-qE-zex" id="w7P-lM-7c9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
@@ -243,6 +257,21 @@
                             <outlet property="delegate" destination="lFb-uc-Ked" id="tAb-bN-tpR"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="EeY-Es-x51">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="GP8-pM-8MQ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Tsw-8r-5vF">
+                                <rect key="frame" x="340" y="11" width="19" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="NowPlayingBars"/>
+                                <connections>
+                                    <action selector="Click_wave:" destination="lFb-uc-Ked" eventType="touchUpInside" id="Dvr-3P-dRc"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nowPlayingImageView" destination="Tsw-8r-5vF" id="NMX-PO-6Kn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="guC-SF-nTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -291,7 +320,20 @@
                             <outlet property="delegate" destination="KF8-Fe-14F" id="qod-cF-JV4"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="rCe-2M-Bdk">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="f49-Gy-ZqU">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JrF-U9-Byp">
+                                <rect key="frame" x="340" y="11" width="19" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="NowPlayingBars"/>
+                                <connections>
+                                    <action selector="Click_wave:" destination="KF8-Fe-14F" eventType="touchUpInside" id="bly-iR-qTt"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="nowPlayingImageView" destination="JrF-U9-Byp" id="b1P-ML-cG4"/>
                         <outlet property="pauseButton" destination="NHU-lo-WxB" id="pLI-3M-bQi"/>
                         <outlet property="playButton" destination="F9f-PG-YJR" id="pkC-EL-fj5"/>
                         <outlet property="playerToolbar" destination="tWE-Zi-ZSL" id="SBD-sq-kwD"/>
@@ -390,6 +432,15 @@
                         <viewLayoutGuide key="safeArea" id="NGf-9x-lpJ"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="BFt-mL-vSG">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Z1O-q4-mCE">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YZP-N1-viG">
+                                <rect key="frame" x="340" y="11" width="19" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="NowPlayingBars"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="Slider" destination="FEn-T1-ySX" id="gbM-mM-jZi"/>
                         <outlet property="activity_indicator" destination="73f-DP-79F" id="7mk-ul-f4J"/>
@@ -397,6 +448,7 @@
                         <outlet property="episodeTimeTaken" destination="GH4-f0-qhu" id="7by-Cj-hqr"/>
                         <outlet property="episodeTitle" destination="Xk5-v5-EyI" id="7x7-mc-WhB"/>
                         <outlet property="episodeTotalTime" destination="cu0-lP-AEh" id="NEb-zY-l0C"/>
+                        <outlet property="nowPlayingImageView" destination="YZP-N1-viG" id="DtG-of-GDl"/>
                         <outlet property="pauseButtonMain" destination="gxe-Nh-EfE" id="cmp-e4-3Wh"/>
                         <outlet property="playButtonMain" destination="1OI-Ph-NBT" id="oea-Jf-uUe"/>
                         <outlet property="podImageView" destination="cCz-ii-1FG" id="nnf-10-I3T"/>
@@ -448,6 +500,7 @@
     <resources>
         <image name="30back100.png" width="100" height="100"/>
         <image name="30fwd100.png" width="100" height="100"/>
+        <image name="NowPlayingBars" width="19" height="19"/>
         <image name="pausebutton.png" width="100" height="100"/>
         <image name="playbutton500.png" width="500" height="500"/>
     </resources>

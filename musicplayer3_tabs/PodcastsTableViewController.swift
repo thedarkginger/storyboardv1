@@ -12,6 +12,8 @@ class PodcastsTableViewController: UITableViewController {
     
     var TableData:Array< String > = Array < String >()
     
+    @IBOutlet weak var nowPlayingImageView: UIButton!
+   
     var show_image = ""
 
     override func viewDidLoad() {
@@ -20,6 +22,8 @@ class PodcastsTableViewController: UITableViewController {
         // change to https and change info plist before prod
         get_data_from_url("https://api.myjson.com/bins/15xvm9")
         
+        nowPlayingImageView.imageView?.animationImages = AnimationFrames.createFrames()
+        nowPlayingImageView.imageView?.animationDuration = 1.0
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -29,11 +33,40 @@ class PodcastsTableViewController: UITableViewController {
         
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if (audioPlayer != nil) {
+            if  audioPlayer.isPlaying {
+                
+                nowPlayingImageView.isHidden = false
+                startNowPlayingAnimation(true)
+                
+            }else{
+                
+                nowPlayingImageView.isHidden = true
+                startNowPlayingAnimation(false)
+                
+            }
+            
+        }
+        else {
+            
+            nowPlayingImageView.isHidden = true
+            startNowPlayingAnimation(false)
+        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+    func startNowPlayingAnimation(_ animate: Bool) {
+        
+        animate ? nowPlayingImageView.imageView?.startAnimating() : nowPlayingImageView.imageView?.stopAnimating()
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -166,6 +199,11 @@ class PodcastsTableViewController: UITableViewController {
         
     } 
 
+    @IBAction func Click_wave(_ sender: UIButton) {
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
