@@ -24,9 +24,6 @@ class episodeTableViewController: UITableViewController {
         
         self.title = "\(showNameVariable)"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.plain, target:nil, action:nil)
-    
-        playerToolbar.isHidden = true
-        playerToolbar.items = [pauseButton]
 
         nowPlayingImageView.imageView?.animationImages = AnimationFrames.createFrames()
         nowPlayingImageView.imageView?.animationDuration = 1.0
@@ -74,19 +71,6 @@ class episodeTableViewController: UITableViewController {
             nowPlayingImageView.isHidden = true
             startNowPlayingAnimation(false)
         }
-        
-//        if (audioPlayer != nil) {
-//            if  audioPlayer.isPlaying {
-//                playerToolbar.isHidden = false
-//                playerToolbar.items = [pauseButton]
-//            }else{
-//                playerToolbar.isHidden = true
-//
-//            }
-//
-//        }
-        
-//        self.tableView!.reloadData()
         
         print("viewwillappear used")
         
@@ -444,28 +428,9 @@ class episodeTableViewController: UITableViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    
-    @IBOutlet var playButton: UIBarButtonItem!
-    @IBOutlet var pauseButton: UIBarButtonItem!
-    @IBAction func pauseAudioPlayer(_ sender: Any) {
-        
-        if  audioPlayer.isPlaying{
-            audioPlayer.pause()
-            timer?.invalidate()
-            playerToolbar.items = [playButton]
 
-        }else{
-            audioPlayer.play()
-        }
-    }
-    @IBAction func playAudioPlayer(_ sender: Any) {
-        
-        audioPlayer.play()
-        playerToolbar.items = [pauseButton]
-    }
     @IBOutlet var showCoverImage: UIImageView!
     
-    @IBOutlet weak var playerToolbar: UIToolbar!
     // end
 }
 

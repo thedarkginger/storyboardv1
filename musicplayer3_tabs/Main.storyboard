@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -289,22 +289,6 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="bottom" barStyle="black" id="tWE-Zi-ZSL">
-                            <rect key="frame" x="0.0" y="493" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <items>
-                                <barButtonItem systemItem="pause" id="NHU-lo-WxB">
-                                    <connections>
-                                        <action selector="pauseAudioPlayer:" destination="KF8-Fe-14F" id="tvS-HW-fyC"/>
-                                    </connections>
-                                </barButtonItem>
-                                <barButtonItem systemItem="play" id="F9f-PG-YJR">
-                                    <connections>
-                                        <action selector="playAudioPlayer:" destination="KF8-Fe-14F" id="z2l-17-AyR"/>
-                                    </connections>
-                                </barButtonItem>
-                            </items>
-                        </toolbar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="90" id="hSl-8j-ZaH">
                                 <rect key="frame" x="0.0" y="403" width="375" height="90"/>
@@ -334,9 +318,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="nowPlayingImageView" destination="JrF-U9-Byp" id="b1P-ML-cG4"/>
-                        <outlet property="pauseButton" destination="NHU-lo-WxB" id="pLI-3M-bQi"/>
-                        <outlet property="playButton" destination="F9f-PG-YJR" id="pkC-EL-fj5"/>
-                        <outlet property="playerToolbar" destination="tWE-Zi-ZSL" id="SBD-sq-kwD"/>
                         <outlet property="showCoverImage" destination="OoO-zZ-efu" id="KhO-Mi-ChL"/>
                     </connections>
                 </tableViewController>
