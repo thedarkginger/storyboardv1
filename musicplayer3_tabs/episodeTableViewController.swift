@@ -22,6 +22,13 @@ class episodeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // test saved user default
+        
+        let defaults = UserDefaults.standard
+        let myarray = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
+        
+        print(myarray)
+        
         self.title = "\(showNameVariable)"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.plain, target:nil, action:nil)
 

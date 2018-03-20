@@ -22,20 +22,7 @@ class PodcastsTableViewController: UITableViewController {
         // change to https and change info plist before prod
         get_data_from_url("https://api.myjson.com/bins/15xvm9")
         
-        // testing user defaults
-        
-        /*
-        let array = ["No Laying Up", "Fear the Wave", "Defunctland"]
-        
-        let defaults = UserDefaults.standard
-        defaults.set(array, forKey: "SavedStringArray")
-        
-        let myarray = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
-        
-        print(myarray)
- 
- 
- */
+
         
         nowPlayingImageView.imageView?.animationImages = AnimationFrames.createFrames()
         nowPlayingImageView.imageView?.animationDuration = 1.0
@@ -104,16 +91,25 @@ class PodcastsTableViewController: UITableViewController {
         
         cell.textLabel?.text = TableData[indexPath.row]
         cell.accessoryType = .detailDisclosureButton
-        
+    
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         // test to see if i can store row name in the defaults array
         let defaults = UserDefaults.standard
-        defaults.set(TableData[indexPath.row], forKey: "SavedStringArray")
+        var myarray = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
+        if let datastring = TableData[indexPath.row] as? String {
+            if !myarray.contains(datastring) {
+                myarray.append(datastring)
+                defaults.set(myarray, forKey: "SavedStringArray")
+                defaults.synchronize()
+            }
+        }
         
-        let myarray = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryType = .checkmark
         
-        print(myarray)
-        
-        return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -121,9 +117,12 @@ class PodcastsTableViewController: UITableViewController {
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let controller = segue.destination as! episodeTableViewController
             controller.showNameVariable = TableData[indexPath.row]
-    
+            
+        
         }
     }
+    
+
     
     func get_data_from_url(_ link:String)
     {
