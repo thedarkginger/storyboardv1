@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		75F975D871BE0A250DE77AF7 /* Pods_musicplayer3_tabs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F145A1977A8AD84F92738C /* Pods_musicplayer3_tabs.framework */; };
 		E81AD7A72000BFBF001DDD3B /* Music2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81AD7A62000BFBF001DDD3B /* Music2ViewController.swift */; };
+		E81E15042060CB0C00444A82 /* 30backwhite.png in Resources */ = {isa = PBXBuildFile; fileRef = E81E15032060CB0C00444A82 /* 30backwhite.png */; };
+		E81E15062060CB4400444A82 /* 30fwdwhite.png in Resources */ = {isa = PBXBuildFile; fileRef = E81E15052060CB4400444A82 /* 30fwdwhite.png */; };
+		E81E15082060CD6C00444A82 /* playwhite.png in Resources */ = {isa = PBXBuildFile; fileRef = E81E15072060CD6B00444A82 /* playwhite.png */; };
+		E81E150A2060CD7200444A82 /* pausedwhite.png in Resources */ = {isa = PBXBuildFile; fileRef = E81E15092060CD7200444A82 /* pausedwhite.png */; };
 		E82512942047D94B00C3AC1B /* 30back100.png in Resources */ = {isa = PBXBuildFile; fileRef = E82512932047D94B00C3AC1B /* 30back100.png */; };
 		E82512962047D9A700C3AC1B /* 30fwd100.png in Resources */ = {isa = PBXBuildFile; fileRef = E82512952047D9A700C3AC1B /* 30fwd100.png */; };
 		E825129A2047DBAA00C3AC1B /* playbutton500.png in Resources */ = {isa = PBXBuildFile; fileRef = E82512992047DBA900C3AC1B /* playbutton500.png */; };
@@ -45,6 +49,10 @@
 		65252B7D4300C666E14B56D2 /* Pods-musicplayer3_tabs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musicplayer3_tabs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-musicplayer3_tabs/Pods-musicplayer3_tabs.debug.xcconfig"; sourceTree = "<group>"; };
 		DE88D80CE0F06175BDC004CE /* Pods_musicplayer3_tabsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_musicplayer3_tabsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E81AD7A62000BFBF001DDD3B /* Music2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music2ViewController.swift; sourceTree = "<group>"; };
+		E81E15032060CB0C00444A82 /* 30backwhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 30backwhite.png; sourceTree = "<group>"; };
+		E81E15052060CB4400444A82 /* 30fwdwhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 30fwdwhite.png; sourceTree = "<group>"; };
+		E81E15072060CD6B00444A82 /* playwhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playwhite.png; sourceTree = "<group>"; };
+		E81E15092060CD7200444A82 /* pausedwhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pausedwhite.png; sourceTree = "<group>"; };
 		E82512932047D94B00C3AC1B /* 30back100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 30back100.png; sourceTree = "<group>"; };
 		E82512952047D9A700C3AC1B /* 30fwd100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 30fwd100.png; sourceTree = "<group>"; };
 		E82512992047DBA900C3AC1B /* playbutton500.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playbutton500.png; sourceTree = "<group>"; };
@@ -140,8 +148,12 @@
 				E85324392010669100479ECA /* EpisodeViewController.swift */,
 				E83E9734203BA4F20019DB3C /* Main.storyboard */,
 				E8AD47B8203814E700FF89D6 /* download.png */,
+				E81E15072060CD6B00444A82 /* playwhite.png */,
+				E81E15052060CB4400444A82 /* 30fwdwhite.png */,
+				E81E15092060CD7200444A82 /* pausedwhite.png */,
 				E82512932047D94B00C3AC1B /* 30back100.png */,
 				E82512952047D9A700C3AC1B /* 30fwd100.png */,
+				E81E15032060CB0C00444A82 /* 30backwhite.png */,
 				E825129B2047DFE400C3AC1B /* pausebutton.png */,
 				E82512992047DBA900C3AC1B /* playbutton500.png */,
 				E853242F200CA7F300479ECA /* 3d.jpg */,
@@ -257,10 +269,14 @@
 				E825129C2047DFE400C3AC1B /* pausebutton.png in Resources */,
 				E8D5A70A1FDA6C8300634BB2 /* LaunchScreen.storyboard in Resources */,
 				E825129A2047DBAA00C3AC1B /* playbutton500.png in Resources */,
+				E81E150A2060CD7200444A82 /* pausedwhite.png in Resources */,
 				E82512962047D9A700C3AC1B /* 30fwd100.png in Resources */,
 				E82512942047D94B00C3AC1B /* 30back100.png in Resources */,
+				E81E15082060CD6C00444A82 /* playwhite.png in Resources */,
 				E8D5A7071FDA6C8300634BB2 /* Assets.xcassets in Resources */,
 				E8AD47B9203814E700FF89D6 /* download.png in Resources */,
+				E81E15042060CB0C00444A82 /* 30backwhite.png in Resources */,
+				E81E15062060CB4400444A82 /* 30fwdwhite.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

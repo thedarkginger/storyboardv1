@@ -37,8 +37,20 @@ class EpisodeViewController: UIViewController {
         nowPlayingImageView.imageView?.animationImages = AnimationFrames.createFrames()
         nowPlayingImageView.imageView?.animationDuration = 1.0
         
+         // test - make background a gradient
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        let gradient = CAGradientLayer()
+        
+        gradient.frame = self.view.bounds
+        gradient.colors = [UIColor(red:0.26, green:0.26, blue:0.26, alpha:1.0).cgColor, UIColor.black.cgColor]
+        
+        self.view.layer.insertSublayer(gradient, at: 0)
+        
+        // set episode image
+        
         podImageView.sd_setImage(with: URL(string: imageVariable), placeholderImage: UIImage(named: "placeholder.png"))
-        podImageView.layer.cornerRadius = 8.0
+        podImageView.layer.cornerRadius = 2.0
         podImageView.clipsToBounds = true
         
         self.title = showTitleVariable

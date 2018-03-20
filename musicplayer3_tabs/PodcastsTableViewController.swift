@@ -22,6 +22,21 @@ class PodcastsTableViewController: UITableViewController {
         // change to https and change info plist before prod
         get_data_from_url("https://api.myjson.com/bins/15xvm9")
         
+        // testing user defaults
+        
+        /*
+        let array = ["No Laying Up", "Fear the Wave", "Defunctland"]
+        
+        let defaults = UserDefaults.standard
+        defaults.set(array, forKey: "SavedStringArray")
+        
+        let myarray = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
+        
+        print(myarray)
+ 
+ 
+ */
+        
         nowPlayingImageView.imageView?.animationImages = AnimationFrames.createFrames()
         nowPlayingImageView.imageView?.animationDuration = 1.0
 
@@ -90,6 +105,14 @@ class PodcastsTableViewController: UITableViewController {
         cell.textLabel?.text = TableData[indexPath.row]
         cell.accessoryType = .detailDisclosureButton
         
+        // test to see if i can store row name in the defaults array
+        let defaults = UserDefaults.standard
+        defaults.set(TableData[indexPath.row], forKey: "SavedStringArray")
+        
+        let myarray = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
+        
+        print(myarray)
+        
         return cell
     }
     
@@ -98,6 +121,7 @@ class PodcastsTableViewController: UITableViewController {
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let controller = segue.destination as! episodeTableViewController
             controller.showNameVariable = TableData[indexPath.row]
+    
         }
     }
     

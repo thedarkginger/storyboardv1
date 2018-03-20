@@ -336,8 +336,8 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xk5-v5-EyI">
                                 <rect key="frame" x="34" y="317" width="301" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                <color key="textColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="per-32-Q6q">
@@ -362,7 +362,7 @@
                                 <rect key="frame" x="16" y="401" width="69" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cCz-ii-1FG">
@@ -372,7 +372,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JpR-hI-Kas">
                                 <rect key="frame" x="39" y="452" width="50" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="30back100.png"/>
+                                <state key="normal" backgroundImage="30backwhite.png"/>
                                 <connections>
                                     <action selector="skipFortyFiveBack:" destination="BXJ-7x-7In" eventType="touchUpInside" id="jqt-Kn-Fgj"/>
                                 </connections>
@@ -380,7 +380,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1OI-Ph-NBT">
                                 <rect key="frame" x="110" y="401" width="155" height="155"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="playbutton500.png"/>
+                                <state key="normal" image="playwhite.png"/>
                                 <connections>
                                     <action selector="playButtonMain:" destination="BXJ-7x-7In" eventType="touchUpInside" id="Dxe-yU-VPh"/>
                                 </connections>
@@ -388,7 +388,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxe-Nh-EfE">
                                 <rect key="frame" x="110" y="411" width="154" height="132"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="pausebutton.png"/>
+                                <state key="normal" image="pausedwhite.png"/>
                                 <connections>
                                     <action selector="pauseButtonMain:" destination="BXJ-7x-7In" eventType="touchUpInside" id="3Xq-dy-8JY"/>
                                 </connections>
@@ -396,7 +396,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfp-IR-Ui8">
                                 <rect key="frame" x="285" y="451" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="30fwd100.png"/>
+                                <state key="normal" backgroundImage="30fwdwhite.png"/>
                                 <connections>
                                     <action selector="skipFortyFiveFwd:" destination="BXJ-7x-7In" eventType="touchUpInside" id="yNW-Oq-ShO"/>
                                 </connections>
@@ -405,11 +405,11 @@
                                 <rect key="frame" x="285" y="401" width="73" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.11740074813887999" green="0.11856313178381939" blue="0.11856313178381939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="NGf-9x-lpJ"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -479,11 +479,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="30back100.png" width="100" height="100"/>
-        <image name="30fwd100.png" width="100" height="100"/>
+        <image name="30backwhite.png" width="100" height="100"/>
+        <image name="30fwdwhite.png" width="100" height="100"/>
         <image name="NowPlayingBars" width="19" height="19"/>
-        <image name="pausebutton.png" width="100" height="100"/>
-        <image name="playbutton500.png" width="500" height="500"/>
+        <image name="pausedwhite.png" width="100" height="100"/>
+        <image name="playwhite.png" width="500" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xcS-3K-YLv"/>
