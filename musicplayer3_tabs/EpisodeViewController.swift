@@ -17,16 +17,25 @@ var showTitleVariable = ""
 var descriptionVariable = ""
 var imageVariable = ""
 
+class CustomSlider : UISlider {
+    
+    override func trackRect(forBounds bounds: CGRect) -> CGRect {
+        var newBounds = super.trackRect(forBounds: bounds)
+        newBounds.size.height = 9
+        return newBounds
+    }
+    
+}
+
+
 class EpisodeViewController: UIViewController {
     var timer: Timer?
-    
-    
-    
     
     var audiotest = "" {
         didSet{
         }
     }
+
     
     @IBOutlet weak var activity_indicator: UIActivityIndicatorView!
     
@@ -280,5 +289,6 @@ class EpisodeViewController: UIViewController {
     }
     
 } //end
+
 
 
