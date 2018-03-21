@@ -333,13 +333,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xk5-v5-EyI">
-                                <rect key="frame" x="34" y="317" width="301" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
-                                <color key="textColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="per-32-Q6q">
                                 <rect key="frame" x="134" y="569" width="106" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -408,6 +401,24 @@
                                 <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwC-XC-Wh2" customClass="MarqueeLabel" customModule="MarqueeLabel">
+                                <rect key="frame" x="23" y="323" width="324" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="trailingBuffer">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leadingBuffer">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
+                                        <real key="value" value="18"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.11740074813887999" green="0.11856313178381939" blue="0.11856313178381939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="NGf-9x-lpJ"/>
@@ -427,12 +438,12 @@
                         <outlet property="activity_indicator" destination="73f-DP-79F" id="7mk-ul-f4J"/>
                         <outlet property="episodeDate" destination="per-32-Q6q" id="DzU-e5-VTG"/>
                         <outlet property="episodeTimeTaken" destination="GH4-f0-qhu" id="7by-Cj-hqr"/>
-                        <outlet property="episodeTitle" destination="Xk5-v5-EyI" id="7x7-mc-WhB"/>
                         <outlet property="episodeTotalTime" destination="cu0-lP-AEh" id="NEb-zY-l0C"/>
                         <outlet property="nowPlayingImageView" destination="YZP-N1-viG" id="DtG-of-GDl"/>
                         <outlet property="pauseButtonMain" destination="gxe-Nh-EfE" id="cmp-e4-3Wh"/>
                         <outlet property="playButtonMain" destination="1OI-Ph-NBT" id="oea-Jf-uUe"/>
                         <outlet property="podImageView" destination="cCz-ii-1FG" id="nnf-10-I3T"/>
+                        <outlet property="scrollingEpisodeTitle" destination="bwC-XC-Wh2" id="7U1-Ft-TZE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAW-gC-kMn" userLabel="First Responder" sceneMemberID="firstResponder"/>

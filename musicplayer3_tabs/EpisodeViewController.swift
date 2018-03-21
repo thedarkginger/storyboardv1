@@ -43,6 +43,7 @@ class EpisodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+ 
         nowPlayingImageView.imageView?.animationImages = AnimationFrames.createFrames()
         nowPlayingImageView.imageView?.animationDuration = 1.0
         
@@ -71,9 +72,9 @@ class EpisodeViewController: UIViewController {
         let testName = nameVariableInSecondVc
         // this passes the audio url
         let testSite = audioVariableInSecondVc
-        episodeTitle.text = testName
+        // removing for scroll test episodeTitle.text = testName
+        self.scrollingEpisodeTitle.text = testName
         
-
         
         // pause play behavior
         
@@ -154,10 +155,10 @@ class EpisodeViewController: UIViewController {
         
         
     } // end view did
-    
-    @IBOutlet var episodeTitle: UILabel!
-    
+        
     @IBOutlet var episodeDate: UILabel!
+    
+    @IBOutlet var scrollingEpisodeTitle: UILabel!
     
     @IBOutlet var podImageView: UIImageView!
     
