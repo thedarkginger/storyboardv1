@@ -90,7 +90,16 @@ class PodcastsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "showcell", for: indexPath)
         
         cell.textLabel?.text = TableData[indexPath.row]
-        cell.accessoryType = .detailDisclosureButton
+        
+        // this should set the accessory to the first image 
+        
+        var imageView : UIImageView
+        imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
+        imageView.image = UIImage(named:"pausebutton.png")
+        
+        cell.accessoryView = imageView
+        
+        // cell.accessoryType = .detailDisclosureButton
     
         return cell
     }
@@ -107,8 +116,15 @@ class PodcastsTableViewController: UITableViewController {
             }
         }
         
+        // this should set the accessory to the second image on click
+        
+        var imageView : UIImageView
+        imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
+        imageView.image = UIImage(named:"download.png")
+    
         let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .checkmark
+        //cell?.accessoryType = .checkmark
+        cell?.accessoryView = imageView
         
     }
     
