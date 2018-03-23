@@ -13,28 +13,28 @@ class PodcastsTableViewController: UITableViewController {
     var TableData:Array< String > = Array < String >()
     
     @IBOutlet weak var nowPlayingImageView: UIButton!
-   
+    
     var show_image = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // change to https and change info plist before prod
         get_data_from_url("https://api.myjson.com/bins/15xvm9")
         
-
+        
         
         nowPlayingImageView.imageView?.animationImages = AnimationFrames.createFrames()
         nowPlayingImageView.imageView?.animationDuration = 1.0
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         
         if (audioPlayer != nil) {
@@ -63,19 +63,19 @@ class PodcastsTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func startNowPlayingAnimation(_ animate: Bool) {
         
         animate ? nowPlayingImageView.imageView?.startAnimating() : nowPlayingImageView.imageView?.stopAnimating()
     }
     
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return TableData.count
@@ -91,17 +91,32 @@ class PodcastsTableViewController: UITableViewController {
         
         cell.textLabel?.text = TableData[indexPath.row]
         
-        // this should set the accessory to the first image 
+        // this should set the accessory to the first image
         
         var imageView : UIImageView
         imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
         imageView.image = UIImage(named:"pausebutton.png")
+        imageView.tag = indexPath.row
+        imageView.isUserInteractionEnabled = true
+        let tapgest = UITapGestureRecognizer()
+        tapgest.addTarget(self, action: #selector(tapaccessoryButton(sender:)))
         
+        imageView.addGestureRecognizer(tapgest)
         cell.accessoryView = imageView
-        
+        cell.accessoryView?.isUserInteractionEnabled = true
         // cell.accessoryType = .detailDisclosureButton
-    
+        
         return cell
+    }
+    
+    @objc func tapaccessoryButton(sender:UITapGestureRecognizer) {
+        
+        let tag = sender.view?.tag
+        let indexpath = IndexPath(row: tag!, section: 0)
+        if indexpath != nil {
+            
+            self.tableView(tableView, accessoryButtonTappedForRowWith: indexpath)
+        }
     }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
@@ -121,11 +136,18 @@ class PodcastsTableViewController: UITableViewController {
         var imageView : UIImageView
         imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
         imageView.image = UIImage(named:"download.png")
-    
+        
         let cell = tableView.cellForRow(at: indexPath)
         //cell?.accessoryType = .checkmark
         cell?.accessoryView = imageView
         
+        print("it works")
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.performSegue(withIdentifier: "passepisode", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -134,11 +156,11 @@ class PodcastsTableViewController: UITableViewController {
             let controller = segue.destination as! episodeTableViewController
             controller.showNameVariable = TableData[indexPath.row]
             
-        
+            
         }
     }
     
-
+    
     
     func get_data_from_url(_ link:String)
     {
@@ -187,7 +209,7 @@ class PodcastsTableViewController: UITableViewController {
                 if let shows_obj = shows_list[i] as? NSDictionary
                 {
                     let show_name = shows_obj["show"] as? String
-                    // remove genre from the text 
+                    // remove genre from the text
                     // let show_genre = shows_obj["genre"] as? String
                     let show_image = shows_obj["thumbnail"] as? String
                     TableData.append(show_name!)
@@ -236,66 +258,66 @@ class PodcastsTableViewController: UITableViewController {
     {
         self.tableView.reloadData()
         
-    } 
-
+    }
+    
     @IBAction func Click_wave(_ sender: UIButton) {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
     /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
+     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+     
+     // Configure the cell...
+     
+     return cell
+     }
+     */
+    
     /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
+    
     /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
+     // Override to support editing the table view.
+     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+     if editingStyle == .delete {
+     // Delete the row from the data source
+     tableView.deleteRows(at: [indexPath], with: .fade)
+     } else if editingStyle == .insert {
+     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
+     }
+     */
+    
     /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
+     // Override to support rearranging the table view.
+     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+     
+     }
+     */
+    
     /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+     // Override to support conditional rearranging of the table view.
+     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the item to be re-orderable.
+     return true
+     }
+     */
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
