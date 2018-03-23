@@ -91,20 +91,33 @@ class PodcastsTableViewController: UITableViewController {
         
         cell.textLabel?.text = TableData[indexPath.row]
         
-        // this should set the accessory to the first image
+        let defaults = UserDefaults.standard
+        let myarray = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
         
-        var imageView : UIImageView
-        imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 30, height: 30))
-        imageView.image = UIImage(named:"star.png")
-        imageView.tag = indexPath.row
-        imageView.isUserInteractionEnabled = true
-        let tapgest = UITapGestureRecognizer()
-        tapgest.addTarget(self, action: #selector(tapaccessoryButton(sender:)))
+        if myarray.contains(TableData[indexPath.row]){
+            print("something")
+            var imageView : UIImageView
+            imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
+            imageView.image = UIImage(named:"checkmark.png")
+            cell.accessoryView = imageView
+
+        }else{
+            
+            var imageView : UIImageView
+            imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
+            imageView.image = UIImage(named:"star.png")
+            imageView.tag = indexPath.row
+            imageView.isUserInteractionEnabled = true
+            let tapgest = UITapGestureRecognizer()
+            tapgest.addTarget(self, action: #selector(tapaccessoryButton(sender:)))
+            
+            imageView.addGestureRecognizer(tapgest)
+            cell.accessoryView = imageView
+            cell.accessoryView?.isUserInteractionEnabled = true
+
+        }
         
-        imageView.addGestureRecognizer(tapgest)
-        cell.accessoryView = imageView
-        cell.accessoryView?.isUserInteractionEnabled = true
-        // cell.accessoryType = .detailDisclosureButton
+        
         
         return cell
     }
