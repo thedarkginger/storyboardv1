@@ -94,8 +94,8 @@ class PodcastsTableViewController: UITableViewController {
         // this should set the accessory to the first image
         
         var imageView : UIImageView
-        imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
-        imageView.image = UIImage(named:"pausebutton.png")
+        imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 30, height: 30))
+        imageView.image = UIImage(named:"star.png")
         imageView.tag = indexPath.row
         imageView.isUserInteractionEnabled = true
         let tapgest = UITapGestureRecognizer()
@@ -135,7 +135,7 @@ class PodcastsTableViewController: UITableViewController {
         
         var imageView : UIImageView
         imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
-        imageView.image = UIImage(named:"download.png")
+        imageView.image = UIImage(named:"checkmark.png")
         
         let cell = tableView.cellForRow(at: indexPath)
         //cell?.accessoryType = .checkmark

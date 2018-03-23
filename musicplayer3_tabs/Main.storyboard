@@ -247,9 +247,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="KF8-Fe-14F" kind="show" identifier="passepisode" id="uY8-ME-4Yf"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -271,6 +268,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="nowPlayingImageView" destination="Tsw-8r-5vF" id="NMX-PO-6Kn"/>
+                        <segue destination="KF8-Fe-14F" kind="show" identifier="passepisode" id="IeS-Id-aca"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="guC-SF-nTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
