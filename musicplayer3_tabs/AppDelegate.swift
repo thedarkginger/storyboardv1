@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.beginReceivingRemoteControlEvents()
         
-        
         return true
     }
 

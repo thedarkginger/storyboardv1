@@ -10,7 +10,10 @@ import UIKit
 import AVFoundation
 var audioPlayer:AVAudioPlayer!
 
+    /*
+
 class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+    
     
     var TableData:Array< String > = Array < String >()
     
@@ -133,5 +136,8 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
 
     @IBOutlet var subscribeTable: UITableView!
+
     
 }
+ 
+  */

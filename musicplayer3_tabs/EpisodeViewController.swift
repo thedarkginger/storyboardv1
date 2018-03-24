@@ -47,6 +47,12 @@ class EpisodeViewController: UIViewController {
         nowPlayingImageView.imageView?.animationImages = AnimationFrames.createFrames()
         nowPlayingImageView.imageView?.animationDuration = 1.0
         
+        // sets nav bar to dark theme
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.13, green:0.13, blue:0.13, alpha:1.0)
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.tintColor = UIColor.white
+
+
          // test - make background a gradient
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
