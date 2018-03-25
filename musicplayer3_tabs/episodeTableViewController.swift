@@ -357,6 +357,7 @@ class episodeTableViewController: UITableViewController {
                     showTitleVariable = self.showNameVariable
                     descriptionVariable = epi.description
                     imageVariable = epi.image!
+                    showDateVariable = epi.date
                     
                     // if the file doesn't exist
                 } else {

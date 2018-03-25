@@ -14,6 +14,7 @@ import AudioToolbox
 var nameVariableInSecondVc = ""
 var audioVariableInSecondVc = ""
 var showTitleVariable = ""
+var showDateVariable = ""
 var descriptionVariable = ""
 var imageVariable = ""
 
@@ -80,6 +81,7 @@ class EpisodeViewController: UIViewController {
         let testSite = audioVariableInSecondVc
         // removing for scroll test episodeTitle.text = testName
         self.scrollingEpisodeTitle.text = testName
+        self.episodeDate.text = showDateVariable
         
         
         // pause play behavior
