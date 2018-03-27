@@ -10,17 +10,17 @@ import UIKit
 import AVFoundation
 var audioPlayer:AVAudioPlayer!
 
-    /*
+
 
 class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
     
-    var TableData:Array< String > = Array < String >()
+    var TableData: [String] =  [String] ()
     
     var avPlayer:AVPlayer?
     var avPlayerItem:AVPlayerItem?
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,21 +29,21 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
         subscribeTable.dataSource = self
         
         let defaults = UserDefaults.standard
-        var myarray = defaults.stringArray(forKey: "SavedStringArray") ?? [Array]()
+        var myarray = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
         
-        TableData.append(myarray)
-
-    
+        TableData = myarray
+        
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
+        
         
         return TableData.count
-
+        
     }
     
-   func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
@@ -81,11 +81,11 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
         }
         
         return cell
-            }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 100.0;//Choose your custom row height
+        return 75.0;//Choose your custom row height
     }
     
     
@@ -93,9 +93,10 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
         
         let tag = sender.view?.tag
         let indexpath = IndexPath(row: tag!, section: 0)
+        
         if indexpath != nil {
             
-            self.tableView(tableView, accessoryButtonTappedForRowWith: indexpath)
+            //            self.tableView(tableView, accessoryButtonTappedForRowWith: indexpath)
         }
     }
     
@@ -134,10 +135,9 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     @IBOutlet var subscribeTable: UITableView!
-
+    
     
 }
- 
-  */
+
