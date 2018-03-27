@@ -68,7 +68,7 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
             
             var imageView : UIImageView
             imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
-            imageView.image = UIImage(named:"star.png")
+            imageView.image = UIImage(named:"pausebutton.png")
             imageView.tag = indexPath.row
             imageView.isUserInteractionEnabled = true
             let tapgest = UITapGestureRecognizer()
@@ -88,7 +88,6 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
         return 75.0;//Choose your custom row height
     }
     
-    
     @objc func tapaccessoryButton(sender:UITapGestureRecognizer) {
         
         let tag = sender.view?.tag
@@ -96,7 +95,7 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
         
         if indexpath != nil {
             
-            //            self.tableView(tableView, accessoryButtonTappedForRowWith: indexpath)
+            self.tableView(subscribeTable, accessoryButtonTappedForRowWith: indexpath)
         }
     }
     
@@ -114,9 +113,11 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
         
         // this should set the accessory to the second image on click
         
+        // this should trigger it to change the icon from the checkmark to something else
+        
         var imageView : UIImageView
         imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
-        imageView.image = UIImage(named:"checkmark.png")
+        imageView.image = UIImage(named:"pausebutton.png")
         
         let cell = tableView.cellForRow(at: indexPath)
         //cell?.accessoryType = .checkmark
