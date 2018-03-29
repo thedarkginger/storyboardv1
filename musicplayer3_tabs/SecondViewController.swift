@@ -62,13 +62,24 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
             var imageView : UIImageView
             imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
             imageView.image = UIImage(named:"checkmark.png")
+            
+            imageView.tag = indexPath.row
+            imageView.isUserInteractionEnabled = true
+            let tapgest = UITapGestureRecognizer()
+            tapgest.addTarget(self, action: #selector(tapaccessoryButton(sender:)))
+            
+            imageView.addGestureRecognizer(tapgest)
+            cell.accessoryView?.isUserInteractionEnabled = true
+            
             cell.accessoryView = imageView
+            
+            
             
         }else{
             
             var imageView : UIImageView
             imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
-            imageView.image = UIImage(named:"pausebutton.png")
+            imageView.image = UIImage(named:"star.png")
             imageView.tag = indexPath.row
             imageView.isUserInteractionEnabled = true
             let tapgest = UITapGestureRecognizer()
@@ -85,8 +96,9 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 75.0;//Choose your custom row height
+        return 100.0;//Choose your custom row height
     }
+    
     
     @objc func tapaccessoryButton(sender:UITapGestureRecognizer) {
         
@@ -113,11 +125,9 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
         
         // this should set the accessory to the second image on click
         
-        // this should trigger it to change the icon from the checkmark to something else
-        
         var imageView : UIImageView
         imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
-        imageView.image = UIImage(named:"pausebutton.png")
+        imageView.image = UIImage(named:"star.png")
         
         let cell = tableView.cellForRow(at: indexPath)
         //cell?.accessoryType = .checkmark
@@ -141,4 +151,3 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     
 }
-
