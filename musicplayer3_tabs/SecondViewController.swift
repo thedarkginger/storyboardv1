@@ -111,18 +111,27 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
         }
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
+    
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         // test to see if i can store row name in the defaults array
         let defaults = UserDefaults.standard
         var myarray = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
         if let datastring = TableData[indexPath.row] as? String {
-            if !myarray.contains(datastring) {
-                myarray.append(datastring)
-                defaults.set(myarray, forKey: "SavedStringArray")
-                defaults.synchronize()
+            if myarray.contains(datastring) {
+                myarray.remove(at: myarray.index(of: datastring)!)
+                
+                // this is where I want it to delete the row and then I can remove the image lines below
+                // tableView.deleteRows(at: [indexPath], with: .automatic)
+                
             }
+            defaults.set(myarray, forKey: "SavedStringArray")
         }
         
+
         // this should set the accessory to the second image on click
         
         var imageView : UIImageView
@@ -132,8 +141,8 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
         let cell = tableView.cellForRow(at: indexPath)
         //cell?.accessoryType = .checkmark
         cell?.accessoryView = imageView
-        
-        print("it works")
+ 
+        print(myarray)
         
     }
     
