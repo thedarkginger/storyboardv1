@@ -10,16 +10,10 @@ import UIKit
 import AVFoundation
 var audioPlayer:AVAudioPlayer!
 
-
-
 class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
     
-    var TableData: [String] =  [String] ()
-    
-    var avPlayer:AVPlayer?
-    var avPlayerItem:AVPlayerItem?
-    
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,18 +22,19 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
         
         subscribeTable.dataSource = self
         
-        let defaults = UserDefaults.standard
-        var myarray = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
         
-        TableData = myarray
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
+        subscribeTable.reloadData()
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         
-        return TableData.count
+        return getArray().count
         
     }
     
@@ -52,44 +47,26 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as UITableViewCell
         
-        let defaults = UserDefaults.standard
-        let myarray = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
+        
+        let myarray = getArray()
         
         cell.textLabel?.text = myarray[indexPath.row]
         
-        if myarray.contains(TableData[indexPath.row]){
-            print("something")
-            var imageView : UIImageView
-            imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
-            imageView.image = UIImage(named:"checkmark.png")
-            
-            imageView.tag = indexPath.row
-            imageView.isUserInteractionEnabled = true
-            let tapgest = UITapGestureRecognizer()
-            tapgest.addTarget(self, action: #selector(tapaccessoryButton(sender:)))
-            
-            imageView.addGestureRecognizer(tapgest)
-            cell.accessoryView?.isUserInteractionEnabled = true
-            
-            cell.accessoryView = imageView
-            
-            
-            
-        }else{
-            
-            var imageView : UIImageView
-            imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
-            imageView.image = UIImage(named:"star.png")
-            imageView.tag = indexPath.row
-            imageView.isUserInteractionEnabled = true
-            let tapgest = UITapGestureRecognizer()
-            tapgest.addTarget(self, action: #selector(tapaccessoryButton(sender:)))
-            
-            imageView.addGestureRecognizer(tapgest)
-            cell.accessoryView = imageView
-            cell.accessoryView?.isUserInteractionEnabled = true
-            
-        }
+        print("something")
+        var imageView : UIImageView
+        imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
+        imageView.image = UIImage(named:"checkmark.png")
+        
+        imageView.tag = indexPath.row
+        imageView.isUserInteractionEnabled = true
+        let tapgest = UITapGestureRecognizer()
+        tapgest.addTarget(self, action: #selector(tapaccessoryButton(sender:)))
+        
+        imageView.addGestureRecognizer(tapgest)
+        cell.accessoryView?.isUserInteractionEnabled = true
+        
+        cell.accessoryView = imageView
+        
         
         return cell
     }
@@ -105,10 +82,7 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
         let tag = sender.view?.tag
         let indexpath = IndexPath(row: tag!, section: 0)
         
-        if indexpath != nil {
-            
-            self.tableView(subscribeTable, accessoryButtonTappedForRowWith: indexpath)
-        }
+        self.tableView(subscribeTable, accessoryButtonTappedForRowWith: indexpath)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
@@ -118,30 +92,16 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         // test to see if i can store row name in the defaults array
-        let defaults = UserDefaults.standard
-        var myarray = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
-        if let datastring = TableData[indexPath.row] as? String {
-            if myarray.contains(datastring) {
-                myarray.remove(at: myarray.index(of: datastring)!)
-                
-                // this is where I want it to delete the row and then I can remove the image lines below
-                // tableView.deleteRows(at: [indexPath], with: .automatic)
-                
-            }
-            defaults.set(myarray, forKey: "SavedStringArray")
-        }
         
-
-        // this should set the accessory to the second image on click
+        var myarray = getArray()
         
-        var imageView : UIImageView
-        imageView  = UIImageView(frame:CGRect(x: 0, y: 0, width: 50, height: 50))
-        imageView.image = UIImage(named:"star.png")
+        myarray.remove(at: indexPath.row)
         
-        let cell = tableView.cellForRow(at: indexPath)
-        //cell?.accessoryType = .checkmark
-        cell?.accessoryView = imageView
- 
+        setArray(ary: myarray)
+        
+        subscribeTable.reloadData()
+        
+        
         print(myarray)
         
     }
@@ -154,7 +114,16 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    func getArray() -> [String] {
+        
+        let myarray = defaults.stringArray(forKey: "SavedStringArray") ?? [String]()
+        
+        return myarray
+    }
+    func setArray(ary: [String]){
+        
+        defaults.set(ary, forKey: "SavedStringArray")
+    }
     
     @IBOutlet var subscribeTable: UITableView!
     
