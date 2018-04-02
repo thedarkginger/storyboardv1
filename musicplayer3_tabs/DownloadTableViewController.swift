@@ -102,7 +102,6 @@ class DownloadTableViewController: UITableViewController {
             DispatchQueue.main.async(execute: {self.getDownloadAudio()})
         }
         
-        
     }
     
     func getDownloadAudio() {
