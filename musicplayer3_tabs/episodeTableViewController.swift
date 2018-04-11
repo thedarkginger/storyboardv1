@@ -31,11 +31,11 @@ class episodeTableViewController: UITableViewController {
         
         self.title = "\(showNameVariable)"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"Back", style:.plain, target:nil, action:nil)
-
+        
         nowPlayingImageView.imageView?.animationImages = AnimationFrames.createFrames()
         nowPlayingImageView.imageView?.animationDuration = 1.0
         
- 
+        
         activity_indicator.frame = CGRect(x: 50, y: 50, width: 20, height: 20)
         activity_indicator.isHidden = true
         activity_indicator.center = self.view.center
@@ -293,7 +293,7 @@ class episodeTableViewController: UITableViewController {
                         let episode_image = shows_obj["image"] as? String
                         let episode_paywall = shows_obj["paywall"] as? String
                         
-                        TableDataV.append(episode(name: episode_name!, date: episode_date!, audio: epside_audio, description: episode_description!, image: episode_image!, paywall: episode_paywall!))
+                        TableDataV.append(episode(name: episode_name!, date: episode_date!, audio: epside_audio, description: episode_description!, image: episode_image!, paywall: episode_paywall!,episode_date:Date()))
                         
                         // sets the image for the table
                         showCoverImage.sd_setImage(with: URL(string: episode_image!), placeholderImage: UIImage(named: "placeholder.png"))
@@ -436,7 +436,7 @@ class episodeTableViewController: UITableViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-
+    
     @IBOutlet var showCoverImage: UIImageView!
     
     // end
@@ -451,8 +451,9 @@ struct episode {
     var description = ""
     var image : String?
     var paywall = ""
+    var episode_date : Date!
     
-    init(name:String,date:String,audio:String?, description:String, image:String?, paywall:String) {
+    init(name:String,date:String,audio:String?, description:String, image:String?, paywall:String,episode_date:Date) {
         
         self.name = name
         self.date = date
@@ -460,6 +461,7 @@ struct episode {
         self.description = description
         self.image = image
         self.paywall = paywall
+        self.episode_date = episode_date
     }
     init() {
         
@@ -470,6 +472,6 @@ struct episode {
         self.description = ""
         self.image = ""
         self.paywall = ""
-        
+        self.episode_date = Date()
     }
 }

@@ -9,16 +9,16 @@
 import UIKit
 
 class FirstViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
-
+    
     let defaults = UserDefaults.standard
     var arrData = [episode]()
-
-
+    var arrShow = [String]()
+    
     @IBOutlet weak var nowPlayingImageView: UIButton!
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         nowPlayingImageView.imageView?.animationImages = AnimationFrames.createFrames()
         nowPlayingImageView.imageView?.animationDuration = 1.0
         
@@ -27,26 +27,29 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         navigationController?.navigationBar.tintColor = UIColor.white
         
-        get_data_from_url("http://www.fearthewave.com/fearthewave.json")
+        
         
         episodeTable.delegate = self
         
         episodeTable.dataSource = self
-
+        
         
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         
+        get_data_from_url("https://api.myjson.com/bins/w23ln")//http://www.fearthewave.com/fearthewave.json
+        
+        arrShow = getArray()
         
         if (audioPlayer != nil) {
             if  audioPlayer.isPlaying {
-               
+                
                 nowPlayingImageView.isHidden = false
                 startNowPlayingAnimation(true)
                 
             }else{
-               
+                
                 nowPlayingImageView.isHidden = true
                 startNowPlayingAnimation(false)
                 
@@ -58,14 +61,14 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
             nowPlayingImageView.isHidden = true
             startNowPlayingAnimation(false)
         }
-         
+        
     }
     
     @IBOutlet var episodeTable: UITableView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getArray().count
-
+        return arrData.count
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -77,10 +80,8 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as UITableViewCell
         
-        let myarray = getArray()
         
-        cell.textLabel?.text = myarray[indexPath.row]
-        
+        cell.textLabel?.text = "\(arrData[indexPath.row].show) - \(arrData[indexPath.row].name)"
         return cell
     }
     
@@ -101,7 +102,7 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func startNowPlayingAnimation(_ animate: Bool) {
         
         animate ? nowPlayingImageView.imageView?.startAnimating() : nowPlayingImageView.imageView?.stopAnimating()
@@ -169,13 +170,41 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
                     let episode_name = shows_obj["episode"] as? String
                     let episode_show = shows_obj["show"] as? String
                     let epside_audio = shows_obj["url"] as? String
+                    let episode_date = shows_obj["date"] as? String
                     
                     episodeobj.show = episode_show!
                     episodeobj.name = episode_name!
                     episodeobj.audio = epside_audio
+                    episodeobj.date = episode_date!
+                    
+                    let dateformate = DateFormatter()
+                    dateformate.dateFormat = "MM-dd-yyyy"
+                    let epdate = dateformate.date(from: episode_date!)
+                    if epdate == nil {
+                        
+                        episodeobj.episode_date = Date()
+                    }
+                    else {
+                        
+                        episodeobj.episode_date = epdate
+                    }
+                    //
                 }
                 
-                arrData.append(episodeobj)
+                if arrShow.contains(episodeobj.show) {
+                    
+                    arrData.append(episodeobj)
+                }
+                
+                self.arrData = self.arrData.sorted(by: {$0.episode_date > $1.episode_date })
+                
+                let when = DispatchTime.now() + 0.2
+                
+                DispatchQueue.main.asyncAfter(deadline: when) {
+                    
+                    self.episodeTable.reloadData()
+                }
+                
             }
             
             // DispatchQueue.main.async(execute: {self.getDownloadAudio()})
