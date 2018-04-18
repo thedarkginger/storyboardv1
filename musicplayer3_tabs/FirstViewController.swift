@@ -13,6 +13,9 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
     let defaults = UserDefaults.standard
     var arrData = [episode]()
     var arrShow = [String]()
+    var TableDataV : [episode] = [episode]()
+    var activity_indicator = UIActivityIndicatorView()
+
     
     @IBOutlet weak var nowPlayingImageView: UIButton!
     
@@ -74,7 +77,7 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
-    }
+    } 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
@@ -87,7 +90,127 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
         
         
         cell.textLabel?.text = "\(arrData[indexPath.row].show) - \(arrData[indexPath.row].name)"
+        
+        let epi = TableDataV[indexPath.row]
+        
+        cell.textLabel?.text = epi.date + " | " + epi.name
+        
+        // extract json audio file
+        
+        var url = ""
+        
+        if (epi.paywall == "no") {
+            cell.backgroundColor = UIColor(red:0.89, green:0.95, blue:0.99, alpha:1.0)
+        } else {
+            cell.backgroundColor = UIColor(red:1.00, green:0.93, blue:0.70, alpha:1.0)
+        }
+        
+        if epi.audio != nil {
+            
+            url = epi.audio!
+            
+            if let audioUrl = URL(string: url) {
+                
+                // then lets create your document folder url
+                let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                
+                // lets create your destination file url
+                let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+                
+                print(destinationUrl)
+                
+                // to check if it exists before downloading it
+                if FileManager.default.fileExists(atPath: destinationUrl.path) {
+                    print("The file already exists at path")
+                    
+                    cell.accessoryType = .checkmark
+                    cell.accessoryView = nil
+                }
+                else{
+                    
+                    // this is the code I am testing
+                    let downloadicon = UIImage(named: "download.png")
+                    cell.accessoryType = .detailDisclosureButton
+                    cell.accessoryView = UIImageView(image: downloadicon)
+                }
+                
+                
+            } // end audio if
+        }
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        // doSomethingWithItem(indexPath.row)
+        
+        let epi = TableDataV[indexPath.row]
+        var url = ""
+        if epi.audio != nil {
+            
+            url = epi.audio!
+            
+            if let audioUrl = URL(string: url) {
+                
+                // then lets create your document folder url
+                let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                
+                // lets create your destination file url
+                let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+                
+                // to check if it exists before downloading it
+                if FileManager.default.fileExists(atPath: destinationUrl.relativePath) {
+                    print("The file already exists at path")
+                    
+                    let cell = tableView.cellForRow(at: indexPath)
+                    cell?.accessoryType = .checkmark
+                    
+                    
+                    // if the file doesn't exist
+                } else {
+                    
+                    activity_indicator.isHidden = false
+                    activity_indicator.startAnimating()
+                    UIApplication.shared.beginIgnoringInteractionEvents()
+                    
+                    // you can use NSURLSession.sharedSession to download the data asynchronously
+                    URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, response, error) -> Void in
+                        guard let location = location, error == nil else { return }
+                        do {
+                            // after downloading your file you need to move it to your destination url
+                            try FileManager.default.moveItem(at: location, to: destinationUrl)
+                            print("File moved to documents folder")
+                            
+                            
+                            let when = DispatchTime.now()
+                            
+                            DispatchQueue.main.asyncAfter(deadline: when) {
+                                
+                                self.activity_indicator.isHidden = true
+                                self.activity_indicator.stopAnimating()
+                                UIApplication.shared.endIgnoringInteractionEvents()
+                                
+                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
+                                self.navigationController?.pushViewController(vc, animated: true)
+                                nameVariableInSecondVc = epi.name
+                                audioVariableInSecondVc = epi.audio!
+                                
+                                let cell = tableView.cellForRow(at: indexPath)
+                                cell?.accessoryType = .checkmark
+                                
+                            }
+                            
+                            
+                        } catch let error as NSError {
+                            print(error.localizedDescription)
+                        }
+                    }).resume()
+                }
+                
+                
+            }
+        }
+        
     }
     
     func getArray() -> [String] {
@@ -217,5 +340,40 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
         
     }
     
+    struct episode {
+        
+        var name = ""
+        var date = ""
+        var audio : String?
+        var show = ""
+        var description = ""
+        var image : String?
+        var paywall = ""
+        var episode_date : Date!
+        
+        init(name:String,date:String,audio:String?, description:String, image:String?, paywall:String,episode_date:Date) {
+            
+            self.name = name
+            self.date = date
+            self.audio = audio
+            self.description = description
+            self.image = image
+            self.paywall = paywall
+            self.episode_date = episode_date
+        }
+        init() {
+            
+            self.name = ""
+            self.date = ""
+            self.audio = ""
+            self.show = ""
+            self.description = ""
+            self.image = ""
+            self.paywall = ""
+            self.episode_date = Date()
+        }
+    }
+    
 }
+
 
