@@ -13,9 +13,11 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
     let defaults = UserDefaults.standard
     var arrData = [episode]()
     var arrShow = [String]()
-    var TableDataV : [episode] = [episode]()
-    var activity_indicator = UIActivityIndicatorView()
+    var showNameVariable = ""
 
+    // var activity_indicator = UIActivityIndicatorView()
+    
+    @IBOutlet weak var activity_indicator: UIActivityIndicatorView!
     
     @IBOutlet weak var nowPlayingImageView: UIButton!
     
@@ -30,7 +32,7 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         navigationController?.navigationBar.tintColor = UIColor.white
         
-        
+        activity_indicator.isHidden = true
         
         episodeTable.delegate = self
         
@@ -77,7 +79,7 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
-    } 
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
@@ -91,7 +93,7 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
         
         cell.textLabel?.text = "\(arrData[indexPath.row].show) - \(arrData[indexPath.row].name)"
         
-        let epi = TableDataV[indexPath.row]
+        let epi = arrData[indexPath.row]
         
         cell.textLabel?.text = epi.date + " | " + epi.name
         
@@ -132,6 +134,12 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
                     let downloadicon = UIImage(named: "download.png")
                     cell.accessoryType = .detailDisclosureButton
                     cell.accessoryView = UIImageView(image: downloadicon)
+                    cell.accessoryView?.isUserInteractionEnabled = true
+                    cell.accessoryView?.tag = indexPath.row
+                    let tapgest = UITapGestureRecognizer()
+                    tapgest.addTarget(self, action: #selector(tapaccessoryButton(sender:)))
+                    cell.accessoryView?.addGestureRecognizer(tapgest)
+                    
                 }
                 
                 
@@ -141,10 +149,124 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        
+        let epi = arrData[indexPath.row]
+
+        var url = ""
+        
+        if epi.audio != nil {
+            
+            url = epi.audio!
+            
+            if let audioUrl = URL(string: url) {
+                
+                // then lets create your document folder url
+                let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                
+                // lets create your destination file url
+                let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
+                
+                if FileManager.default.fileExists(atPath: destinationUrl.path) {
+                    
+                    print("The file already exists at path")
+                    
+                    audioPlayer = nil
+                    
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    nameVariableInSecondVc = epi.name
+                    audioVariableInSecondVc = epi.audio!
+                    showTitleVariable = self.showNameVariable
+                    descriptionVariable = epi.description
+                    imageVariable = epi.image!
+                    showDateVariable = epi.date
+                    
+                    // if the file doesn't exist
+                } else {
+                    
+                    activity_indicator.isHidden = false
+                    activity_indicator.startAnimating()
+                    UIApplication.shared.beginIgnoringInteractionEvents()
+                    
+                    // you can use NSURLSession.sharedSession to download the data asynchronously
+                    URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, response, error) -> Void in
+                        guard let location = location, error == nil else { return }
+                        do {
+                            // after downloading your file you need to move it to your destination url
+                            try FileManager.default.moveItem(at: location, to: destinationUrl)
+                            print("File moved to documents folder")
+                            
+                            
+                            let when = DispatchTime.now()
+                            
+                            DispatchQueue.main.asyncAfter(deadline: when) {
+                                
+                                self.activity_indicator.isHidden = true
+                                self.activity_indicator.stopAnimating()
+                                UIApplication.shared.endIgnoringInteractionEvents()
+                                
+                                audioPlayer = nil
+                                
+                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
+                                self.navigationController?.pushViewController(vc, animated: true)
+                                nameVariableInSecondVc = epi.name
+                                audioVariableInSecondVc = epi.audio!
+                                showTitleVariable = self.showNameVariable
+                                imageVariable = epi.image!
+                                
+                                
+                            }
+                            
+                            
+                        } catch let error as NSError {
+                            print(error.localizedDescription)
+                        }
+                    }).resume()
+                }
+                
+            }
+        }
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let indexPath = episodeTable.indexPathForSelectedRow {
+            let controller = segue.destination as! EpisodeViewController
+            
+            let epi = arrData[indexPath.row]
+
+            nameVariableInSecondVc = epi.name
+            
+            var url = ""
+            
+            if epi.audio != nil {
+                
+                url = epi.audio!
+                
+                audioVariableInSecondVc = epi.audio!
+                
+            }
+            
+        }
+        
+    }
+    
+    @objc func tapaccessoryButton(sender:UITapGestureRecognizer) {
+        
+        let tag = sender.view?.tag
+        let indexpath = IndexPath(row: tag!, section: 0)
+        
+        self.tableView(episodeTable, accessoryButtonTappedForRowWith: indexpath)
+    }
+    
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         // doSomethingWithItem(indexPath.row)
         
-        let epi = TableDataV[indexPath.row]
+        let epi = arrData[indexPath.row]
         var url = ""
         if epi.audio != nil {
             
