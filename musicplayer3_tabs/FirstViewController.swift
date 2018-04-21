@@ -14,7 +14,7 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
     var arrData = [episode]()
     var arrShow = [String]()
     var showNameVariable = ""
-
+    
     // var activity_indicator = UIActivityIndicatorView()
     
     @IBOutlet weak var activity_indicator: UIActivityIndicatorView!
@@ -154,7 +154,7 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
         
         
         let epi = arrData[indexPath.row]
-
+        
         var url = ""
         
         if epi.audio != nil {
@@ -238,7 +238,7 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
             let controller = segue.destination as! EpisodeViewController
             
             let epi = arrData[indexPath.row]
-
+            
             nameVariableInSecondVc = epi.name
             
             var url = ""
@@ -316,7 +316,8 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
                                 self.navigationController?.pushViewController(vc, animated: true)
                                 nameVariableInSecondVc = epi.name
                                 audioVariableInSecondVc = epi.audio!
-                                
+                                imageVariable = epi.image!
+
                                 let cell = tableView.cellForRow(at: indexPath)
                                 cell?.accessoryType = .checkmark
                                 
@@ -426,6 +427,7 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
                     episodeobj.name = episode_name!
                     episodeobj.audio = epside_audio
                     episodeobj.date = episode_date!
+                    episodeobj.image = shows_obj["image"] as? String
                     
                     let dateformate = DateFormatter()
                     dateformate.dateFormat = "MM-dd-yyyy"
