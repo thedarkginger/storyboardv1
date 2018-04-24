@@ -20,7 +20,7 @@ class PodcastsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // change to https and change info plist before prod
-        get_data_from_url("https://api.myjson.com/bins/y598f")
+        get_data_from_url("https://api.myjson.com/bins/gymxv")
         
         
         

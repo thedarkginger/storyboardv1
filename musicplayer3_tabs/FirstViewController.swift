@@ -43,7 +43,7 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         
-        get_data_from_url("https://api.myjson.com/bins/w23ln")//http://www.fearthewave.com/fearthewave.json
+        get_data_from_url("http://www.fearthewave.com/fearthewave.json")
         
         arrShow = getArray()
         
