@@ -83,19 +83,23 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 80.0;//Choose your custom row height
+        return 100.0;//Choose your custom row height
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as UITableViewCell
-        
-        
+
         cell.textLabel?.text = "\(arrData[indexPath.row].show) - \(arrData[indexPath.row].name)"
         
         let epi = arrData[indexPath.row]
         
         cell.textLabel?.text = epi.date + " | " + epi.name
+        
+        
+        // cell.detailTextLabel?.text = epi.date
+        // cell.textLabel?.text = epi.name
+        
         
         // extract json audio file
         
