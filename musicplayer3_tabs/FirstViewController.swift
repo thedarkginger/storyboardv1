@@ -14,6 +14,7 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
     var arrData = [episode]()
     var arrShow = [String]()
     var showNameVariable = ""
+    var cellHeight : CGFloat = 121
     
     // var activity_indicator = UIActivityIndicatorView()
     
@@ -23,6 +24,8 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        episodeTable.tableFooterView = UIView()
         
         nowPlayingImageView.imageView?.animationImages = AnimationFrames.createFrames()
         nowPlayingImageView.imageView?.animationDuration = 1.0
@@ -83,37 +86,50 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 100.0;//Choose your custom row height
+        return cellHeight
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as UITableViewCell
-
-        cell.textLabel?.text = "\(arrData[indexPath.row].show) - \(arrData[indexPath.row].name)"
+        let livedata = arrData[indexPath.row]
         
-        let epi = arrData[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! FirstViewCell
         
-        cell.textLabel?.text = epi.date + " | " + epi.name
+        cell.img_song.sd_setImage(with: URL(string: livedata.image!), completed: nil)
+        cell.lbl_title.numberOfLines = 0
+        cell.lbl_title.text = "\(livedata.name)"
+        cell.lbl_title.sizeToFit()
         
+        cell.lbl_date.text = livedata.date
         
-        // cell.detailTextLabel?.text = epi.date
-        // cell.textLabel?.text = epi.name
+        let lblS = cell.lbl_date.frame.origin.y + cell.lbl_date.frame.size.height + 10
+        
+        let imgS = cell.img_song.frame.origin.y + cell.img_song.frame.size.height + 10
+        
+        if !(lblS < imgS) {
+            
+            cellHeight = cell.lbl_date.frame.origin.y + cell.lbl_date.frame.size.height + 10
+        }
+        else {
+            
+            cellHeight = 121
+        }
+        
         
         
         // extract json audio file
         
         var url = ""
         
-        if (epi.paywall == "no") {
-            cell.backgroundColor = UIColor(red:0.89, green:0.95, blue:0.99, alpha:1.0)
+        if (livedata.paywall == "no") {
+            cell.contentView.backgroundColor = UIColor(red:0.89, green:0.95, blue:0.99, alpha:1.0)
         } else {
-            cell.backgroundColor = UIColor(red:1.00, green:0.93, blue:0.70, alpha:1.0)
+            cell.contentView.backgroundColor = UIColor(red:1.00, green:0.93, blue:0.70, alpha:1.0)
         }
         
-        if epi.audio != nil {
+        if livedata.audio != nil {
             
-            url = epi.audio!
+            url = livedata.audio!
             
             if let audioUrl = URL(string: url) {
                 
@@ -129,20 +145,17 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
                 if FileManager.default.fileExists(atPath: destinationUrl.path) {
                     print("The file already exists at path")
                     
-                    cell.accessoryType = .checkmark
-                    cell.accessoryView = nil
+                    cell.img_status.image = #imageLiteral(resourceName: "verification-mark")
                 }
                 else{
                     
                     // this is the code I am testing
-                    let downloadicon = UIImage(named: "download.png")
-                    cell.accessoryType = .detailDisclosureButton
-                    cell.accessoryView = UIImageView(image: downloadicon)
-                    cell.accessoryView?.isUserInteractionEnabled = true
-                    cell.accessoryView?.tag = indexPath.row
+                    cell.img_status.image = UIImage(named: "download.png")
+                    cell.img_status.isUserInteractionEnabled = true
+                    cell.img_status.tag = indexPath.row
                     let tapgest = UITapGestureRecognizer()
                     tapgest.addTarget(self, action: #selector(tapaccessoryButton(sender:)))
-                    cell.accessoryView?.addGestureRecognizer(tapgest)
+                    cell.img_status.addGestureRecognizer(tapgest)
                     
                 }
                 
@@ -288,8 +301,8 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
                 if FileManager.default.fileExists(atPath: destinationUrl.relativePath) {
                     print("The file already exists at path")
                     
-                    let cell = tableView.cellForRow(at: indexPath)
-                    cell?.accessoryType = .checkmark
+                    let cell = tableView.cellForRow(at: indexPath) as! FirstViewCell
+                    cell.img_status.image = #imageLiteral(resourceName: "verification-mark")
                     
                     
                     // if the file doesn't exist
@@ -321,9 +334,9 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
                                 nameVariableInSecondVc = epi.name
                                 audioVariableInSecondVc = epi.audio!
                                 imageVariable = epi.image!
-
-                                let cell = tableView.cellForRow(at: indexPath)
-                                cell?.accessoryType = .checkmark
+                                
+                                let cell = tableView.cellForRow(at: indexPath) as! FirstViewCell
+                                cell.img_status.image = #imageLiteral(resourceName: "verification-mark")
                                 
                             }
                             
@@ -426,12 +439,14 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
                     let episode_show = shows_obj["show"] as? String
                     let epside_audio = shows_obj["url"] as? String
                     let episode_date = shows_obj["date"] as? String
+                    let paywall = shows_obj["paywall"] as? String
                     
                     episodeobj.show = episode_show!
                     episodeobj.name = episode_name!
                     episodeobj.audio = epside_audio
                     episodeobj.date = episode_date!
                     episodeobj.image = shows_obj["image"] as? String
+                    episodeobj.paywall = paywall!
                     
                     let dateformate = DateFormatter()
                     dateformate.dateFormat = "MM-dd-yyyy"
