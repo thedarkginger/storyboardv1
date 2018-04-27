@@ -8,7 +8,7 @@
 
 import UIKit
 
-class downloadManageViewController: UIViewController {
+class downloadManageViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     var thedownloads = [String]()
     var theurls = [URL]()
@@ -47,6 +47,9 @@ class downloadManageViewController: UIViewController {
                     try FileManager.default.removeItem(at: fileURL)
                 }
             }
+            thedownloads.removeAll()
+             downloadsTable.reloadData()
+            
         } catch  { print(error) }
         
         }
@@ -150,6 +153,7 @@ class downloadManageViewController: UIViewController {
                         
                         let name = "\(obj.show) - \(obj.name)"
                         thedownloads.append(name)
+                        break
                     }
                 }
             }
