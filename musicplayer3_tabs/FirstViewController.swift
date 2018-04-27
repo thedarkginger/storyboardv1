@@ -100,6 +100,10 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
         cell.lbl_title.text = "\(livedata.name)"
         cell.lbl_title.sizeToFit()
         
+        let lblt = cell.lbl_title.frame.origin.y + cell.lbl_title.frame.size.height + 18
+        
+        cell.lbl_date.frame.origin.y = lblt
+        
         cell.lbl_date.text = livedata.date
         
         let lblS = cell.lbl_date.frame.origin.y + cell.lbl_date.frame.size.height + 10
