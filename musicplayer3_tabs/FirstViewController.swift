@@ -453,7 +453,9 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
                     episodeobj.paywall = paywall!
                     
                     let dateformate = DateFormatter()
-                    dateformate.dateFormat = "MM-dd-yyyy"
+                    
+                    // changed
+                    dateformate.dateFormat = "MMM d, yyyy"
                     let epdate = dateformate.date(from: episode_date!)
                     if epdate == nil {
                         
