@@ -454,7 +454,14 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
                     
                     let dateformate = DateFormatter()
                     dateformate.dateFormat = "MM-dd-yyyy"
-                    let epdate = dateformate.date(from: episode_date!)
+                    
+                    let e_date = dateformate.date(from: episode_date!)
+                    dateformate.dateFormat = "MMMM dd, yyyy"
+                    
+                    let s_date = dateformate.string(from: e_date!)
+                    episodeobj.date = s_date
+                    
+                    let epdate = dateformate.date(from: s_date)
                     if epdate == nil {
                         
                         episodeobj.episode_date = Date()
