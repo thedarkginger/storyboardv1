@@ -115,6 +115,9 @@ class EpisodeViewController: UIViewController {
                     
                     episodeTotalTime.text = String(format: "%02d:%02d:%02d", updated.0, updated.1, updated.2)
                     
+                    Slider.value = 0.0
+                    episodeTimeTaken.text = "00:00:00"
+                    
                     if UserDefaults.standard.value(forKey: audioVariableInSecondVc) != nil {
                         
                         Slider.maximumValue = Float(audioPlayer.duration)
@@ -131,6 +134,7 @@ class EpisodeViewController: UIViewController {
                         episodeTimeTaken.text = String(format: "%02d:%02d:%02d", updated.0, updated.1, updated.2)
                     }
                    
+                    
                     
                     do {
                         try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
@@ -180,7 +184,16 @@ class EpisodeViewController: UIViewController {
         
         
     } // end view did
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
         
+        if timer != nil {
+            
+            timer?.invalidate()
+        }
+    }
+    
     @IBOutlet var episodeDate: UILabel!
     
     @IBOutlet var scrollingEpisodeTitle: UILabel!
