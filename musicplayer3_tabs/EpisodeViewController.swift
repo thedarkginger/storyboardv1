@@ -115,6 +115,23 @@ class EpisodeViewController: UIViewController {
                     
                     episodeTotalTime.text = String(format: "%02d:%02d:%02d", updated.0, updated.1, updated.2)
                     
+                    if UserDefaults.standard.value(forKey: audioVariableInSecondVc) != nil {
+                        
+                        Slider.maximumValue = Float(audioPlayer.duration)
+                        Slider.value = UserDefaults.standard.value(forKey: audioVariableInSecondVc) as! Float
+                        audioPlayer.currentTime = TimeInterval(Slider.value)
+                        audioPlayer.prepareToPlay()
+                        
+                        
+                        let episodeTime = (Float(audioPlayer.currentTime))
+                        let myIntValue = Int(episodeTime)
+                        
+                        let updated = secondsToHoursMinutesSeconds(seconds: myIntValue)
+                        
+                        episodeTimeTaken.text = String(format: "%02d:%02d:%02d", updated.0, updated.1, updated.2)
+                    }
+                   
+                    
                     do {
                         try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
                         print("Playback OK")
@@ -170,6 +187,14 @@ class EpisodeViewController: UIViewController {
     
     @IBOutlet var podImageView: UIImageView!
     
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        if audioPlayer != nil {
+            
+            UserDefaults.standard.set(Slider.value, forKey: audioVariableInSecondVc)
+        }
+    }
+   
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -270,7 +295,7 @@ class EpisodeViewController: UIViewController {
         }
         
         // updates slider with progress
-        Slider.value = 0.0
+//        Slider.value = 0.0
         Slider.maximumValue = Float((audioPlayer?.duration)!)
         timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
         startNowPlayingAnimation(true)
