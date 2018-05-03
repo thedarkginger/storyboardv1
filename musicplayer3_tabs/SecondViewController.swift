@@ -49,8 +49,10 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
         
         
         let myarray = getArray()
+        let myarray_updated = myarray.sorted {$0.localizedStandardCompare($1) == .orderedAscending}
+
         
-        cell.textLabel?.text = myarray[indexPath.row]
+        cell.textLabel?.text = myarray_updated[indexPath.row]
         
         print("something")
         var imageView : UIImageView
