@@ -95,22 +95,38 @@ class SecondViewController: UIViewController,UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         // test to see if i can store row name in the defaults array
         
-        var myarray = getArray()
+        let myarray = getArray()
+        var myarray_updated = myarray.sorted {$0.localizedStandardCompare($1) == .orderedAscending}
         
-        myarray.remove(at: indexPath.row)
+        myarray_updated.remove(at: indexPath.row)
         
-        setArray(ary: myarray)
+        setArray(ary: myarray_updated)
         
         subscribeTable.reloadData()
         
         
-        print(myarray)
-        
     }
     
+    // pass user to show table after click
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // cell selected code here
+        
+        self.performSegue(withIdentifier: "passepisode", sender: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let indexPath = subscribeTable.indexPathForSelectedRow {
+            
+            let myarray = getArray()
+            let myarray_updated = myarray.sorted {$0.localizedStandardCompare($1) == .orderedAscending}
+            let controller = segue.destination as! episodeTableViewController
+            controller.showNameVariable = myarray_updated[indexPath.row]
+            
+            
+        }
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

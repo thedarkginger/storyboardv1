@@ -402,6 +402,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="KF8-Fe-14F" kind="show" identifier="passepisode" id="8QT-fc-ALe"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -423,7 +426,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="45.600000000000001" y="839.73013493253382"/>
+            <point key="canvasLocation" x="2070" y="473"/>
         </scene>
         <!--Podcasts Table View Controller-->
         <scene sceneID="aHI-05-dra">
@@ -692,5 +695,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="u7Y-xg-7CH"/>
+        <segue reference="IeS-Id-aca"/>
     </inferredMetricsTieBreakers>
 </document>
