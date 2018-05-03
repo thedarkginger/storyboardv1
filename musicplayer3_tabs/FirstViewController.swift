@@ -119,7 +119,8 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
             cellHeight = 121
         }
         
-        
+        cell.img_status.tag = 500
+
         
         // extract json audio file
         
@@ -196,14 +197,20 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
                     
                     audioPlayer = nil
                     
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
-                    self.navigationController?.pushViewController(vc, animated: true)
-                    nameVariableInSecondVc = epi.name
-                    audioVariableInSecondVc = epi.audio!
-                    showTitleVariable = self.showNameVariable
-                    descriptionVariable = epi.description
-                    imageVariable = epi.image!
-                    showDateVariable = epi.date
+                    let when = DispatchTime.now() + 0.5
+                    
+                    DispatchQueue.main.asyncAfter(deadline: when) {
+                        
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
+                        self.navigationController?.pushViewController(vc, animated: true)
+                        nameVariableInSecondVc = epi.name
+                        audioVariableInSecondVc = epi.audio!
+                        showTitleVariable = self.showNameVariable
+                        descriptionVariable = epi.description
+                        imageVariable = epi.image!
+                        showDateVariable = epi.date
+                    }
+                    
                     
                     // if the file doesn't exist
                 } else {
@@ -221,7 +228,7 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
                             print("File moved to documents folder")
                             
                             
-                            let when = DispatchTime.now()
+                            let when = DispatchTime.now() + 0.5
                             
                             DispatchQueue.main.asyncAfter(deadline: when) {
                                 
@@ -229,15 +236,19 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
                                 self.activity_indicator.stopAnimating()
                                 UIApplication.shared.endIgnoringInteractionEvents()
                                 
-                                audioPlayer = nil
+                                let cell = tableView.cellForRow(at: indexPath) as! FirstViewCell
+                                cell.img_status.image = #imageLiteral(resourceName: "verification-mark")
                                 
-                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
-                                self.navigationController?.pushViewController(vc, animated: true)
-                                nameVariableInSecondVc = epi.name
-                                audioVariableInSecondVc = epi.audio!
-                                showTitleVariable = self.showNameVariable
-                                imageVariable = epi.image!
+//                                audioPlayer = nil
+//
+//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
+//                                self.navigationController?.pushViewController(vc, animated: true)
+//                                nameVariableInSecondVc = epi.name
+//                                audioVariableInSecondVc = epi.audio!
+//                                showTitleVariable = self.showNameVariable
+//                                imageVariable = epi.image!
                                 
+                                print("audio:\(audioVariableInSecondVc)")
                                 
                             }
                             
@@ -333,15 +344,16 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
                                 self.activity_indicator.stopAnimating()
                                 UIApplication.shared.endIgnoringInteractionEvents()
                                 
-                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
-                                self.navigationController?.pushViewController(vc, animated: true)
-                                nameVariableInSecondVc = epi.name
-                                audioVariableInSecondVc = epi.audio!
-                                imageVariable = epi.image!
+//                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
+//                                self.navigationController?.pushViewController(vc, animated: true)
+//                                nameVariableInSecondVc = epi.name
+//                                audioVariableInSecondVc = epi.audio!
+//                                imageVariable = epi.image!
                                 
                                 let cell = tableView.cellForRow(at: indexPath) as! FirstViewCell
                                 cell.img_status.image = #imageLiteral(resourceName: "verification-mark")
                                 
+                                print("audio:\(audioVariableInSecondVc)")
                             }
                             
                             

@@ -118,6 +118,8 @@ class EpisodeViewController: UIViewController {
                     Slider.value = 0.0
                     episodeTimeTaken.text = "00:00:00"
                     
+                    print("audio:\(audioVariableInSecondVc)")
+                    
                     if UserDefaults.standard.value(forKey: audioVariableInSecondVc) != nil {
                         
                         Slider.maximumValue = Float(audioPlayer.duration)
