@@ -113,29 +113,31 @@
                                     <segue destination="lFb-uc-Ked" kind="show" id="Rvr-Wc-S1j"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6B5-i8-Slo">
-                                <rect key="frame" x="312" y="79" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Auto-Download" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gU3-Wg-qq4">
-                                <rect key="frame" x="248" y="115" width="111" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto-Download" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gU3-Wg-qq4">
+                                <rect key="frame" x="260.5" y="118" width="98.5" height="16"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                 <color key="textColor" white="0.48063151045000002" alpha="0.79082833904109584" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6B5-i8-Slo">
+                                <rect key="frame" x="312" y="84" width="51" height="31"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="EUC-5V-9JD" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="16" id="8px-0J-k1h"/>
                             <constraint firstItem="AzI-fE-Qv3" firstAttribute="top" secondItem="hhv-5I-mbM" secondAttribute="bottom" constant="7" id="BRd-3e-Cgx"/>
+                            <constraint firstItem="gU3-Wg-qq4" firstAttribute="top" secondItem="6B5-i8-Slo" secondAttribute="bottom" constant="3" id="Dq1-8A-vTK"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="AzI-fE-Qv3" secondAttribute="trailing" constant="16" id="EJb-o9-Yci"/>
+                            <constraint firstItem="6B5-i8-Slo" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="20" id="KXv-0r-pcD"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="EUC-5V-9JD" secondAttribute="trailing" constant="206" id="MS9-zj-MhJ"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="gU3-Wg-qq4" secondAttribute="trailing" constant="16" id="SE5-Qn-o5G"/>
                             <constraint firstItem="hhv-5I-mbM" firstAttribute="top" secondItem="EUC-5V-9JD" secondAttribute="bottom" constant="17" id="SR3-Nh-EBf"/>
                             <constraint firstItem="hhv-5I-mbM" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="Tay-1G-mBF"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="AzI-fE-Qv3" secondAttribute="bottom" constant="9" id="WQT-wu-EmU"/>
                             <constraint firstItem="7Jw-PX-emp" firstAttribute="centerY" secondItem="PQr-Ze-W5v" secondAttribute="centerY" id="ZZB-8M-6h1"/>
                             <constraint firstItem="7Jw-PX-emp" firstAttribute="centerX" secondItem="PQr-Ze-W5v" secondAttribute="centerX" id="cQ1-JT-jTH"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="6B5-i8-Slo" secondAttribute="trailing" constant="14" id="eob-TM-7PH"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="hhv-5I-mbM" secondAttribute="trailing" id="hpk-dw-0en"/>
                             <constraint firstItem="AzI-fE-Qv3" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="16" id="mjn-W0-uRK"/>
                             <constraint firstItem="EUC-5V-9JD" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="20" id="nxV-C7-jCq"/>
@@ -519,6 +521,31 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JvT-25-VxY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2069.5999999999999" y="1205.8470764617691"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="dO9-C2-h1c">
+            <objects>
+                <viewController id="TQm-lH-iw8" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jbQ-sp-GAa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hzn-UQ-v6f">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="G5R-k7-Nr4"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="Qun-XU-oDf"/>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I9S-Ml-BuT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2070" y="1872"/>
         </scene>
         <!--EpisodeViewController-->
         <scene sceneID="mJg-yM-XHG">
