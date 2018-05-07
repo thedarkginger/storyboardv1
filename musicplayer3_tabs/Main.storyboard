@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hhv-5I-mbM">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hhv-5I-mbM">
                                 <rect key="frame" x="0.0" y="136" width="375" height="405"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -93,12 +93,6 @@
                                 <rect key="frame" x="177.5" y="331" width="20" height="20"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Storyboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUC-5V-9JD">
-                                <rect key="frame" x="16" y="84" width="153" height="35"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AzI-fE-Qv3">
                                 <rect key="frame" x="16" y="559" width="343" height="50"/>
                                 <color key="backgroundColor" red="0.0078431372549019607" green="0.46666666666666667" blue="0.74117647058823533" alpha="0.98018951685342459" colorSpace="custom" customColorSpace="sRGB"/>
@@ -122,17 +116,18 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6B5-i8-Slo">
                                 <rect key="frame" x="312" y="84" width="51" height="31"/>
                             </switch>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="storyboard_transparent.png" translatesAutoresizingMaskIntoConstraints="NO" id="xLJ-h3-5BA">
+                                <rect key="frame" x="8" y="71" width="184" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="EUC-5V-9JD" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="16" id="8px-0J-k1h"/>
                             <constraint firstItem="AzI-fE-Qv3" firstAttribute="top" secondItem="hhv-5I-mbM" secondAttribute="bottom" constant="7" id="BRd-3e-Cgx"/>
                             <constraint firstItem="gU3-Wg-qq4" firstAttribute="top" secondItem="6B5-i8-Slo" secondAttribute="bottom" constant="3" id="Dq1-8A-vTK"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="AzI-fE-Qv3" secondAttribute="trailing" constant="16" id="EJb-o9-Yci"/>
                             <constraint firstItem="6B5-i8-Slo" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="20" id="KXv-0r-pcD"/>
-                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="EUC-5V-9JD" secondAttribute="trailing" constant="206" id="MS9-zj-MhJ"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="gU3-Wg-qq4" secondAttribute="trailing" constant="16" id="SE5-Qn-o5G"/>
-                            <constraint firstItem="hhv-5I-mbM" firstAttribute="top" secondItem="EUC-5V-9JD" secondAttribute="bottom" constant="17" id="SR3-Nh-EBf"/>
                             <constraint firstItem="hhv-5I-mbM" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="Tay-1G-mBF"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="AzI-fE-Qv3" secondAttribute="bottom" constant="9" id="WQT-wu-EmU"/>
                             <constraint firstItem="7Jw-PX-emp" firstAttribute="centerY" secondItem="PQr-Ze-W5v" secondAttribute="centerY" id="ZZB-8M-6h1"/>
@@ -140,7 +135,6 @@
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="6B5-i8-Slo" secondAttribute="trailing" constant="14" id="eob-TM-7PH"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="hhv-5I-mbM" secondAttribute="trailing" id="hpk-dw-0en"/>
                             <constraint firstItem="AzI-fE-Qv3" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="16" id="mjn-W0-uRK"/>
-                            <constraint firstItem="EUC-5V-9JD" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="20" id="nxV-C7-jCq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
@@ -718,6 +712,7 @@
         <image name="NowPlayingBars" width="19" height="19"/>
         <image name="pausedwhite.png" width="100" height="100"/>
         <image name="playwhite.png" width="500" height="500"/>
+        <image name="storyboard_transparent.png" width="6957" height="2153"/>
         <image name="verification-mark" width="12" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
