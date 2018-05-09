@@ -55,6 +55,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         debugPrint("handleEventsForBackgroundURLSession: \(identifier)")
         completionHandler()
     }
+    
+    override func remoteControlReceived(with event: UIEvent?) {
+        
+        if event?.type == UIEventType.remoteControl {
+            
+            if event?.subtype == UIEventSubtype.remoteControlPlay {
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "songplay"), object: nil)
+                
+            }
+            else if event?.subtype == UIEventSubtype.remoteControlPause {
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "songpause"), object: nil)
+            }
+           
+            
+        }
+    }
 
 }
 

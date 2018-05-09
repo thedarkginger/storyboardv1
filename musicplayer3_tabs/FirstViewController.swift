@@ -41,7 +41,21 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
         
         episodeTable.dataSource = self
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.songpause(noti:)), name: NSNotification.Name(rawValue: "songpause"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.songPlay(noti:)), name: NSNotification.Name(rawValue: "songplay"), object: nil)
+    }
+    
+    @objc func songPlay(noti:Notification) {
+        
+        audioPlayer.play()
+        startNowPlayingAnimation(true)
+    }
+    
+    @objc func songpause(noti:Notification) {
+        
+        audioPlayer.pause()
+        startNowPlayingAnimation(false)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import SDWebImage
 import AudioToolbox
+import MediaPlayer
 
 var nameVariableInSecondVc = ""
 var audioVariableInSecondVc = ""
@@ -188,6 +189,34 @@ class EpisodeViewController: UIViewController {
     } // end view did
     
     
+    // MARK: - screen player
+    
+    func updateNowPlayingCenter(title: String, artist: String, currentTime: Double, songLength: Double, PlaybackRate: Double){
+        
+//        var img = #imageLiteral(resourceName: "fm_logo")
+//
+//        if albumArt.image != nil {
+//
+//            img = albumArt.image!
+//        }
+        
+        let songInfo: Dictionary <String, Any> = [
+            
+            MPMediaItemPropertyTitle: title,
+            
+            MPMediaItemPropertyArtist: artist,
+            
+            MPNowPlayingInfoPropertyElapsedPlaybackTime: currentTime,
+            
+            MPMediaItemPropertyPlaybackDuration: songLength,
+            
+            MPNowPlayingInfoPropertyPlaybackRate: PlaybackRate
+        ]
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = songInfo as [String : Any]
+        
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         
         if timer != nil {
@@ -315,6 +344,8 @@ class EpisodeViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
         startNowPlayingAnimation(true)
         audioPlayer.play()
+        
+        updateNowPlayingCenter(title: "Musicplayer", artist: "", currentTime: audioPlayer.currentTime, songLength: audioPlayer.duration, PlaybackRate: 1.0)
         
     }
     
