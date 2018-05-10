@@ -100,8 +100,8 @@ class EpisodeViewController: UIViewController {
                 let destinationUrl = documentsDirectoryURL.appendingPathComponent(audioUrl.lastPathComponent)
                 
                 do {
-                    
-                    audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)
+                     let url = Bundle.main.url(forResource: "430824201-user-774038550-tulane-spring-game-review-ep-28", withExtension: "m4a")
+                    audioPlayer = try AVAudioPlayer(contentsOf: destinationUrl)//destinationUrl
                     // sets the duration time for the episode
                     
                     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
@@ -136,11 +136,9 @@ class EpisodeViewController: UIViewController {
                         
                         episodeTimeTaken.text = String(format: "%02d:%02d:%02d", updated.0, updated.1, updated.2)
                     }
-                   
-                    
                     
                     do {
-                        try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .mixWithOthers)
+                        try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: [.defaultToSpeaker, .allowBluetooth])
                         print("Playback OK")
                         try AVAudioSession.sharedInstance().setActive(true)
                         print("Session is Active")
@@ -179,8 +177,7 @@ class EpisodeViewController: UIViewController {
             timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
             
         }
-        
-        
+   
         
  // end player
         
@@ -205,11 +202,11 @@ class EpisodeViewController: UIViewController {
             MPMediaItemPropertyTitle: title,
             
             MPMediaItemPropertyArtist: artist,
-            
+
             MPNowPlayingInfoPropertyElapsedPlaybackTime: currentTime,
-            
+
             MPMediaItemPropertyPlaybackDuration: songLength,
-            
+
             MPNowPlayingInfoPropertyPlaybackRate: PlaybackRate
         ]
         
@@ -344,8 +341,13 @@ class EpisodeViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(self.updateSlider), userInfo: nil, repeats: true)
         startNowPlayingAnimation(true)
         audioPlayer.play()
+        let when = DispatchTime.now() + 0.3
         
-        updateNowPlayingCenter(title: "Musicplayer", artist: "", currentTime: audioPlayer.currentTime, songLength: audioPlayer.duration, PlaybackRate: 1.0)
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            
+            self.updateNowPlayingCenter(title: "Musicplayer", artist: "Music", currentTime: audioPlayer.currentTime, songLength: audioPlayer.duration, PlaybackRate: 1.0)
+        }
+        
         
     }
     

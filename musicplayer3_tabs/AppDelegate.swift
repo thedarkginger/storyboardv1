@@ -9,6 +9,7 @@
 import UIKit
 import MediaPlayer
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -21,11 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         let commandCenter = MPRemoteCommandCenter.shared()
-        commandCenter.previousTrackCommand.isEnabled = true
-        commandCenter.nextTrackCommand.isEnabled = true
+        commandCenter.previousTrackCommand.isEnabled = false
+        commandCenter.nextTrackCommand.isEnabled = false
         
         UIApplication.shared.beginReceivingRemoteControlEvents()
-        
+        application.registerForRemoteNotifications()
         return true
     }
 
@@ -51,6 +52,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        var deviceTokenString = ""
+        for i in 0..<deviceToken.count {
+            deviceTokenString = deviceTokenString + String(format: "%02.2hhx", arguments: [deviceToken[i]])
+        }
+        
+        //        let defaults = UserDefaults.standard
+        //        defaults.setValue(deviceTokenString, forKey: "devicetoken")
+        
+        print("devicetoken \(deviceTokenString)")
+        
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        print(application.applicationState.rawValue)
+      
+        completionHandler(UIBackgroundFetchResult.newData)
+        
+    }
+    
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
         debugPrint("handleEventsForBackgroundURLSession: \(identifier)")
         completionHandler()

@@ -86,6 +86,19 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
         
     }
     
+    @IBAction func Click_Play(_ sender: UIButton) {
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "EpisodeViewController") as! EpisodeViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+        let str = Bundle.main.path(forResource: "430824201-user-774038550-tulane-spring-game-review-ep-28", ofType: "m4a")
+        nameVariableInSecondVc = "Local"
+        audioVariableInSecondVc = str!
+      //  showTitleVariable = self.showNameVariable
+        descriptionVariable = "fdfd"
+       // imageVariable = UIImage(named: "download.png")
+       // showDateVariable = epi.date
+        
+    }
     @IBOutlet var episodeTable: UITableView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -235,7 +248,11 @@ class FirstViewController: UIViewController,UITableViewDelegate, UITableViewData
                     
                     // you can use NSURLSession.sharedSession to download the data asynchronously
                     URLSession.shared.downloadTask(with: audioUrl, completionHandler: { (location, response, error) -> Void in
-                        guard let location = location, error == nil else { return }
+                        guard let location = location, error == nil else {
+                            
+                            return
+                            
+                        }
                         do {
                             // after downloading your file you need to move it to your destination url
                             try FileManager.default.moveItem(at: location, to: destinationUrl)
